@@ -15,7 +15,7 @@ export class RegistrazioneComponent implements OnInit {
     nomeUtente: new FormControl('', [Validators.required, Validators.minLength(3)]),
     password: new FormControl('', [Validators.required, Validators.minLength(5)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    dataNascita: new FormControl('', Validators.required),
+    dataNascita: new FormControl('', [Validators.required]),
   })
 
   constructor(private postRegistrzioneService: PostRegistrzioneService, private router: Router) {
