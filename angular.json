@@ -5,7 +5,11 @@
   "projects": {
     "esameAngular": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -24,7 +28,7 @@
             ],
             "styles": [
             
-              "src/styles.css",
+              "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
@@ -95,7 +99,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"             
+              "src/styles.scss"             
             ],
             "scripts": []
           }
