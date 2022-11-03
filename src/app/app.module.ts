@@ -6,17 +6,22 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CocktailComponent } from './cocktail/cocktail.component';
 import {HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CocktailComponent
+    CocktailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
