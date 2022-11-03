@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { IUser } from '../models/IUser';
+import { PostRegistrzioneService } from '../services/registrzione.service';
 
 @Component({
   selector: 'app-registrazione',
@@ -15,17 +18,30 @@ export class RegistrazioneComponent implements OnInit {
     dataNascita: new FormControl('', Validators.required),
   })
 
-  constructor() {
+  constructor(private postRegistrzioneService: PostRegistrzioneService, private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
-  onSubmit(): void {
-    alert(`Benvenuto  ${this.form.value.nomeUtente}`);
+  registrer() {
+
+    const body: IUser = {
+      nomeUtente: this.form.value.nomeUtente as string,
+      password: this.form.value.password as string,
+      email: this.form.value.email as string,
+      dataNascita: this.form.value.dataNascita as string,
+    };
+
+    this.postRegistrzioneService.create(body).subscribe({
+      next: () => {
+        alert('Registrazione effettuata');
+        setTimeout(() => { this.router.navigate(['/login']) },2000)
+      },
+      error: (err) => console.log(err),
+    });
   }
 
-  validForm : boolean = this.form.valid;
-
+  validForm: boolean = this.form.valid;
 
 }

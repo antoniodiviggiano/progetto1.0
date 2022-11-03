@@ -8,6 +8,7 @@ import { CocktailComponent } from './cocktail/cocktail.component';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegistrazioneComponent } from './registrazione/registrazione.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     HomeComponent,
     CocktailComponent,
-    LoginComponent
+    LoginComponent,
+    RegistrazioneComponent,
   ],
   imports: [
     BrowserModule,

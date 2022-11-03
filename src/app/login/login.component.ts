@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUser } from '../models/IUser';
+import { LogInService } from '../services/log-in.service';
 
 @Component({
   selector: 'app-login',
@@ -10,33 +11,38 @@ import { IUser } from '../models/IUser';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-[x: string]: any;
 
-  public loginForm!: FormGroup
+  loginForm = new FormGroup({
+    email : new FormControl(''),
+    password : new FormControl(''),
+  })
 
-  constructor(private formBuilder : FormBuilder, private http : HttpClient, private router: Router) { }
+  constructor(private formBuilder : FormBuilder, private http : HttpClient, private router: Router, private logInService: LogInService) { }
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      email: [""],
-      password: [""]
-    })
+    
   }
 
   login(){
-    this.http.get<any>("http://localhost:3000/utente") 
-    .subscribe(res=>{
-      const user = res.find((a: IUser) => {
-        return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password
-      });
-      if(user){
-        alert("Login Success");
-        this.loginForm.reset();
-        this.router.navigate([''])
-      } else {
-        alert("user not found")
-      }
-    })
+    this.logInService.logIn().subscribe({
+      next: (users) => {
+        this.findUser(users);
+      },
+      error: (err) => console.log(err),
+    });
   }
 
+  findUser(users : IUser[]) {
+    let userLogged : IUser | undefined = users.find( e => e.email === this.loginForm.value.email && e.password === this.loginForm.value.password)
+    
+    if(userLogged){
+      alert('Bentornato '+userLogged.nomeUtente);
+    } else {
+      alert('utente non torvato');
+    }
+  }
+
+
 }
+
+

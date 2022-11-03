@@ -1,7 +1,7 @@
 <div class="card" style="width: 18rem; color: black ; align-items: center;text-align: center;">
     <div class="card-body">
         <h5 class="card-title">Registrazione</h5>
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <form [formGroup]="form" (ngSubmit)="registrer()">
             <div>
                 <label for="nomeUtente">Nome Utente</label>
                 <input name="nomeUtente" type="text" placeholder="inserire nome" formControlName="nomeUtente">
