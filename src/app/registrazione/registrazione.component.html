@@ -1,31 +1,35 @@
-<div class="card" style="width: 18rem; color: black ; align-items: center;text-align: center;">
-    <div class="card-body">
-        <h5 class="card-title">Registrazione</h5>
-        <form [formGroup]="form" (ngSubmit)="registrer()">
-            <div>
-                <label for="nomeUtente">Nome Utente</label>
-                <input name="nomeUtente" type="text" placeholder="inserire nome" formControlName="nomeUtente">
+<div class="container text-black">
+    <div class="row  justify-content-center pt-5">
+        <div class="col-md-6">
+            <div class="card ">
+                    <div class="text-center text-black">
+                        <h1>REGISTRAZIONE</h1>
+                        <hr class="border border-primary border-3 opacity-75">
+                    </div>
+                    <form [formGroup]="form" (ngSubmit)="registrer()" class="m-3">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <div class="form-group">
+                                <label for="nomeUtente">Nome Utente</label>
+                                <input type="text" class="form-control" placeholder="Inserire nome" formControlName="nomeUtente">
+                              </div>
+                            <label for="indirizzoEmail">Email</label>
+                            <input type="email" class="form-control" name="indirizzoEmail" placeholder="Inserire e-mail">
+                          </div>
+                          <div class="form-group">
+                            <label for="inputPassword4">Password</label>
+                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                          </div>
+                        </div>
+                        <div class="pb-3">
+                            <label for="dataNascita">Data di nascita</label>
+                            <br>
+                            <input type="date" name="dataNascita" formControlName="dataNascita" class="form-control" >
+                        </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="!form.valid">Form non valido,inserire tutti i campi</div>
+                        <button [disabled]="!form.valid" type="submit" class=" btn w-100 btn-primary">Registrazione</button>
+                      </form>
             </div>
-            <div>
-                <label for="password">Password</label>
-                <input name="password" type="password" placeholder="inserire password" formControlName="password">
-            </div>
-            <div>
-                <label for="indirizzoEmail">Indirizzo Email</label>
-                <input type="text" name="indirizzoEmail" placeholder="inserire e-mail" formControlName="email">
-            </div>
-            <div>
-                <label for="dataNascita">Data di nascita</label>
-                <br>
-                <input type="date" name="dataNascita" formControlName="dataNascita">
-            </div>
-            <div>
-                <div style="margin: 2%;" class="alert alert-danger" role="alert" *ngIf="!form.valid">Form non valido,inserire tutti i campi</div>
-            </div>
-            <div>
-                <button style="margin: 3%;" type="submit" class="btn btn-success"
-                    [disabled]="!form.valid">Registrati</button>
-            </div>
-        </form>
+        </div>
     </div>
 </div>

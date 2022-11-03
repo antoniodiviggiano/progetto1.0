@@ -1,24 +1,22 @@
 <div class="container">
-    <div class="row">
+    <div class="row  justify-content-center pt-5">
         <div class="col-md-6">
-            <div class="card">
+            <div class="card ">
                 <div class="text-center text-black">
                     <h1>LOGIN</h1>
                     <h6>Inserisci email e password</h6>
+                    <hr class="border border-primary border-3 opacity-75">
                 </div>
-              
-                    <form [formGroup] = "loginForm" (ngSubmit)="login()">
-                        <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label text-black">Email address</label>
-                          <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <form class="m-3" [formGroup] = "loginForm" (ngSubmit)="login()">
+                        <div class="mb-3 form-outline">
+                          <input formControlName="email" placeholder="Inserisci Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
-                          <label for="exampleInputPassword1" class="form-label text-black">Password</label>
-                          <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+                          <input formControlName="password" placeholder="Inserisci Password" type="password" class="form-control" id="exampleInputPassword1">
                         </div>
-                        <button type="submit" class="btn btn-primary">LOGIN</button>
+                        <button type="submit" class="btn  w-100 btn-primary block">LOGIN</button>
                       </form>
-                      <a routerLink="/registrazione"> nuovo utente? clicca qui</a>
+                      <a routerLink="/registrazione" class="justify-content-end"> nuovo utente? clicca qui</a>
             </div>
         </div>
     </div>
