@@ -13,17 +13,16 @@ import { LogInService } from '../services/log-in.service';
 export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
-    email : new FormControl('',[Validators.required,Validators.email]),
-    password : new FormControl('',[Validators.required,Validators.minLength(5)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(5)]),
   })
 
-  constructor(private formBuilder : FormBuilder, private http : HttpClient, private router: Router, private logInService: LogInService) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private logInService: LogInService) { }
 
   ngOnInit(): void {
-    
   }
 
-  login(){
+  login() {
     this.logInService.logIn().subscribe({
       next: (users) => {
         this.findUser(users);
@@ -32,18 +31,17 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  findUser(users : IUser[]) {
-    let userLogged : IUser | undefined = users.find( e => e.email === this.loginForm.value.email && e.password === this.loginForm.value.password)
-    
-    if(userLogged){
-      alert('Bentornato '+userLogged.nomeUtente);
+  findUser(users: IUser[]) {
+    let userLogged: IUser | undefined = users.find(e => e.email === this.loginForm.value.email && e.password === this.loginForm.value.password)
+
+    if (userLogged) {
+      alert('Bentornato ' + userLogged.nomeUtente);
       this.router.navigate(['/cocktail']);
     } else {
       alert('utente non torvato');
       this.loginForm.reset();
     }
   }
-
 
 }
 

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Data, Router } from '@angular/router';
 import { IUser } from '../models/IUser';
 import { PostRegistrzioneService } from '../services/registrzione.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-registrazione',
@@ -17,7 +18,7 @@ export class RegistrazioneComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     dataNascita: new FormControl('', [Validators.required]),  //moment
   })
-  
+
   lastId!: number;
 
   constructor(private postRegistrzioneService: PostRegistrzioneService, private router: Router) {
@@ -26,8 +27,20 @@ export class RegistrazioneComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  checkYear() {
+    let data: Data = new Date(this.form.value.dataNascita as string);
+    let year = parseInt(moment(data).format('YYYY'));
+
+    if (year < 999) {
+      this.form.controls.dataNascita.setErrors({incorect : true});
+    } else {
+      this.form.controls.dataNascita.setErrors(null);
+    }
+
+  }
+
   registrer() {
-    
+
     const body: IUser = {
       nomeUtente: this.form.value.nomeUtente as string,
       password: this.form.value.password as string,

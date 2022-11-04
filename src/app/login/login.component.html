@@ -7,18 +7,23 @@
                     <h6>Inserisci email e password</h6>
                     <hr class="border border-primary border-3 opacity-75">
                 </div>
-                    <form class="m-3" [formGroup] = "loginForm" (ngSubmit)="login()">
-                        <div class="mb-3 form-outline">
-                          <input formControlName="email" placeholder="Inserisci Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                          <p *ngIf="!loginForm.get('email')?.valid && loginForm.get('email')?.touched">email non valida</p>
-                        </div>
-                        <div class="mb-3">
-                          <input formControlName="password" placeholder="Inserisci Password" type="password" class="form-control" id="exampleInputPassword1">
-                          <p *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched">password non valida</p>
-                        </div>
-                        <button type="submit" class="btn  w-100 btn-primary block" [disabled]="!loginForm.valid">LOGIN</button>
-                      </form>
-                      <a routerLink="/registrazione" class="justify-content-end"> nuovo utente? clicca qui</a>
+                <form class="m-3" [formGroup]="loginForm" (ngSubmit)="login()">
+                    <div class="mb-3 form-outline">
+                        <input formControlName="email" placeholder="Inserisci Email" type="email" class="form-control"
+                            id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <p *ngIf="!loginForm.controls['email']?.valid && loginForm.controls['email']?.touched">email non
+                            valida</p>
+                    </div>
+                    <div class="mb-3">
+                        <input formControlName="password" placeholder="Inserisci Password" type="password"
+                            class="form-control" id="exampleInputPassword1">
+                        <p *ngIf="!loginForm.controls['password']?.valid && loginForm.controls['password']?.touched">
+                            password non valida</p>
+                    </div>
+                    <button type="submit" class="btn  w-100 btn-primary block"
+                        [disabled]="!loginForm.valid">LOGIN</button>
+                </form>
+                <a routerLink="/registrazione" class="justify-content-end"> nuovo utente? clicca qui</a>
             </div>
         </div>
     </div>
