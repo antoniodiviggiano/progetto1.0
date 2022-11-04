@@ -7,16 +7,20 @@
         "NomeProgetto": "Progetto 1.0",
         "Accedi": "Accedi",
         "Registrazione": "Registrazione",
-        "Lingue" : "Seleziona lingua"
+        "Lingue" : "Seleziona lingua",
+        "NomeUtenteNonValido" : "Nome utente non valido",
+        "DataNascitaNonValido" : "Data di nascita non valida",
+        "PasswordNonValido" : "Passowrd non valida",
+        "EmailNonValido" : "Email non valida"
     },
     "ACCESSO": {
         "TestoEmailPassword": "Inserisci email e password",
         "LinkNuovoUtente": "nuovo utente? clicca qui"
     },
     "REGISTRAZIONE": {
-        "NomeUtnete" : "Nome Utente",
+        "NomeUtente" : "Nome Utente",
         "Email" : "Indirizzo email",
-        "Passowrd" : "Passowrd",
+        "Password" : "Passowrd",
         "DataNascita" : "Data di nascita"
     }
 }

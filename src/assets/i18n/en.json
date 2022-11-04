@@ -1,6 +1,26 @@
 {
-    "HOME": {
-        "CIAO": "HELLO",
-        "Registrazione" : "Sing-in"
+    "GENERALE": {
+        "PlaceHolderEmail": "Enter email",
+        "PlaceHolderPassword": "Enter your password",
+        "PlaceHolderNomeUtente": "Enter your username",
+        "PlaceHolderData": "Enter your date of birth",
+        "NomeProgetto": "Project 1.0",
+        "Accedi": "Log in",
+        "Registrazione": "Registration",
+        "Lingue" : "Select language",
+        "NomeUtenteNonValido" : "Invalid username",
+        "DataNascitaNonValido" : "Invalid date of birth",
+        "PasswordNonValido" : "Invalid password",
+        "EmailNonValido" : "Invalid email"
+    },
+    "ACCESSO": {
+        "TestoEmailPassword": "Enter your email and password",
+        "LinkNuovoUtente": "New user? Click here"
+    },
+    "REGISTRAZIONE": {
+        "NomeUtente" : "Username",
+        "Email" : "Email address",
+        "Password" : "Passowrd",
+        "DataNascita" : "Date of birth"
     }
 }

@@ -7,7 +7,11 @@
         "NomeProgetto": "Proyecto 1.0",
         "Accedi": "Iniciar sesión",
         "Registrazione": "Registro",
-        "Lingue" : "Seleccione el idioma"
+        "Lingue" : "Seleccione el idioma",
+        "NomeUtenteNonValido" : "Nombre de usuario no válido",
+        "DataNascitaNonValido" : "Fecha de nacimiento invalida",
+        "PasswordNonValido" : "Contraseña invalida",
+        "EmailNonValido" : "Email inválido"
     },
     "ACCESSO": {
         "TestoEmailPassword": "Introduce tu correo electrónico y contraseña",
