@@ -1,5 +1,11 @@
 {
   "utente": [
-    
+    {
+      "nomeUtente": "antonio",
+      "password": "123456789",
+      "email": "a@a.it",
+      "dataNascita": "2001-02-18",
+      "id": 1
+    }
   ]
 }

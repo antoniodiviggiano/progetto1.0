@@ -1,6 +1,22 @@
 {
-    "HOME": {
-        "CIAO": "HOLA",
-        "Registrazione" : "Registrazione in spagnolo"
+    "GENERALE": {
+        "PlaceHolderEmail": "Introduce tu correo electrónico",
+        "PlaceHolderPassword": "Introducir la contraseña",
+        "PlaceHolderNomeUtente": "Inserisici nome utente",
+        "PlaceHolderData": "Introduzca su nombre de usuario",
+        "NomeProgetto": "Proyecto 1.0",
+        "Accedi": "Iniciar sesión",
+        "Registrazione": "Registro",
+        "Lingue" : "Seleccione el idioma"
+    },
+    "ACCESSO": {
+        "TestoEmailPassword": "Introduce tu correo electrónico y contraseña",
+        "LinkNuovoUtente": "¿Nuevo Usuario? haga clic aquí"
+    },
+    "REGISTRAZIONE": {
+        "NomeUtente" : "Nombre de usuario",
+        "Email" : "dirección de correo electrónico",
+        "Passowrd" : "Clave",
+        "DataNascita" : "Fecha de nacimiento"
     }
 }
