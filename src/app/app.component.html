@@ -1,13 +1,22 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand">Cocktelleria da Antonio!</a>
-  
+  <a class="navbar-brand">Progetto 1.0</a>
+
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="/login">Log-in</a>
-      <a class="nav-item nav-link active" href="/registrazione">Registrazione</a>
-      
+      <a class="nav-item nav-link active" href="/registrazione">{{"HOME.Registrazione" | translate}}</a>
+
+      <select #langSelect (change)="translate.use(langSelect.value)">
+        <option value="it">it</option>
+        <option value="en">en</option>
+        <option value="es">es</option>
+      </select>
+
     </div>
-    
+
+
+
+
   </div>
 
 </nav>

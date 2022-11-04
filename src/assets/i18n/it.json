@@ -1,0 +1,22 @@
+{
+    "GENERALE": {
+        "PlaceHolderEmail": "Inserisici email",
+        "PlaceHolderPassword": "Inserisici password",
+        "PlaceHolderNomeUtente": "Inserisici nome utente",
+        "PlaceHolderData": "Inserisici data di nascita",
+        "NomeProgetto": "Progetto 1.0",
+        "Accedi": "Accedi",
+        "Registrazione": "Registrazione",
+        "Lingue" : "Seleziona lingua"
+    },
+    "ACCESSO": {
+        "TestoEmailPassword": "Inserisci email e password",
+        "LinkNuovoUtente": "nuovo utente? clicca qui"
+    },
+    "REGISTRAZIONE": {
+        "NomeUtnete" : "Nome Utente",
+        "Email" : "Indirizzo email",
+        "Passowrd" : "Passowrd",
+        "DataNascita" : "Data di nascita"
+    }
+}
