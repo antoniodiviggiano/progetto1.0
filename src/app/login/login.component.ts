@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { EmailValidator, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUser } from '../models/IUser';
 import { LogInService } from '../services/log-in.service';
@@ -13,8 +13,8 @@ import { LogInService } from '../services/log-in.service';
 export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
-    email : new FormControl(''),
-    password : new FormControl(''),
+    email : new FormControl('',[Validators.required,Validators.email]),
+    password : new FormControl('',[Validators.required,Validators.minLength(5)]),
   })
 
   constructor(private formBuilder : FormBuilder, private http : HttpClient, private router: Router, private logInService: LogInService) { }
@@ -37,8 +37,10 @@ export class LoginComponent implements OnInit {
     
     if(userLogged){
       alert('Bentornato '+userLogged.nomeUtente);
+      this.router.navigate(['/cocktail']);
     } else {
       alert('utente non torvato');
+      this.loginForm.reset();
     }
   }
 

@@ -1,5 +1,13 @@
 input {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-color: #0B5ED7;
-  }
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-color: #0B5ED7;
+}
+
+.form-control.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+
+.form-control.ng-touched.ng-valid {
+  border: 2px solid green;
+}

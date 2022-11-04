@@ -8,7 +8,7 @@ import { RegistrazioneComponent } from './registrazione/registrazione.component'
 const routes: Routes = [
   {
     path:"",
-    component:HomeComponent
+    component:LoginComponent
   },
   {
     path:"cocktail",
@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path:"registrazione",
     component:RegistrazioneComponent
+  },
+  {
+    path:"**",
+    component:LoginComponent
   }
 ];
 

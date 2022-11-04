@@ -15,8 +15,10 @@ export class RegistrazioneComponent implements OnInit {
     nomeUtente: new FormControl('', [Validators.required, Validators.minLength(3)]),
     password: new FormControl('', [Validators.required, Validators.minLength(5)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    dataNascita: new FormControl('', [Validators.required]),
+    dataNascita: new FormControl('', [Validators.required]),  //moment
   })
+  
+  lastId!: number;
 
   constructor(private postRegistrzioneService: PostRegistrzioneService, private router: Router) {
   }
@@ -25,7 +27,7 @@ export class RegistrazioneComponent implements OnInit {
   }
 
   registrer() {
-
+    
     const body: IUser = {
       nomeUtente: this.form.value.nomeUtente as string,
       password: this.form.value.password as string,
@@ -36,7 +38,7 @@ export class RegistrazioneComponent implements OnInit {
     this.postRegistrzioneService.create(body).subscribe({
       next: () => {
         alert('Registrazione effettuata');
-        setTimeout(() => { this.router.navigate(['/login']) },2000)
+        this.router.navigate(['/login']);
       },
       error: (err) => console.log(err),
     });
@@ -45,3 +47,4 @@ export class RegistrazioneComponent implements OnInit {
   validForm: boolean = this.form.valid;
 
 }
+

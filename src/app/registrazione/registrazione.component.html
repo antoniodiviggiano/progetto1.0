@@ -1,35 +1,42 @@
 <div class="container text-black">
-    <div class="row  justify-content-center pt-5">
-        <div class="col-md-6">
-            <div class="card ">
-                    <div class="text-center text-black">
-                        <h1>REGISTRAZIONE</h1>
-                        <hr class="border border-primary border-3 opacity-75">
-                    </div>
-                    <form [formGroup]="form" (ngSubmit)="registrer()" class="m-3">
-                        <div class="form-row">
-                          <div class="form-group">
-                            <div class="form-group">
-                                <label for="nomeUtente">Nome Utente</label>
-                                <input type="text" class="form-control" placeholder="Inserire nome" formControlName="nomeUtente">
-                              </div>
-                            <label for="indirizzoEmail">Email</label>
-                            <input type="email" class="form-control" name="indirizzoEmail" placeholder="Inserire e-mail" formControlName="email">
-                          </div>
-                          <div class="form-group">
-                            <label for="inputPassword4">Password</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password" formControlName="password">
-                          </div>
-                        </div>
-                        <div class="pb-3">
-                            <label for="dataNascita">Data di nascita</label>
-                            <br>
-                            <input type="date" name="dataNascita" formControlName="dataNascita" class="form-control" formControlName="dataNascita">
-                        </div>
-                        <div class="alert alert-danger" role="alert" *ngIf="!form.valid">Form non valido,inserire tutti i campi</div>
-                        <button [disabled]="!form.valid" type="submit" class=" btn w-100 btn-primary">Registrazione</button>
-                      </form>
-            </div>
+  <div class="row  justify-content-center pt-5">
+    <div class="col-md-6">
+      <div class="card ">
+        <div class="text-center text-black">
+          <h1>REGISTRAZIONE</h1>
+          <hr class="border border-primary border-3 opacity-75">
         </div>
+        <form [formGroup]="form" (ngSubmit)="registrer()" class="m-3">
+          <div class="form-row">
+            <div class="form-group">
+              <div class="form-group">
+                <label for="nomeUtente">Nome Utente</label>
+                <input class="form-control" type="text" class="form-control" placeholder="Inserire nome"
+                  formControlName="nomeUtente">
+                <p *ngIf="!form.get('nomeUtente')?.valid && form.get('nomeUtente')?.touched">nome utente non valido</p>
+              </div>
+              <label for="indirizzoEmail">Email</label>
+              <input class="form-control" type="email" class="form-control" name="indirizzoEmail"
+                placeholder="Inserire e-mail" formControlName="email">
+              <p *ngIf="!form.get('email')?.valid && form.get('email')?.touched">email non valida</p>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword4">Password</label>
+              <input class="form-control" type="password" class="form-control" id="inputPassword4"
+                placeholder="Password" formControlName="password">
+              <p *ngIf="!form.get('password')?.valid && form.get('password')?.touched">password non valida</p>
+            </div>
+          </div>
+          <div class="pb-3">
+            <label for="dataNascita">Data di nascita</label>
+            <p *ngIf="!form.get('dataNascita')?.valid && form.get('dataNascita')?.touched">password non valida</p>
+            <br>
+            <input class="form-control" type="date" name="dataNascita" formControlName="dataNascita"
+              class="form-control" formControlName="dataNascita">
+          </div>
+          <button [disabled]="!form.valid" type="submit" class=" btn w-100 btn-primary">Registrazione</button>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
