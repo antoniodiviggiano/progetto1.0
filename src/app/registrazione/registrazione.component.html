@@ -11,19 +11,19 @@
             <div class="form-group">
               <div class="form-group">
                 <label for="nomeUtente">{{"REGISTRAZIONE.NomeUtente" | translate}}</label>
-                <input class="form-control" type="text" class="form-control" placeholder="a"
+                <input class="form-control" type="text" class="form-control" placeholder="{{'GENERALE.PlaceHolderNomeUtente' | translate}}"
                   formControlName="nomeUtente">
                 <p *ngIf="!form.controls['nomeUtente']?.valid && form.controls['nomeUtente']?.touched">{{"GENERALE.NomeUtenteNonValido" | translate}}</p>
               </div>
               <label for="indirizzoEmail">{{"REGISTRAZIONE.Email" | translate}}</label>
               <input class="form-control" type="email" class="form-control" name="indirizzoEmail"
-                placeholder formControlName="email">
+                placeholder="{{'GENERALE.PlaceHolderEmail' | translate}}" formControlName="email">
               <p *ngIf="!form.controls['email']?.valid && form.controls['email']?.touched">{{"GENERALE.EmailNonValido" | translate}}</p>
             </div>
             <div class="form-group">
               <label for="inputPassword4">{{"REGISTRAZIONE.Password" | translate}}</label>
               <input class="form-control" type="password" class="form-control" id="inputPassword4"
-                placeholder="Password" formControlName="password">
+                placeholder="{{'GENERALE.PlaceHolderPassword' | translate}}" formControlName="password">
               <p *ngIf="!form.controls['password']?.valid && form.controls['password']?.touched">{{"GENERALE.PasswordNonValido" | translate}}</p>
             </div>
           </div>
