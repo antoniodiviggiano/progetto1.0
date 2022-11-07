@@ -3,19 +3,16 @@
 
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="/login">{{"GENERALE.Accedi" | translate}}</a>
-      <a class="nav-item nav-link active" href="/registrazione">{{"GENERALE.Registrazione" | translate}}</a>
+      <a class="nav-item nav-link active" routerLink="/login" routerLinkActive="active">{{"GENERALE.Accedi" | translate}}</a>
+      <a class="nav-item nav-link active" routerLink="/registrazione" routerLinkActive="active">{{"GENERALE.Registrazione" | translate}}</a>
 
       <select #langSelect (change)="translate.use(langSelect.value)">
-        <option value="it">it</option>
-        <option value="en">en</option>
-        <option value="es">es</option>
+        <option value="it-IT">it</option>
+        <option value="en-EN">en</option>
+        <option value="es-ES">es</option>
       </select>
 
     </div>
-
-
-
 
   </div>
 

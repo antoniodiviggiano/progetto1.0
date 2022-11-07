@@ -11,7 +11,7 @@
                     <div class="mb-3 form-outline">
                         <input formControlName="email" placeholder="{{'GENERALE.PlaceHolderEmail' | translate}}" type="email" class="form-control"
                             id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <p *ngIf="!loginForm.controls['email']?.valid && loginForm.controls['email']?.touched">{{"GENERALE.NomeUtenteNonValido" | translate}}</p>
+                        <p *ngIf="!loginForm.controls['email']?.valid && loginForm.controls['email']?.touched">{{"GENERALE.EmailNonValido" | translate}}</p>
                     </div>
                     <div class="mb-3">
                         <input formControlName="password" placeholder="{{'GENERALE.PlaceHolderPassword' | translate}}" type="password"

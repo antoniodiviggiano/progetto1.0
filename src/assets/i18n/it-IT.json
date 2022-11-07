@@ -11,7 +11,10 @@
         "NomeUtenteNonValido" : "Nome utente non valido",
         "DataNascitaNonValido" : "Data di nascita non valida",
         "PasswordNonValido" : "Passowrd non valida",
-        "EmailNonValido" : "Email non valida"
+        "EmailNonValido" : "Email non valida",
+        "RegistrazioneCompiuta" : "Registrazione effettuata",
+        "LoginCompiuto" : "Accesso effettuato",
+        "LoginFallito" : "utente non trovato"
     },
     "ACCESSO": {
         "TestoEmailPassword": "Inserisci email e password",

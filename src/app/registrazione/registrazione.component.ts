@@ -4,6 +4,7 @@ import { Data, Router } from '@angular/router';
 import { IUser } from '../models/IUser';
 import { PostRegistrzioneService } from '../services/registrzione.service';
 import * as moment from 'moment';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registrazione',
@@ -21,8 +22,8 @@ export class RegistrazioneComponent implements OnInit {
 
   lastId!: number;
 
-  constructor(private postRegistrzioneService: PostRegistrzioneService, private router: Router) {
-  }
+  constructor(private postRegistrzioneService: PostRegistrzioneService, private router: Router,public translate: TranslateService){}
+
 
   ngOnInit(): void {
   }
@@ -32,7 +33,7 @@ export class RegistrazioneComponent implements OnInit {
     let year = parseInt(moment(data).format('YYYY'));
 
     if (year < 999) {
-      this.form.controls.dataNascita.setErrors({incorect : true});
+      this.form.controls.dataNascita.setErrors({ incorect: true });
     } else {
       this.form.controls.dataNascita.setErrors(null);
     }
@@ -50,7 +51,7 @@ export class RegistrazioneComponent implements OnInit {
 
     this.postRegistrzioneService.create(body).subscribe({
       next: () => {
-        alert('Registrazione effettuata');
+        alert(this.translate.instant("GENERALE.RegistrazioneCompiuta"));
         this.router.navigate(['/login']);
       },
       error: (err) => console.log(err),

@@ -11,7 +11,10 @@
         "NomeUtenteNonValido" : "Invalid username",
         "DataNascitaNonValido" : "Invalid date of birth",
         "PasswordNonValido" : "Invalid password",
-        "EmailNonValido" : "Invalid email"
+        "EmailNonValido" : "Invalid email",
+        "RegistrazioneCompiuta" : "Registration done",
+        "LoginCompiuto" : "Welcome back",
+        "LoginFallito" : "User not found"
     },
     "ACCESSO": {
         "TestoEmailPassword": "Enter your email and password",

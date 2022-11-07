@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +10,15 @@ export class AppComponent {
   title = 'esameAngular';
 
   constructor(public translate: TranslateService) {
-    translate.setDefaultLang('it');
 
-    const browserLang = translate.getBrowserLang();
+    translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      translate.setDefaultLang(event.lang);
+    })
+
+    const browserLang = this.translate.getBrowserLang();
+
+    translate.use(browserLang?.match('en-EN' || 'it-IT' || 'es-ES') ? browserLang : 'it-IT');
+
   }
+
 }

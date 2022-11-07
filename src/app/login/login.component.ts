@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { EmailValidator, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { IUser } from '../models/IUser';
 import { LogInService } from '../services/log-in.service';
 
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(5)]),
   })
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private logInService: LogInService) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private logInService: LogInService,public translate: TranslateService) { }
 
   ngOnInit(): void {
   }
@@ -35,10 +36,10 @@ export class LoginComponent implements OnInit {
     let userLogged: IUser | undefined = users.find(e => e.email === this.loginForm.value.email && e.password === this.loginForm.value.password)
 
     if (userLogged) {
-      alert('Bentornato ' + userLogged.nomeUtente);
+      alert(this.translate.instant("GENERALE.LoginCompiuto") + userLogged.nomeUtente);
       this.router.navigate(['/cocktail']);
     } else {
-      alert('utente non torvato');
+      alert(this.translate.instant("GENERALE.LoginFallito"));
       this.loginForm.reset();
     }
   }
