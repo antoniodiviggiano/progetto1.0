@@ -1,0 +1,14 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.padding {
+    padding-left: 2%;
+}
+
+.basso {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+}

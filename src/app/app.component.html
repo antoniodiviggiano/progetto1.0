@@ -1,12 +1,14 @@
+<!-- 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand">{{"GENERALE.NomeProgetto" | translate}}</a>
 
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" routerLink="/login" routerLinkActive="active">{{"GENERALE.Accedi" | translate}}</a>
-      <a class="nav-item nav-link active" routerLink="/registrazione" routerLinkActive="active">{{"GENERALE.Registrazione" | translate}}</a>
+  <div class="navbar-ligth navbar-expand " id="navbarNavAltMarkup">
+    <div class="navbar-nav nav">
+      <a class="nav-item nav-link active" routerLink="/login" routerLinkActive="active">{{"GENERALE.Accedi" |
+        translate}}</a>
+      <a class="nav-item nav-link active" routerLink="/registrazione"
+        routerLinkActive="active">{{"GENERALE.Registrazione" | translate}}</a>
       <a class="nav-item nav-link active" routerLink="/dashboard" routerLinkActive="active">dashboard</a>
-
 
       <select #langSelect (change)="translate.use(langSelect.value)">
         <option selected disabled value="">Seleziona lingua</option>
@@ -14,12 +16,37 @@
         <option value="en-EN">🇬🇧</option>
         <option value="es-ES">🇪🇸</option>
       </select>
-
+      <button class="destra" (click)="onlogout()">
+        <mat-icon color="warn" fontIcon="exit_to_app"></mat-icon>
+      </button>
     </div>
-
   </div>
+</nav> -->
 
-</nav>
+<mat-toolbar>
+  <span>My App</span>
 
+  <a class="nav-item nav-link active padding" routerLink="/login" routerLinkActive="active">{{"GENERALE.Accedi"
+    |translate}}</a>
+  <a class="nav-item nav-link active padding" routerLink="/registrazione"
+    routerLinkActive="active">{{"GENERALE.Registrazione" |translate}}</a>
+  <a class="nav-item nav-link active padding" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+
+  <span class="example-spacer"></span>
+  
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon color="warn" fontIcon="exit_to_app"></mat-icon>
+  </button>
+</mat-toolbar>
 
 <router-outlet></router-outlet>
+
+<footer class="bg-dark text-end text-white basso">
+  
+  <select class="custom-select bg-dark text-white" #langSelect (change)="translate.use(langSelect.value)">
+    <option selected disabled value="">Seleziona lingua</option>
+    <option value="it-IT">🇮🇹</option>
+    <option value="en-EN">🇬🇧</option>
+    <option value="es-ES">🇪🇸</option>
+  </select>
+</footer>
