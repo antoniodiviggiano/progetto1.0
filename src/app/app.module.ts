@@ -26,12 +26,18 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     LoginComponent,
     RegistrazioneComponent,
     DashboardComponent,
+    
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+
+
+
     TranslateModule.forRoot(
       {
         loader: {
