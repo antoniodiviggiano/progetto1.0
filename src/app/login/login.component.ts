@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { EmailValidator, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { IUser } from '../models/IUser';
+import { Resp } from '../models/IResp';
 import { LogInService } from '../services/log-in.service';
 
 @Component({
@@ -18,35 +17,26 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(5)]),
   })
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router, private logInService: LogInService,public translate: TranslateService) { }
+  constructor(private router: Router, private logInService: LogInService,public translate: TranslateService) { }
 
   ngOnInit(): void {
   }
 
   login() {
-    this.logInService.logIn().subscribe({
-      next: (users) => {
-        this.findUser(users);
-      },
-      error: (err) => console.log(err),
-    });
-  }
+    this.logInService.logIn({"email" : this.loginForm.value.email!, "password" : this.loginForm.value.password!}).subscribe((resp : Resp )=>{
+      
+      //console.log(resp);
+      localStorage.setItem('accessToken',resp.accessToken);
+      this.router.navigate(["/cocktail"]);
 
-  findUser(users: IUser[]) {
-    let userLogged: IUser | undefined = users.find(e => e.email === this.loginForm.value.email && e.password === this.loginForm.value.password)
 
-    console.log(userLogged);
-    
-
-    if (userLogged) {
-      alert(this.translate.instant("GENERALE.LoginCompiuto") + userLogged.nomeUtente);
+  
+    if (resp.user) {
+      alert(this.translate.instant("GENERALE.LoginCompiuto") + resp.user.nomeUtente);
       this.router.navigate(['/cocktail']);
     } else {
       alert(this.translate.instant("GENERALE.LoginFallito"));
       this.loginForm.reset();
     }
-  }
-
+  })}
 }
-
-
