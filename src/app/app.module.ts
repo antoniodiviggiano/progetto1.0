@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrazioneComponent } from './registrazione/registrazione.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -23,6 +24,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CocktailComponent,
     LoginComponent,
     RegistrazioneComponent,
+    DashboardComponent,
 
   ],
   imports: [

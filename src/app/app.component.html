@@ -5,6 +5,8 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link active" routerLink="/login" routerLinkActive="active">{{"GENERALE.Accedi" | translate}}</a>
       <a class="nav-item nav-link active" routerLink="/registrazione" routerLinkActive="active">{{"GENERALE.Registrazione" | translate}}</a>
+      <a class="nav-item nav-link active" routerLink="/dashboard" routerLinkActive="active">dashboard</a>
+
 
       <select #langSelect (change)="translate.use(langSelect.value)">
         <option value="it-IT">it</option>

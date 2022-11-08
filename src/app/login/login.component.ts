@@ -35,6 +35,9 @@ export class LoginComponent implements OnInit {
   findUser(users: IUser[]) {
     let userLogged: IUser | undefined = users.find(e => e.email === this.loginForm.value.email && e.password === this.loginForm.value.password)
 
+    console.log(userLogged);
+    
+
     if (userLogged) {
       alert(this.translate.instant("GENERALE.LoginCompiuto") + userLogged.nomeUtente);
       this.router.navigate(['/cocktail']);
