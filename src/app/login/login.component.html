@@ -9,11 +9,13 @@
                 </div>
                 <form class="m-3" [formGroup]="loginForm" (ngSubmit)="login()">
                     <div class="mb-3 form-outline">
+                <label for="nomeUtente">{{"ACCESSO.Email" | translate}}</label>
                         <input formControlName="email" placeholder="{{'GENERALE.PlaceHolderEmail' | translate}}" type="email" class="form-control"
                             id="exampleInputEmail1" aria-describedby="emailHelp">
                         <p class="formNonValido" *ngIf="!loginForm.controls['email']?.valid && loginForm.controls['email']?.touched">{{"GENERALE.EmailNonValido" | translate}}</p>
                     </div>
                     <div class="mb-3">
+                <label for="nomeUtente">{{"ACCESSO.Password" | translate}}</label>
                         <input formControlName="password" placeholder="{{'GENERALE.PlaceHolderPassword' | translate}}" type="password"
                             class="form-control" id="exampleInputPassword1">
                         <p class="formNonValido" *ngIf="!loginForm.controls['password']?.valid && loginForm.controls['password']?.touched">{{"GENERALE.PasswordNonValido" | translate}}</p>
@@ -21,8 +23,14 @@
                     <button type="submit" class="btn  w-100 btn-primary block"
                         [disabled]="!loginForm.valid">{{"GENERALE.Accedi" | translate}}</button>
                 </form>
-                <a routerLink="/registrazione" class="justify-content-end"> {{"ACCESSO.LinkNuovoUtente" | translate}}</a>
+                <div class="container">
+                    <div class="row">
+                        <p>Nuovo utente?<a style="text-decoration: none; text-align: center;" routerLink="/registrazione" class="justify-content-end"> {{"ACCESSO.LinkNuovoUtente" | translate}}</a></p>
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+

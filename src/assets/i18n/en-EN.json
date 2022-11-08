@@ -1,6 +1,6 @@
 {
     "GENERALE": {
-        "PlaceHolderEmail": "Enter email",
+        "PlaceHolderEmail": "example@mail.com",
         "PlaceHolderPassword": "Enter your password",
         "PlaceHolderNomeUtente": "Enter your username",
         "PlaceHolderData": "Enter your date of birth",
@@ -14,11 +14,14 @@
         "EmailNonValido" : "Invalid email",
         "RegistrazioneCompiuta" : "Registration done",
         "LoginCompiuto" : "Welcome back",
-        "LoginFallito" : "User not found"
+        "LoginFallito" : "User not found",
+        "Selezionalingua" : "Select a language"
     },
     "ACCESSO": {
         "TestoEmailPassword": "Enter your email and password",
-        "LinkNuovoUtente": "New user? Click here"
+        "LinkNuovoUtente": "Click here",
+        "Email" : "Enter your email",
+        "Password" : "Enter your Passoword"
     },
     "REGISTRAZIONE": {
         "NomeUtente" : "Username",

@@ -11,7 +11,7 @@
       <a class="nav-item nav-link active" routerLink="/dashboard" routerLinkActive="active">dashboard</a>
 
       <select #langSelect (change)="translate.use(langSelect.value)">
-        <option selected disabled value="">Seleziona lingua</option>
+        <option selected disabled value="">{{'GENERALE.Selezionalingua' | translate}}</option>
         <option value="it-IT">🇮🇹</option>
         <option value="en-EN">🇬🇧</option>
         <option value="es-ES">🇪🇸</option>

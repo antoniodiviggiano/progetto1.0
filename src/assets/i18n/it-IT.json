@@ -1,6 +1,6 @@
 {
     "GENERALE": {
-        "PlaceHolderEmail": "Inserisici email",
+        "PlaceHolderEmail": "esempio@mail.it",
         "PlaceHolderPassword": "Inserisici password",
         "PlaceHolderNomeUtente": "Inserisici nome utente",
         "PlaceHolderData": "Inserisici data di nascita",
@@ -14,16 +14,19 @@
         "EmailNonValido" : "Email non valida",
         "RegistrazioneCompiuta" : "Registrazione effettuata",
         "LoginCompiuto" : "Accesso effettuato",
-        "LoginFallito" : "utente non trovato"
+        "LoginFallito" : "utente non trovato",
+        "Selezionalingua" : "Seleziona Lingua"
     },
     "ACCESSO": {
         "TestoEmailPassword": "Inserisci email e password",
-        "LinkNuovoUtente": "nuovo utente? clicca qui"
+        "LinkNuovoUtente": "Clicca qui",
+        "Email" : "Inserisci email",
+        "Password" : "Inserisci Password"
     },
     "REGISTRAZIONE": {
         "NomeUtente" : "Nome Utente",
         "Email" : "Indirizzo email",
-        "Password" : "Passowrd",
+        "Password" : "Passoword",
         "DataNascita" : "Data di nascita"
     }
 }
