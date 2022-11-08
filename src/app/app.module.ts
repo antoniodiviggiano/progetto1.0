@@ -12,6 +12,7 @@ import { RegistrazioneComponent } from './registrazione/registrazione.component'
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RouterModule } from '@angular/router';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -25,7 +26,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     LoginComponent,
     RegistrazioneComponent,
     DashboardComponent,
-
   ],
   imports: [
     BrowserModule,
