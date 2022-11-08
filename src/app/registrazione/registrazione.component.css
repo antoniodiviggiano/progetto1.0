@@ -11,3 +11,7 @@ input {
 .form-control.ng-touched.ng-valid {
   border: 2px solid green;
 }
+
+.formNonValido {
+  color: red;
+}
