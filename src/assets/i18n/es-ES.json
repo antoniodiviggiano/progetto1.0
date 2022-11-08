@@ -1,6 +1,6 @@
 {
     "GENERALE": {
-        "PlaceHolderEmail": "Introduce tu correo electrónico",
+        "PlaceHolderEmail": "ejemplo@mail.es",
         "PlaceHolderPassword": "Introducir la contraseña",
         "PlaceHolderNomeUtente": "Ingrese su nombre de usuario",
         "PlaceHolderData": "Introduzca su nombre de usuario",
@@ -14,11 +14,14 @@
         "EmailNonValido" : "Email inválido",
         "RegistrazioneCompiuta" : "Usuario no encontrado",
         "LoginCompiuto" : "Bienvenido de nuevo",
-        "LoginFallito" : "Usuario no encontrado"
+        "LoginFallito" : "Usuario no encontrado",
+        "Selezionalingua" : "seleccione idioma"
     },
     "ACCESSO": {
         "TestoEmailPassword": "Introduce tu correo electrónico y contraseña",
-        "LinkNuovoUtente": "¿Nuevo Usuario? haga clic aquí"
+        "LinkNuovoUtente": "Haga clic aquí",
+        "Email" : "Introduce tu correo electrónico",
+        "Password" : "Introducir la contraseña"
     },
     "REGISTRAZIONE": {
         "NomeUtente" : "Nombre de usuario",
