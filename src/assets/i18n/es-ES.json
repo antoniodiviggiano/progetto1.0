@@ -16,6 +16,7 @@
         "LoginCompiuto" : "Bienvenido de nuevo",
         "LoginFallito" : "Usuario no encontrado",
         "Selezionalingua" : "seleccione idioma",
+        "UtenteNonTrovato" : "Usuario no encontrado",
         "PasswordErrata" : "Contraseña incorrecta",
         "ErroreLogin" : "Error, inténtalo de nuevo más tarde"
     },

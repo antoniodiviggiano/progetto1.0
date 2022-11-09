@@ -5,6 +5,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { AuthService } from "../auth/auth.service";
 import { Resp } from "../models/IResp";
 import { LogInService } from "../services/log-in.service";
+import { ModalCustomService } from "../services/modal-custom.service";
 
 @Component({
   selector: "app-login",
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private logInService: LogInService,
     public translate: TranslateService,
-    private auth: AuthService
+    private auth: AuthService,
+    private modal : ModalCustomService
   ) { }
 
   ngOnInit(): void { }
@@ -61,7 +63,7 @@ export class LoginComponent implements OnInit {
               errorTrad = errorTrad = this.translate.instant("GENERALE.ErroreLogin");
               break
           }
-          alert(errorTrad);
+          this.modal.open(errorTrad);
         },
 
         () => this.router.navigate(["/cocktail"])
