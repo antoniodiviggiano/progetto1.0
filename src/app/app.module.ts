@@ -17,7 +17,6 @@ import { LoginComponent } from "./login/login.component";
 import { RegistrazioneComponent } from "./registrazione/registrazione.component";
 import { MatSelectModule } from '@angular/material/select';
 
-
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
