@@ -15,7 +15,10 @@
         "RegistrazioneCompiuta" : "Registrazione effettuata",
         "LoginCompiuto" : "Accesso effettuato",
         "LoginFallito" : "utente non trovato",
-        "Selezionalingua" : "Seleziona Lingua"
+        "Selezionalingua" : "Seleziona Lingua",
+        "UtenteNonTrovato" : "Utente non trovato",
+        "PasswordErrata" : "Passoword errata",
+        "ErroreLogin" : "Errore, riprovare piu tardi"
     },
     "ACCESSO": {
         "TestoEmailPassword": "Inserisci email e password",

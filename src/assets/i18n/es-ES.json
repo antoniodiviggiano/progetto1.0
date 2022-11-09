@@ -15,7 +15,9 @@
         "RegistrazioneCompiuta" : "Usuario no encontrado",
         "LoginCompiuto" : "Bienvenido de nuevo",
         "LoginFallito" : "Usuario no encontrado",
-        "Selezionalingua" : "seleccione idioma"
+        "Selezionalingua" : "seleccione idioma",
+        "PasswordErrata" : "Contraseña incorrecta",
+        "ErroreLogin" : "Error, inténtalo de nuevo más tarde"
     },
     "ACCESSO": {
         "TestoEmailPassword": "Introduce tu correo electrónico y contraseña",

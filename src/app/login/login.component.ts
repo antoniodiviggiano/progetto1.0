@@ -25,9 +25,9 @@ export class LoginComponent implements OnInit {
     private logInService: LogInService,
     public translate: TranslateService,
     private auth: AuthService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   login() {
     this.logInService
@@ -48,8 +48,20 @@ export class LoginComponent implements OnInit {
           }
         },
 
-        (error) => {
-          alert(error);
+        (error: string) => {
+          let errorTrad: string = "";
+          switch (error) {
+            case 'Cannot find user':
+              errorTrad = this.translate.instant("GENERALE.UtenteNonTrovato");
+              break
+            case 'Incorrect password':
+              errorTrad = this.translate.instant("GENERALE.PasswordErrata");
+              break
+            default:
+              errorTrad = errorTrad = this.translate.instant("GENERALE.ErroreLogin");
+              break
+          }
+          alert(errorTrad);
         },
 
         () => this.router.navigate(["/cocktail"])

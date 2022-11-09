@@ -15,7 +15,10 @@
         "RegistrazioneCompiuta" : "Registration done",
         "LoginCompiuto" : "Welcome back",
         "LoginFallito" : "User not found",
-        "Selezionalingua" : "Select a language"
+        "Selezionalingua" : "Select a language",
+        "UtenteNonTrovato" : "User Not Found",
+        "PasswordErrata" : "Password incorrect",
+        "ErroreLogin" : "Error, please try again later"
     },
     "ACCESSO": {
         "TestoEmailPassword": "Enter your email and password",
