@@ -1,0 +1,35 @@
+{
+    "GENERALE": {
+        "PlaceHolderEmail": "example@mail.com",
+        "PlaceHolderPassword": "Enter your password",
+        "PlaceHolderNomeUtente": "Enter your username",
+        "PlaceHolderData": "Enter your date of birth",
+        "NomeProgetto": "Project 1.0",
+        "Accedi": "Log in",
+        "Registrazione": "Registration",
+        "Lingue" : "Select language",
+        "NomeUtenteNonValido" : "Invalid username",
+        "DataNascitaNonValido" : "Invalid date of birth",
+        "PasswordNonValido" : "Invalid password",
+        "EmailNonValido" : "Invalid email",
+        "RegistrazioneCompiuta" : "Registration done",
+        "LoginCompiuto" : "Welcome back",
+        "LoginFallito" : "User not found",
+        "Selezionalingua" : "Select a language",
+        "UtenteNonTrovato" : "User Not Found",
+        "PasswordErrata" : "Password incorrect",
+        "ErroreLogin" : "Error, please try again later"
+    },
+    "ACCESSO": {
+        "TestoEmailPassword": "Enter your email and password",
+        "LinkNuovoUtente": "Click here",
+        "Email" : "Enter your email",
+        "Password" : "Enter your Passoword"
+    },
+    "REGISTRAZIONE": {
+        "NomeUtente" : "Username",
+        "Email" : "Email address",
+        "Password" : "Passowrd",
+        "DataNascita" : "Date of birth"
+    }
+}

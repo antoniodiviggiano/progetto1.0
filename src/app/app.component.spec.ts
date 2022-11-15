@@ -1,12 +1,12 @@
-import { inject, TestBed } from '@angular/core/testing';
+import { async, inject, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { TranslateModule,TranslateService } from '@ngx-translate/core';
-import { TranslateTestingModule, } from 'ngx-translate-testing';
+import { TranslateModule, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 describe('AppComponent', () => {
+  let translateService: TranslateService;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -14,12 +14,17 @@ describe('AppComponent', () => {
         MatIconModule,
         MatToolbarModule,
         TranslateModule.forRoot(),
-        TranslateTestingModule.withTranslations({ en: require('src/assets/i18n/en-EN.json'), es: require('src/assets/i18n/es-ES.json'), it: require('src/assets/i18n/it-IT.json') })
+        //TranslateTestingModule.withTranslations({ en: require('src/assets/i18n/en-EN.json'), es: require('src/assets/i18n/es-ES.json'), it: require('src/assets/i18n/it-IT.json') })
       ],
       declarations: [
         AppComponent,
       ],
+      providers: [
+        TranslateService,
+        TranslatePipe
+      ]
     }).compileComponents();
+    translateService = TestBed.inject(TranslateService);
   });
 
   it('should create the app', () => {
@@ -40,31 +45,26 @@ describe('AppComponent', () => {
     expect("esameAngular").toContain('esameAngular');
   });
 
-  it('should render aaa title', inject([TranslateService], (translateService: TranslateService) => {
-    translateService.setDefaultLang('it');
-    translateService.use(translateService.getDefaultLang());
-    
+  it('should render it',  async(() => {
     const fixture = TestBed.createComponent(AppComponent);
+    const compiled = fixture.debugElement.nativeElement;
+    
+    translateService.setTranslation('it', { GENERALE : {Accedi : 'Accedi' }});
+    translateService.use('it');
+    
     fixture.detectChanges();
-    // console.log( fixture.debugElement.nativeElement.querySelector('div.a'));
-    const a : HTMLElement = document.getElementById("a")!;
-    
-    
-    console.log(translateService.instant(a.innerText));
-
-    console.log(a);
-
-    expect("a").toEqual('b');
+    expect(compiled.querySelector('#divProva').innerText).toEqual('Accedi');
   }));
 
-  it('should render en', inject([TranslateService], (translateService: TranslateService) => {
-    translateService.setDefaultLang('en');
+  it('should render en',  async(() => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    console.log(compiled.querySelector('.a'));
     
-    expect(compiled.querySelector('.a')).toContain('Log in');
+    translateService.setTranslation('en', { GENERALE : {Accedi : 'Log in' }});
+    translateService.use('en');
+    
+    fixture.detectChanges();
+    expect(compiled.querySelector('#divProva').innerText).toEqual('Log in');
   }));
 
 });

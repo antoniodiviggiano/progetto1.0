@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Data, Router } from '@angular/router';
 import { IUser } from '../models/IUser';
 import { PostRegistrzioneService } from '../services/registrzione.service';
 import * as moment from 'moment';
-import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registrazione',
@@ -17,31 +17,29 @@ export class RegistrazioneComponent implements OnInit {
     nomeUtente: new FormControl('', [Validators.required, Validators.minLength(3)]),
     password: new FormControl('', [Validators.required, Validators.minLength(5)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    dataNascita: new FormControl('', [Validators.required]),  //moment
+    dataNascita: new FormControl('', [Validators.required, this.dataValidator]),
   })
+
+  respComponent: any;
 
   lastId!: number;
 
-  constructor(private postRegistrzioneService: PostRegistrzioneService, private router: Router,public translate: TranslateService){}
-
+  constructor(private postRegistrzioneService: PostRegistrzioneService, private router: Router, public translate: TranslateService) { }
 
   ngOnInit(): void {
   }
 
-  checkYear() {
-    let data: Data = new Date(this.form.value.dataNascita as string);
-    let year = parseInt(moment(data).format('YYYY'));
-
-    if (year < 999) {
-      this.form.controls.dataNascita.setErrors({ incorect: true });
+  dataValidator(control: FormControl) {
+    let data: Data = new Date(control.value);
+    let year = moment(data).year();
+    if (!(moment(data, 'YYYY-MM-DD', true).isValid() && year > 999)) {
+      return { invalidData: true };
     } else {
-      this.form.controls.dataNascita.setErrors(null);
+      return null;
     }
-
   }
 
   registrer() {
-
     const body: IUser = {
       nomeUtente: this.form.value.nomeUtente as string,
       password: this.form.value.password as string,
@@ -50,9 +48,10 @@ export class RegistrazioneComponent implements OnInit {
     };
 
     this.postRegistrzioneService.create(body).subscribe({
-      next: () => {
+      next: (resp) => {
         alert(this.translate.instant("GENERALE.RegistrazioneCompiuta"));
         this.router.navigate(['/login']);
+        this.respComponent = resp;
       },
       error: (err) => console.log(err),
     });

@@ -11,12 +11,9 @@ export class PostRegistrzioneService {
 
   constructor(private http : HttpClient){}
 
-  create(data: IUser): Observable<IUser[]> {
+  create(data: IUser) {
     let API_URL = `http://localhost:8080/users/register`;
-    return (this.http.post(API_URL, data) as Observable<IUser[]>)
-      .pipe(
-        catchError(this.handleError)
-      )
+    return (this.http.post(API_URL, data))
   }
   
   handleError(error: HttpErrorResponse) {
