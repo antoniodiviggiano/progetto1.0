@@ -18,6 +18,7 @@ import { RegistrazioneComponent } from "./registrazione/registrazione.component"
 import {MatSelectModule} from '@angular/material/select';
 
 
+
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
@@ -32,7 +33,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DashboardComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -50,10 +53,13 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       })
   ],
   providers: [{
+
     provide: HTTP_INTERCEPTORS,
+    
     useClass: ErrorCatchingInterceptor,
     multi: true
-  }],
+  },
+  HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
