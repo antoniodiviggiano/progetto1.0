@@ -1,0 +1,35 @@
+{
+    "GENERALE": {
+        "PlaceHolderEmail": "esempio@mail.it",
+        "PlaceHolderPassword": "Inserisici password",
+        "PlaceHolderNomeUtente": "Inserisici nome utente",
+        "PlaceHolderData": "Inserisici data di nascita",
+        "NomeProgetto": "Progetto 1.0",
+        "Accedi": "Accedi",
+        "Registrazione": "Registrazione",
+        "Lingue" : "Seleziona lingua",
+        "NomeUtenteNonValido" : "Nome utente non valido",
+        "DataNascitaNonValido" : "Data di nascita non valida",
+        "PasswordNonValido" : "Passowrd non valida",
+        "EmailNonValido" : "Email non valida",
+        "RegistrazioneCompiuta" : "Registrazione effettuata",
+        "LoginCompiuto" : "Accesso effettuato",
+        "LoginFallito" : "utente non trovato",
+        "Selezionalingua" : "Seleziona Lingua",
+        "UtenteNonTrovato" : "Utente non trovato",
+        "PasswordErrata" : "Passoword errata",
+        "ErroreLogin" : "Errore, riprovare piu tardi"
+    },
+    "ACCESSO": {
+        "TestoEmailPassword": "Inserisci email e password",
+        "LinkNuovoUtente": "Clicca qui",
+        "Email" : "Inserisci email",
+        "Password" : "Inserisci Password"
+    },
+    "REGISTRAZIONE": {
+        "NomeUtente" : "Nome Utente",
+        "Email" : "Indirizzo email",
+        "Password" : "Passoword",
+        "DataNascita" : "Data di nascita"
+    }
+}

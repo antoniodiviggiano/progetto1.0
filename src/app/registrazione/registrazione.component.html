@@ -31,8 +31,8 @@
             <label for="dataNascita">{{"REGISTRAZIONE.DataNascita" | translate}}</label>
             <br>
             <input class="form-control" type="date" name="dataNascita" formControlName="dataNascita"
-              (input)="checkYear()" class="form-control" formControlName="dataNascita">
-            <p class="formNonValido" *ngIf="!form.controls['dataNascita']?.valid && form.controls['dataNascita']?.touched">{{"GENERALE.DataNascitaNonValido" | translate}}</p>
+              class="form-control" formControlName="dataNascita">
+            <p class="formNonValido" *ngIf="form.controls['dataNascita']?.hasError('invalidData') && form.controls['dataNascita']?.touched">{{"GENERALE.DataNascitaNonValido" | translate}}</p>
           </div>
           <button [disabled]="!form.valid" type="submit" class=" btn w-100 btn-primary">{{"GENERALE.Registrazione" | translate}}</button>
         </form>

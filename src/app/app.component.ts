@@ -18,6 +18,7 @@ export class AppComponent {
     })
 
     const browserLang = this.translate.getBrowserLang();
+    
 
     translate.use(browserLang?.match('en-EN' || 'it-IT' || 'es-ES') ? browserLang : 'it-IT');
   }
@@ -25,4 +26,6 @@ export class AppComponent {
   onlogout() {
     this.auth.logout()
   }
+
+  
 }
