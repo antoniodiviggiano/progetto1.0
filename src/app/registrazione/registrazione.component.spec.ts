@@ -1,10 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+/* import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegistrazioneComponent } from './registrazione.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 
-xdescribe('RegistrazioneComponent', () => {
+describe('RegistrazioneComponent', () => {
   let component: RegistrazioneComponent;
   let fixture: ComponentFixture<RegistrazioneComponent>;
 
@@ -25,4 +25,4 @@ xdescribe('RegistrazioneComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
+ */

@@ -15,9 +15,7 @@ export class LogInService {
     let API_URL = `http://localhost:8080/login`;
     //catchError(err => console.log(err))
     return this.http.post(API_URL, data) as Observable<Resp>;
+    
+    
   }
 }
-
-//json-server db.json -m ./node_modules/json-server-auth --port 8080
-
-

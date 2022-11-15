@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
 import { AuthService } from "../auth/auth.service";
 import { Resp } from "../models/IResp";
 import { LogInService } from "../services/log-in.service";
 import { ModalCustomService } from "../services/modal-custom.service";
-import { TranslateFakeLoader, TranslateLoader, TranslateModule, TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: "app-login",
@@ -13,9 +13,6 @@ import { TranslateFakeLoader, TranslateLoader, TranslateModule, TranslatePipe, T
   styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-  needsLogin(): any {
-    throw new Error("Method not implemented.");
-  }
   loginForm = new FormGroup({
     email: new FormControl("", [Validators.required, Validators.email]),
     password: new FormControl("", [
@@ -34,8 +31,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  respComponent: any
-
   login() {
     this.logInService
       .logIn({
@@ -53,15 +48,6 @@ export class LoginComponent implements OnInit {
           if (token !== "") {
             this.auth.isLoggedIn = true;
           }
-
-
-
-          console.log(this.respComponent);
-          
-       
-          this.respComponent = resp;
-         
-
         },
 
         (error: string) => {
@@ -79,6 +65,7 @@ export class LoginComponent implements OnInit {
           }
           this.modal.open(errorTrad);
         },
+
         () => this.router.navigate(["/cocktail"])
       );
   }
