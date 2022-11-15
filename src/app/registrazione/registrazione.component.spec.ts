@@ -1,8 +1,6 @@
-/* import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegistrazioneComponent } from './registrazione.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-
 
 describe('RegistrazioneComponent', () => {
   let component: RegistrazioneComponent;
@@ -10,9 +8,7 @@ describe('RegistrazioneComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegistrazioneComponent ],
-      providers: [HttpClientTestingModule]
-
+      declarations: [ RegistrazioneComponent ]
     })
     .compileComponents();
 
@@ -25,4 +21,3 @@ describe('RegistrazioneComponent', () => {
     expect(component).toBeTruthy();
   });
 });
- */
