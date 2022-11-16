@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <div class="row ">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrizione</th>
+                <th scope="col">Prezzo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prodotto of prodotti">
+                <td>{{prodotto.id}}</td>
+                <td>{{prodotto.nome | titlecase}}</td>
+                <td>{{prodotto.descrizione}}</td>
+                <td>{{prodotto.prezzo | currency:'EUR'}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
