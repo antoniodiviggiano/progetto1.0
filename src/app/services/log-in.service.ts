@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
-import { IUser } from '../models/IUser';
 import { Resp } from '../models/IResp';
 
 @Injectable({

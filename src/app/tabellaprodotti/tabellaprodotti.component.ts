@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { data } from 'cypress/types/jquery';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { IProdottoResp } from '../models/IProdottoResp';
 import { ProdottiService } from '../services/prodotti.service';
 
@@ -8,13 +7,17 @@ import { ProdottiService } from '../services/prodotti.service';
   templateUrl: './tabellaprodotti.component.html',
   styleUrls: ['./tabellaprodotti.component.css']
 })
-export class TabellaprodottiComponent implements OnInit {
+export class TabellaprodottiComponent implements OnInit, OnChanges {
 
   prodotti: IProdottoResp[] = []
 
   constructor(private servizioProdotti : ProdottiService) {
     
    }
+   
+  ngOnChanges(changes: SimpleChanges): void {
+    this.listaProdotti();
+  }
 
   ngOnInit(): void {
     this.listaProdotti();

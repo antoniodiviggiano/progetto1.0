@@ -16,6 +16,24 @@
     }
   ],
   "prodotti" : [
+    {
+      "id" : 1,
+      "nome": "tv",
+      "descrizione" : "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum facilis ea, maxime maiores eum deleniti. Excepturi ipsum, quae adipisci a, vero nemo, fugiat accusamus iste placeat commodi sunt aperiam eveniet!",
+      "prezzo" : 220
+    },
+    {
+      "id" : 2,
+      "nome": "xbox",
+      "descrizione" : "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum facilis ea, maxime maiores eum deleniti. Excepturi ipsum, quae adipisci a, vero nemo, fugiat accusamus iste placeat commodi sunt aperiam eveniet!",
+      "prezzo" : 430
+    },
+    {
+      "id" : 3,
+      "nome": "playstation",
+      "descrizione" : "Lorem quae adipisci a, vero nemo, fugiat aam eveniet!",
+      "prezzo" : 670
+    }
     
   ]
 }
