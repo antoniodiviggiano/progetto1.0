@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../auth/auth.service';
 import { IProdotto } from '../models/IProdotto';
 import { InsermentoProdottoService } from '../services/insermento-prodotto.service';
 
@@ -20,7 +19,6 @@ export class InserimentoProdottiComponent implements OnInit {
   constructor(private service : InsermentoProdottoService,) { }
 
   ngOnInit(): void {
-  
   }
 
   inserisciProdotti(){
@@ -31,7 +29,6 @@ export class InserimentoProdottiComponent implements OnInit {
       prezzo: parseInt(this.insermimentoProdotti.value.prezzo as string),
     };
     
-    
     this.service.insermento(prodotto).subscribe({
       next: (resp) => {
         alert("Prodotto inserito");
@@ -40,9 +37,7 @@ export class InserimentoProdottiComponent implements OnInit {
       error: (err) => console.log(err),
     });
 
-
-    
-    
+    location.reload();
   }
 
 }
