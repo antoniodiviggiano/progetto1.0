@@ -13,6 +13,34 @@
       "nomeUtente": "test",
       "dataNascita": "11111-11-11",
       "id": 2
+    },
+    {
+      "email": "q@w",
+      "password": "$2a$10$/h3sdEjznO51dIVyGwc7POid8SWB27Edz3vqBGCRc1Psq1jm3n5Fm",
+      "nomeUtente": "123456",
+      "dataNascita": "1111-01-01",
+      "id": 3
+    },
+    {
+      "email": "aaaa@aaaaa",
+      "password": "$2a$10$yie60lum.um/3McDSKUyQOMR4U1rQhv6kuMkGcYj74F7684dYpXly",
+      "nomeUtente": "123456",
+      "dataNascita": "1111-11-11",
+      "id": 4
+    },
+    {
+      "email": "q@w34",
+      "password": "$2a$10$u9YZjb.v3aK0yZKhIfSXu.tMmGr5s5x95vX4wofph9TIimCFMsXOi",
+      "nomeUtente": "123123",
+      "dataNascita": "5555-05-05",
+      "id": 5
+    },
+    {
+      "email": "q@w1324123",
+      "password": "$2a$10$gfPanUoQ2PbKXnNtpoXnm.qkBXN9PPuEgOJFnHRKTiu0Msc6ayPIC",
+      "nomeUtente": "123123",
+      "dataNascita": "8888-08-08",
+      "id": 6
     }
   ],
   "prodotti" : [
