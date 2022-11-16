@@ -13,7 +13,7 @@ export class ProdottiService {
   
   prodotti(): Observable<IProdottoResp[]> {
     
-    let API_URL = `http://localhost:8080/prodotti `;
+    let API_URL = `http://localhost:8080/prodotti`;
 
     return this.http.get(API_URL) as Observable<IProdottoResp[]>;
     

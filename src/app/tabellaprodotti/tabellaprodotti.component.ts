@@ -1,5 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { IProdottoResp } from '../models/IProdottoResp';
+
 import { ProdottiService } from '../services/prodotti.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class TabellaprodottiComponent implements OnInit, OnChanges {
   constructor(private servizioProdotti : ProdottiService) {
     
    }
-   
+
   ngOnChanges(changes: SimpleChanges): void {
     this.listaProdotti();
   }
@@ -28,6 +29,8 @@ export class TabellaprodottiComponent implements OnInit, OnChanges {
       next: (resp) => {
       resp.map(el => {
         this.prodotti.push(el)
+        console.log(resp);
+        
         });
       },
       error: (err) => console.log(err),

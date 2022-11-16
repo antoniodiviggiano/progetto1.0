@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { Data, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IUser } from '../models/IUser';
 import { PostRegistrzioneService } from '../services/registrzione.service';
-import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
+import { dataValidator } from '../validator/dataValidator';
 
 @Component({
   selector: 'app-registrazione',
@@ -17,7 +17,7 @@ export class RegistrazioneComponent implements OnInit {
     nomeUtente: new FormControl('', [Validators.required, Validators.minLength(3)]),
     password: new FormControl('', [Validators.required, Validators.minLength(5)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    dataNascita: new FormControl('', [Validators.required, this.dataValidator]),
+    dataNascita: new FormControl('', [Validators.required, dataValidator]),
   })
 
   respComponent: any;
@@ -28,16 +28,8 @@ export class RegistrazioneComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  //esportare sul file
 
-  dataValidator(control: FormControl) {
-    let data: Data = new Date(control.value);
-    let year = moment(data).year();
-    if (!(moment(data, 'YYYY-MM-DD', true).isValid() && year > 999)) {
-      return { invalidData: true };
-    } else {
-      return null;
-    }
-  }
 
   registrer() {
     const body: IUser = {
@@ -56,7 +48,7 @@ export class RegistrazioneComponent implements OnInit {
       error: (err) => console.log(err),
     });
   }
-
+  
   validForm: boolean = this.form.valid;
 
 }
