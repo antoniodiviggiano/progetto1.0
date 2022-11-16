@@ -8,13 +8,12 @@ import { AuthService } from '../auth/auth.service';
 })
 export class DashboardComponent implements OnInit {
 
+  isLogged : boolean = false;
+
   constructor(private auth : AuthService) { }
 
   ngOnInit(): void {
-  }
-
-  onlogout() {
-    this.auth.logout()
+    this.isLogged = this.auth.isAuth();
   }
 
 }
