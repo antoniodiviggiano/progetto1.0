@@ -11,18 +11,18 @@
             <div class="form-group">
               <div class="form-group">
                 <label for="nomeUtente">{{"REGISTRAZIONE.NomeUtente" | translate}}</label>
-                <input class="form-control" type="text" class="form-control" placeholder="{{'GENERALE.PlaceHolderNomeUtente' | translate}}"
+                <input name="nomeUtente" class="form-control" type="text" class="form-control" placeholder="{{'GENERALE.PlaceHolderNomeUtente' | translate}}"
                   formControlName="nomeUtente">
                 <p class="formNonValido" *ngIf="!form.controls['nomeUtente']?.valid && form.controls['nomeUtente']?.touched">{{"GENERALE.NomeUtenteNonValido" | translate}}</p>
               </div>
               <label for="indirizzoEmail">{{"REGISTRAZIONE.Email" | translate}}</label>
-              <input class="form-control" type="email" class="form-control" name="indirizzoEmail"
+              <input name="email" class="form-control" type="email" class="form-control" name="indirizzoEmail"
                 placeholder="{{'GENERALE.PlaceHolderEmail' | translate}}" formControlName="email">
               <p class="formNonValido" *ngIf="!form.controls['email']?.valid && form.controls['email']?.touched">{{"GENERALE.EmailNonValido" | translate}}</p>
             </div>
             <div class="form-group">
               <label for="inputPassword4">{{"REGISTRAZIONE.Password" | translate}}</label>
-              <input class="form-control" type="password" class="form-control" id="inputPassword4"
+              <input name="password" class="form-control" type="password" class="form-control" id="inputPassword4"
                 placeholder="{{'GENERALE.PlaceHolderPassword' | translate}}" formControlName="password">
               <p class="formNonValido" *ngIf="!form.controls['password']?.valid && form.controls['password']?.touched">{{"GENERALE.PasswordNonValido" | translate}}</p>
             </div>
@@ -30,11 +30,11 @@
           <div class="pb-3">
             <label for="dataNascita">{{"REGISTRAZIONE.DataNascita" | translate}}</label>
             <br>
-            <input class="form-control" type="date" name="dataNascita" formControlName="dataNascita"
+            <input name="dataNascita" class="form-control" type="date" name="dataNascita" formControlName="dataNascita"
               class="form-control" formControlName="dataNascita">
             <p class="formNonValido" *ngIf="form.controls['dataNascita']?.hasError('invalidData') && form.controls['dataNascita']?.touched">{{"GENERALE.DataNascitaNonValido" | translate}}</p>
           </div>
-          <button [disabled]="!form.valid" type="submit" class=" btn w-100 btn-primary">{{"GENERALE.Registrazione" | translate}}</button>
+          <button name="submitButton" [disabled]="!form.valid" type="submit" class=" btn w-100 btn-primary">{{"GENERALE.Registrazione" | translate}}</button>
         </form>
       </div>
     </div>

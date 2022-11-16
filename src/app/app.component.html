@@ -1,7 +1,6 @@
-
-<mat-toolbar>
+<mat-toolbar id="menuBar">
   <span>My App</span>
-
+  <div id="divProva">{{"GENERALE.Accedi" | translate}}</div>
   <a class="nav-item nav-link active padding accedi" routerLink="/login" routerLinkActive="active">{{"GENERALE.Accedi"
     |translate}}</a>
   <a class="nav-item nav-link active padding" routerLink="/registrazione"
@@ -17,8 +16,7 @@
 
 <router-outlet></router-outlet>
 
-<footer class="bg-dark text-end text-white basso">
-  
+<footer class="bg-dark text-end text-white basso">  
   <select class="custom-select bg-dark text-white" #langSelect (change)="translate.use(langSelect.value)">
     <option selected disabled value="">Seleziona lingua</option>
     <option value="it-IT">🇮🇹</option>

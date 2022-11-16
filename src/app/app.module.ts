@@ -16,8 +16,7 @@ import { ErrorCatchingInterceptor } from "./interceptors/error-catching.intercep
 import { LoginComponent } from "./login/login.component";
 import { RegistrazioneComponent } from "./registrazione/registrazione.component";
 import {MatSelectModule} from '@angular/material/select';
-import { TabellaprodottiComponent } from './tabellaprodotti/tabellaprodotti.component';
-import { ProdottiService } from "./services/prodotti.service";
+import { InserimentoProdottiComponent } from './inserimento-prodotti/inserimento-prodotti.component';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -32,7 +31,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     LoginComponent,
     RegistrazioneComponent,
     DashboardComponent,
-    TabellaprodottiComponent,
+    InserimentoProdottiComponent,
   ],
   imports: [
     BrowserModule,
