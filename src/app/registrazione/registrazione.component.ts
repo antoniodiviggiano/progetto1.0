@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { IUser } from '../models/IUser';
 import { PostRegistrzioneService } from '../services/registrzione.service';
 import { TranslateService } from '@ngx-translate/core';
-import DataValidator from '../validator/dataValidator';
+import { dataValidator } from '../validator/dataValidator';
 
 @Component({
   selector: 'app-registrazione',
@@ -17,7 +17,7 @@ export class RegistrazioneComponent implements OnInit {
     nomeUtente: new FormControl('', [Validators.required, Validators.minLength(3)]),
     password: new FormControl('', [Validators.required, Validators.minLength(5)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    dataNascita: new FormControl('', [Validators.required, DataValidator.dataValidator]),
+    dataNascita: new FormControl('', [Validators.required, dataValidator]),
   })
 
   respComponent: any;
@@ -28,6 +28,8 @@ export class RegistrazioneComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  //esportare sul file
+
 
   registrer() {
     const body: IUser = {
@@ -46,7 +48,7 @@ export class RegistrazioneComponent implements OnInit {
       error: (err) => console.log(err),
     });
   }
-
+  
   validForm: boolean = this.form.valid;
 
 }

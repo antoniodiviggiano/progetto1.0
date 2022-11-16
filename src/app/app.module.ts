@@ -16,6 +16,7 @@ import { ErrorCatchingInterceptor } from "./interceptors/error-catching.intercep
 import { LoginComponent } from "./login/login.component";
 import { RegistrazioneComponent } from "./registrazione/registrazione.component";
 import {MatSelectModule} from '@angular/material/select';
+import { InserimentoProdottiComponent } from './inserimento-prodotti/inserimento-prodotti.component';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -30,6 +31,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     LoginComponent,
     RegistrazioneComponent,
     DashboardComponent,
+    InserimentoProdottiComponent,
   ],
   imports: [
     BrowserModule,
