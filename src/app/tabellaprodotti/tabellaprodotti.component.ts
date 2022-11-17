@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { IProdottoResp } from '../models/IProdottoResp';
 
 import { ProdottiService } from '../services/prodotti.service';
@@ -8,29 +8,32 @@ import { ProdottiService } from '../services/prodotti.service';
   templateUrl: './tabellaprodotti.component.html',
   styleUrls: ['./tabellaprodotti.component.css']
 })
-export class TabellaprodottiComponent implements OnInit, OnChanges {
+export class TabellaprodottiComponent implements OnInit,OnChanges {
 
-  prodotti: IProdottoResp[] = []
+  prodotti: IProdottoResp[] = [];
+  i : number = 1;
+
+  @Input() cambiamento: boolean | undefined;
 
   constructor(private servizioProdotti : ProdottiService) {
     
-   }
-
+  }
   ngOnChanges(changes: SimpleChanges): void {
+    changes['cambiamento'];
     this.listaProdotti();
   }
 
   ngOnInit(): void {
-    this.listaProdotti();
+    
   }
 
   listaProdotti() {
+    this.prodotti = [];
     this.servizioProdotti.prodotti().subscribe({
       next: (resp) => {
       resp.map(el => {
+
         this.prodotti.push(el)
-        console.log(resp);
-        
         });
       },
       error: (err) => console.log(err),

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IProdotto } from '../models/IProdotto';
 import { InsermentoProdottoService } from '../services/insermento-prodotto.service';
@@ -9,6 +9,8 @@ import { InsermentoProdottoService } from '../services/insermento-prodotto.servi
   styleUrls: ['./inserimento-prodotti.component.css']
 })
 export class InserimentoProdottiComponent implements OnInit {
+
+  @Output() inserimento = new EventEmitter<boolean>;
 
   insermimentoProdotti = new FormGroup({
     nome: new FormControl("", [Validators.required, Validators.minLength(3)]),
@@ -26,18 +28,17 @@ export class InserimentoProdottiComponent implements OnInit {
     const prodotto: IProdotto = {
       nome: this.insermimentoProdotti.value.nome as string,
       descrizione: this.insermimentoProdotti.value.descrizone as string,
-      prezzo: parseInt(this.insermimentoProdotti.value.prezzo as string),
+      prezzo: this.insermimentoProdotti.value.prezzo as string,
     };
     
     this.service.insermento(prodotto).subscribe({
       next: (resp) => {
-        alert("Prodotto inserito");
         this.insermimentoProdotti.reset();
+        this.inserimento.emit();
+
       },
       error: (err) => console.log(err),
     });
-
-    location.reload();
   }
 
 }

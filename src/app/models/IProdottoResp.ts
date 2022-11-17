@@ -2,5 +2,5 @@ export interface IProdottoResp{
     id: number,
     nome: string,
     descrizione: string,
-    prezzo: number
+    prezzo: string
 }
