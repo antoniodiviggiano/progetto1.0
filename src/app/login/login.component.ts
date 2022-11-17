@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (resp: Resp) => {
           localStorage.setItem("accessToken", resp.accessToken);
-          this.router.navigate(["/cocktail"]);
+          this.router.navigate(["/dashboard"]);
 
           const token = localStorage.getItem("accessToken");
           console.log(token);
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
           this.modal.open(errorTrad);
         },
 
-        () => this.router.navigate(["/cocktail"])
+        () => this.router.navigate(["/dashboard"])
       );
   }
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { IProdotto } from '../models/IProdotto';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,6 +8,12 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+  cambiamento : boolean = false
+
+  inserimento(){
+    this.cambiamento = !this.cambiamento
+  }
 
   isLogged : boolean = false;
 
