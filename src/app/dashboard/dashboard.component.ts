@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { IProdotto } from '../models/IProdotto';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,18 +8,21 @@ import { IProdotto } from '../models/IProdotto';
 })
 export class DashboardComponent implements OnInit {
 
-  cambiamento : boolean = false
+  cambiamento: boolean = false;
 
-  inserimento(){
+  logIN : undefined | boolean;
+
+  inserimento() {
     this.cambiamento = !this.cambiamento
   }
 
-  isLogged : boolean = false;
+  constructor(private auth: AuthService) {
 
-  constructor(private auth : AuthService) { }
+  }
 
   ngOnInit(): void {
-    this.isLogged = this.auth.isAuth();
+
+    this.logIN = this.auth.isLoggedIn;
   }
 
 }

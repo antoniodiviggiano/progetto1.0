@@ -1,2 +1,8 @@
-<app-inserimento-prodotti (inserimento)="inserimento()" *ngIf="isLogged"></app-inserimento-prodotti>
-<app-tabellaprodotti [cambiamento]="cambiamento"></app-tabellaprodotti>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <app-inserimento-prodotti (inserimento)="inserimento()" *ngIf="logIN"></app-inserimento-prodotti>
+            <app-tabellaprodotti [cambiamento]="cambiamento"></app-tabellaprodotti>
+        </div>
+    </div>
+</div>
