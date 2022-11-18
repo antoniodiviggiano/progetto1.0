@@ -1,7 +1,6 @@
 <mat-toolbar id="menuBar">
   <span>My App</span>
-  <div id="divProva">{{"GENERALE.Accedi" | translate}}</div>
-  <a class="nav-item nav-link active padding accedi" routerLink="/login" routerLinkActive="active">{{"GENERALE.Accedi"
+  <a *ngIf="!login" class="nav-item nav-link active padding accedi" routerLink="/login" routerLinkActive="active">{{"GENERALE.Accedi"
     |translate}}</a>
   <a class="nav-item nav-link active padding" routerLink="/registrazione"
     routerLinkActive="active">{{"GENERALE.Registrazione" |translate}}</a>
@@ -9,7 +8,7 @@
 
   <span class="example-spacer"></span>
 
-  <button mat-icon-button (click)="onlogout()" class="example-icon" aria-label="Example icon-button with share icon">
+  <button *ngIf="login" mat-icon-button (click)="onlogout()" class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon color="warn" fontIcon="exit_to_app"></mat-icon>
   </button>
 </mat-toolbar>
