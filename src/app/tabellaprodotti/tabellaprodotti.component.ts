@@ -18,6 +18,7 @@ export class TabellaprodottiComponent implements OnInit,OnChanges {
   constructor(private servizioProdotti : ProdottiService) {
     
   }
+  
   ngOnChanges(changes: SimpleChanges): void {
     changes['cambiamento'];
     this.listaProdotti();
