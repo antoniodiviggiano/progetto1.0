@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { AuthService } from './auth/auth.service';
 
@@ -8,10 +8,8 @@ import { AuthService } from './auth/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'esameAngular';
-
-  login : boolean = false;
 
   constructor(public translate: TranslateService,private auth : AuthService) {
 
@@ -23,11 +21,6 @@ export class AppComponent implements OnInit {
     
 
     translate.use(browserLang?.match('en-EN' || 'it-IT' || 'es-ES') ? browserLang : 'it-IT');
-  }
-  ngOnInit(): void {
-    this.auth.login$.subscribe(
-      resp => this.login = resp
-    );
   }
 
   onlogout() {

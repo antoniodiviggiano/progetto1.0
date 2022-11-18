@@ -43,9 +43,10 @@ export class LoginComponent implements OnInit {
           this.router.navigate(["/dashboard"]);
 
           const token = localStorage.getItem("accessToken");
-          
+          console.log(token);
+
           if (token !== "") {
-            this.auth.login();
+            this.auth.isLoggedIn = true;
           }
         },
 
