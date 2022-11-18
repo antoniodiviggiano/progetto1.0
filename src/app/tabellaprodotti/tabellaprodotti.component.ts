@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 import { IProdottoResp } from '../models/IProdottoResp';
+import { DeleteProdottiService } from '../services/delete-prodotti.service';
 
 import { ProdottiService } from '../services/prodotti.service';
 
@@ -10,12 +13,15 @@ import { ProdottiService } from '../services/prodotti.service';
 })
 export class TabellaprodottiComponent implements OnInit,OnChanges {
 
+  isLogged : boolean = false;
+  
+
   prodotti: IProdottoResp[] = [];
   i : number = 1;
 
   @Input() cambiamento: boolean | undefined;
 
-  constructor(private servizioProdotti : ProdottiService) {
+  constructor(private servizioProdotti : ProdottiService, private deleteProdotti: DeleteProdottiService, private auth : AuthService ) {
     
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -24,7 +30,7 @@ export class TabellaprodottiComponent implements OnInit,OnChanges {
   }
 
   ngOnInit(): void {
-    
+    this.isLogged = this.auth.isAuth();
   }
 
   listaProdotti() {
@@ -39,4 +45,12 @@ export class TabellaprodottiComponent implements OnInit,OnChanges {
       error: (err) => console.log(err),
     })
   }
+
+  onDeleteProdotti(id: number){
+    this.deleteProdotti.onDelete(id)
+    this.listaProdotti()
+  }
+
+
+
 }
