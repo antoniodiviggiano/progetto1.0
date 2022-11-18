@@ -9,14 +9,15 @@ import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { CocktailComponent } from "./cocktail/cocktail.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { HomeComponent } from "./home/home.component";
 import { ErrorCatchingInterceptor } from "./interceptors/error-catching.interceptor";
 import { LoginComponent } from "./login/login.component";
 import { RegistrazioneComponent } from "./registrazione/registrazione.component";
 import {MatSelectModule} from '@angular/material/select';
-import { InserimentoProdottiComponent } from './inserimento-prodotti/inserimento-prodotti.component';
+
+import { CommonModule } from "@angular/common";
+import { InserimentoProdottiComponent } from "./inserimento-prodotti/inserimento-prodotti.component";
 import { TabellaprodottiComponent } from "./tabellaprodotti/tabellaprodotti.component";
 
 
@@ -28,18 +29,18 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   declarations: [
     AppComponent,
     HomeComponent,
-    CocktailComponent,
     LoginComponent,
     RegistrazioneComponent,
     DashboardComponent,
     InserimentoProdottiComponent,
-    TabellaprodottiComponent,
+    TabellaprodottiComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    CommonModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,

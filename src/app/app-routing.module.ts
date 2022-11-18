@@ -1,42 +1,29 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth/auth.guard';
-import { CocktailComponent } from './cocktail/cocktail.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegistrazioneComponent } from './registrazione/registrazione.component';
+import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
+
 
 const routes: Routes = [
   {
-    path:"",
-    component:LoginComponent
+    path: "login",
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
   },
   {
-    path:"cocktail",
-    component:CocktailComponent
+    path: '',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
   },
   {
-    path:"login",
-    component:LoginComponent
-  },
-  {
-    path:"registrazione",
-    component:RegistrazioneComponent
+    path: "registrazione",
+    loadChildren: () => import('./registrazione/registrazione.module').then(m => m.RegistrazioneModule)
   },
   {
     path:"dashboard",
-    component:DashboardComponent,
-    //canActivate: [AuthGuard],
-  },
-  {
-    path:"**",
-    component:LoginComponent
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
+
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
