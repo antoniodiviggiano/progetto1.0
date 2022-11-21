@@ -31,10 +31,10 @@
           
           </ng-container>
 
-          <td *ngIf="!press[i+1]"><button type="button" (click)="onPressEdit(prodotto.id)"
+          <td *ngIf="isLogged && !press[i+1]"><button type="button" (click)="onPressEdit(prodotto.id)"
               class="btn  w-100 btn-primary block">Edit</button></td>
 
-          <td *ngIf="press[i+1]"><button type="button" (click)="onEditProdotti(prodotto.id)" class="btn w-100 btn-warning block">Save</button></td>
+          <td *ngIf="isLogged && press[i+1]"><button type="button" (click)="onEditProdotti(prodotto.id)" class="btn w-100 btn-warning block">Save</button></td>
 
 
         </tr>

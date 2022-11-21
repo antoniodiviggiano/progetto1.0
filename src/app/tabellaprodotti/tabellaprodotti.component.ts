@@ -90,7 +90,6 @@ export class TabellaprodottiComponent implements OnInit, OnChanges {
 
   onPressEdit(i: number) {
     this.press[i] = !this.press[i]
-    console.log(this.press[i - 1])
   }
 
 }
