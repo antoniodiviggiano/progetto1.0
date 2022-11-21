@@ -15,7 +15,7 @@ export class InserimentoProdottiComponent implements OnInit {
   insermimentoProdotti = new FormGroup({
     nome: new FormControl("", [Validators.required, Validators.minLength(3)]),
     descrizone: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(75)]),
-    prezzo: new FormControl("", [Validators.required, Validators.min(1)]),
+    prezzo: new FormControl("", [Validators.required, Validators.min(0.01)]),
   });
 
   constructor(private service : InsermentoProdottoService,) { }
