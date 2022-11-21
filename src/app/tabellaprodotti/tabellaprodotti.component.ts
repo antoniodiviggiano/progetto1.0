@@ -84,12 +84,13 @@ export class TabellaprodottiComponent implements OnInit, OnChanges {
       }
     });
 
-    this.press[id - 1] = !this.press
+    this.press[id] = !this.press
     this.listaProdotti();
   }
 
   onPressEdit(i: number) {
-    this.press[i - 1] = !this.press[i - 1]
+    this.press[i] = !this.press[i]
+    console.log(this.press[i - 1])
   }
 
 }
