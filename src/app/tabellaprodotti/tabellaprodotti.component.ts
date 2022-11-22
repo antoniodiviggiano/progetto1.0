@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { AuthService } from '../auth/auth.service';
 import { IProdottoResp } from '../models/IProdottoResp';
 import { DeleteProdottiService } from '../services/delete-prodotti.service';
@@ -11,9 +12,11 @@ import { ProdottiService } from '../services/prodotti.service';
   templateUrl: './tabellaprodotti.component.html',
   styleUrls: ['./tabellaprodotti.component.css']
 })
-export class TabellaprodottiComponent implements OnInit,OnChanges {
+export class TabellaprodottiComponent implements OnInit,OnChanges, OnDestroy {
 
   isLogged : boolean = false;
+
+  deleteProdottiSub : Subscription | undefined;
   
 
   prodotti: IProdottoResp[] = [];
@@ -24,6 +27,7 @@ export class TabellaprodottiComponent implements OnInit,OnChanges {
   constructor(private servizioProdotti : ProdottiService, private deleteProdotti: DeleteProdottiService, private auth : AuthService ) {
     
   }
+  
   ngOnChanges(changes: SimpleChanges): void {
     changes['cambiamento'];
     this.listaProdotti();
@@ -47,8 +51,15 @@ export class TabellaprodottiComponent implements OnInit,OnChanges {
   }
 
   onDeleteProdotti(id: number){
-    this.deleteProdotti.onDelete(id)
-    this.listaProdotti()
+
+    if (!this.deleteProdottiSub || this.deleteProdottiSub.closed) {
+   this.deleteProdottiSub = this.deleteProdotti.onDelete(id).subscribe( () => this.listaProdotti() )
+    }
+
+  }
+
+  ngOnDestroy(): void {
+    this.deleteProdottiSub?.unsubscribe();
   }
 
 

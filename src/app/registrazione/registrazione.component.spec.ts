@@ -11,7 +11,6 @@ import { of } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import mockResp from 'src/app/MockResponse/register.json'
 import { AuthGuard } from '../auth/auth.guard';
-import { CocktailComponent } from '../cocktail/cocktail.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { LoginComponent } from '../login/login.component';
 
@@ -31,7 +30,6 @@ fdescribe('RegistrazioneComponent', () => {
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes(
           [{ path: "", component: LoginComponent },
-           { path: "cocktail", component: CocktailComponent },
            { path: "login", component: LoginComponent },
            { path: "registrazione", component: RegistrazioneComponent },
            { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard], },
