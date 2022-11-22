@@ -1,28 +1,62 @@
 <mat-toolbar id="menuBar">
-  <span>My App</span>
-  <a *ngIf="!login" class="nav-item nav-link active padding accedi" routerLink="/login" routerLinkActive="active">{{"GENERALE.Accedi"
-    |translate}}</a>
-  <a class="nav-item nav-link active padding" routerLink="/registrazione"
-    routerLinkActive="active">{{"GENERALE.Registrazione" |translate}}</a>
-  <a class="nav-item nav-link active padding" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+  <span class="titoloApp">My App</span>
+
+  <div id="mostraselect" class="box p-4">
+    <div class="">
+      <select *ngIf="!login" #valSel (change)="navigateTo(valSel.value)" class="form-select" aria-label="Default select example">
+        <option disabled selected>User</option>
+        <option  value="login">{{ "GENERALE.Accedi" | translate }}</option>
+        <option  value="signin">{{ "GENERALE.Registrazione" | translate }}</option>
+      </select>
+    </div>
+  </div>
+
+  <a
+    id="nascondiLogin"
+    *ngIf="!login"
+    class="nav-item nav-link active padding accedi"
+    routerLink="/login"
+    routerLinkActive="active"
+    >{{ "GENERALE.Accedi" | translate }}</a
+  >
+  <a
+    id="nascondiSignin"
+    class="nav-item nav-link active padding"
+    routerLink="/registrazione"
+    routerLinkActive="active"
+    >{{ "GENERALE.Registrazione" | translate }}</a
+  >
+  <a
+    class="nav-item nav-link active padding"
+    routerLink="/dashboard"
+    routerLinkActive="active"
+    >Dashboard</a
+  >
 
   <span class="example-spacer"></span>
 
-  <button *ngIf="login" mat-icon-button (click)="onlogout()" class="example-icon" aria-label="Example icon-button with share icon">
+  <button
+    *ngIf="login"
+    mat-icon-button
+    (click)="onlogout()"
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
     <mat-icon color="warn" fontIcon="exit_to_app"></mat-icon>
   </button>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
 
-<footer class="bg-dark text-end text-white basso">  
-  <select class="custom-select bg-dark text-white" #langSelect (change)="translate.use(langSelect.value)">
+<footer class="bg-dark text-end text-white basso">
+  <select
+    class="custom-select bg-dark text-white"
+    #langSelect
+    (change)="translate.use(langSelect.value)"
+  >
     <option selected disabled value="">Seleziona lingua</option>
     <option value="it-IT">🇮🇹</option>
     <option value="en-EN">🇬🇧</option>
     <option value="es-ES">🇪🇸</option>
   </select>
 </footer>
-
-
-

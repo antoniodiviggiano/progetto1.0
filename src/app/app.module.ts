@@ -19,6 +19,16 @@ import {MatSelectModule} from '@angular/material/select';
 import { CommonModule } from "@angular/common";
 import { InserimentoProdottiComponent } from "./inserimento-prodotti/inserimento-prodotti.component";
 import { TabellaprodottiComponent } from "./tabellaprodotti/tabellaprodotti.component";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatMenuModule} from '@angular/material/menu';
+
+
+
+
+
+
+
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -41,10 +51,12 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
+    BrowserAnimationsModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
     MatSelectModule,
+    MatMenuModule,
     TranslateModule.forRoot(
       {
         loader: {

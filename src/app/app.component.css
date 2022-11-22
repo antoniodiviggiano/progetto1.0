@@ -13,3 +13,32 @@
 
 }
 
+@media only screen and (min-width: 768px) {
+    #mostraselect {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #nascondiLogin {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #nascondiSignin {
+        display: none;
+    }
+}
+
+  .box select {
+    background-color: #085ED6;
+    color: white;
+    width: auto;
+    border: none;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    outline: none;
+  }
+ 
+
