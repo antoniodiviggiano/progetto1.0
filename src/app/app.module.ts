@@ -14,8 +14,7 @@ import { HomeComponent } from "./home/home.component";
 import { ErrorCatchingInterceptor } from "./interceptors/error-catching.interceptor";
 import { LoginComponent } from "./login/login.component";
 import { RegistrazioneComponent } from "./registrazione/registrazione.component";
-import {MatSelectModule} from '@angular/material/select';
-
+import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from "@angular/common";
 import { InserimentoProdottiComponent } from "./inserimento-prodotti/inserimento-prodotti.component";
 import { TabellaprodottiComponent } from "./tabellaprodotti/tabellaprodotti.component";
@@ -46,6 +45,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TabellaprodottiComponent
   ],
   imports: [
+    MatMenuModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -57,6 +57,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatButtonModule,
     MatSelectModule,
     MatMenuModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot(
       {
         loader: {

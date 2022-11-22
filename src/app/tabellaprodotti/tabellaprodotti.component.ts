@@ -31,6 +31,10 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
   flag: boolean = false;
   id: number = -1;
   login: boolean | undefined;
+  flagMobile : boolean | undefined;
+
+  mobileEdit : boolean = false;
+  mobileDelete : boolean = false;
 
   @Input() cambiamento: boolean | undefined;
 
@@ -39,7 +43,7 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
     private deleteProdotti: DeleteProdottiService,
     private auth: AuthService,
     private updateProdotti: UpdateProdottiService
-  ) {}
+  ) { }
 
   formModifica = new FormGroup({
     nome: new FormControl("", [Validators.required, Validators.minLength(3)]),
@@ -76,7 +80,8 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
     if (!this.deleteProdottiSub || this.deleteProdottiSub.closed) {
       this.deleteProdottiSub = this.deleteProdotti
         .onDelete(id)
-        .subscribe(() => this.listaProdotti());
+        .subscribe(() =>
+          this.listaProdotti());
     }
   }
 
@@ -85,6 +90,7 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   modifica(id: number) {
+
     let prodottoModificato: IProdotto = {
       nome: this.formModifica.controls.nome.value!,
       descrizione: this.formModifica.controls.descrizione.value!,
@@ -101,10 +107,29 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
     });
     this.flag = false;
     this.listaProdotti();
+
+    this.flagMobile = false;
+    this.mobileEdit = false;
+    this.formModifica.reset();
   }
 
-  rigaSelezionata(id: number) {
-    this.id = id;
+  rigaSelezionata(prodotto: IProdottoResp) {
+    this.id = prodotto.id;
     this.flag = !this.flag;
+
+    this.formModifica.controls.nome.setValue(prodotto.nome);
+    this.formModifica.controls.descrizione.setValue(prodotto.descrizione);
+    this.formModifica.controls.prezzo.setValue(prodotto.prezzo);
+  }
+
+  onclickMobile(str : string){
+    if(str === "edit"){
+      this.mobileEdit = !this.mobileEdit;
+      this.mobileDelete = false;
+    }else if(str === "delete"){
+      this.mobileDelete = !this.mobileDelete;
+      this.mobileEdit = false;
+    }
+
   }
 }
