@@ -29,18 +29,26 @@
               <td> <input formControlName="prezzo" type="number" name="prezzo" id="prezzo" step="0.01"></td>
 
             </ng-container>
-            <ng-container *ngIf="login">
             <td>
-              <button type="button" (click)="rigaSelezionata(prodotto.id)" *ngIf="!flag || prodotto.id !== id"
-                class="btn  w-100 btn-warning block">Edit</button>
-            </td>
+              <ng-container>
+                <td>
+                  <button type="button" (click)="rigaSelezionata(prodotto.id)" *ngIf="!flag || prodotto.id !== id"
+                    class="btn  w-100 btn-warning block">Edit</button>
+                </td>
+    
+                <td>
+                  <button [disabled]="formModifica.invalid" *ngIf=" flag && prodotto.id === id" type="button"
+                    class="btn w-100 btn-success" class="btn w-100 btn-warning block"
+                    (click)="modifica(prodotto.id)">Save</button>
+                </td>
+                <td>
+                  <button  class="btn btn-danger" (click)="onDeleteProdotti(prodotto.id)">Delete</button>
+    
+                </td>
+              </ng-container>
 
-            <td>
-              <button [disabled]="formModifica.invalid" *ngIf=" flag && prodotto.id === id" type="button"
-                class="btn w-100 btn-success" class="btn w-100 btn-warning block"
-                (click)="modifica(prodotto.id)">Save</button>
             </td>
-          </ng-container>
+        
 
           </tr>
         </tbody>
