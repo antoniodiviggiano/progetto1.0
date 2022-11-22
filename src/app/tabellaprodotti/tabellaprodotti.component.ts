@@ -90,6 +90,7 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   modifica(id: number) {
+
     let prodottoModificato: IProdotto = {
       nome: this.formModifica.controls.nome.value!,
       descrizione: this.formModifica.controls.descrizione.value!,
@@ -112,19 +113,13 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
     this.formModifica.reset();
   }
 
-  rigaSelezionata(id: number) {
-    this.id = id;
+  rigaSelezionata(prodotto: IProdottoResp) {
+    this.id = prodotto.id;
     this.flag = !this.flag;
-  }
 
-  onChangeSelectAction(type: string, id: number) {
-    if (type === 'mod') {
-      this.rigaSelezionata(id);
-      this.flagMobile = !this.flagMobile;
-    } else if (type === 'del') {
-      this.onDeleteProdotti(id)
-    }
-    
+    this.formModifica.controls.nome.setValue(prodotto.nome);
+    this.formModifica.controls.descrizione.setValue(prodotto.descrizione);
+    this.formModifica.controls.prezzo.setValue(prodotto.prezzo);
   }
 
   onclickMobile(str : string){
