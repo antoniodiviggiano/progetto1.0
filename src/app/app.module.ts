@@ -58,11 +58,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatToolbarModule,
     MatButtonModule,
     MatSelectModule,
-<<<<<<< HEAD
     BrowserAnimationsModule,
-=======
     MatMenuModule,
->>>>>>> main
     TranslateModule.forRoot(
       {
         loader: {
