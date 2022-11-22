@@ -14,11 +14,13 @@ import { HomeComponent } from "./home/home.component";
 import { ErrorCatchingInterceptor } from "./interceptors/error-catching.interceptor";
 import { LoginComponent } from "./login/login.component";
 import { RegistrazioneComponent } from "./registrazione/registrazione.component";
-import {MatSelectModule} from '@angular/material/select';
-
+import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from "@angular/common";
 import { InserimentoProdottiComponent } from "./inserimento-prodotti/inserimento-prodotti.component";
 import { TabellaprodottiComponent } from "./tabellaprodotti/tabellaprodotti.component";
+import { MatMenuModule } from '@angular/material/menu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -36,6 +38,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TabellaprodottiComponent
   ],
   imports: [
+    MatMenuModule,
+    CdkAccordionModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -45,6 +49,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatToolbarModule,
     MatButtonModule,
     MatSelectModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot(
       {
         loader: {
