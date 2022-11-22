@@ -18,12 +18,9 @@ export class TabellaprodottiComponent implements OnInit, OnChanges {
   isLogged: boolean = false;
   prodotti: IProdottoResp[] = [];
   i: number = 1;
-
-  prodotto: IProdotto = {
-    nome: '',
-    descrizione: '',
-    prezzo: ''
-  }
+  flag : boolean = false;
+  id : number = -1;
+  login : boolean = false;
 
   @Input() cambiamento: boolean | undefined;
 
@@ -35,6 +32,12 @@ export class TabellaprodottiComponent implements OnInit, OnChanges {
     private updateProdotti: UpdateProdottiService,
     private auth: AuthService) { }
 
+    formModifica = new FormGroup({
+      nome: new FormControl("", [Validators.required, Validators.minLength(3)]),
+      descrizione: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(75)]),
+      prezzo: new FormControl("", [Validators.required, Validators.min(0.01)]),
+    });
+
 
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -43,8 +46,9 @@ export class TabellaprodottiComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-
-    this.isLogged = this.auth.isAuth();
+    this.auth.login$.subscribe(
+      resp => this.login = resp
+    );
   }
 
   listaProdotti() {
@@ -65,32 +69,31 @@ export class TabellaprodottiComponent implements OnInit, OnChanges {
     this.listaProdotti()
   }
 
-  onEditProdotti(id: number) {
+  modifica(id: number) {
 
-    const nome = document.querySelector('#nome')! as HTMLInputElement
-    const descrizione = document.querySelector('#desc')! as HTMLInputElement;
-    const prezzo = document.querySelector('#prezzo')! as HTMLInputElement;
-
-    this.prodotto = {
-      nome: nome.value,
-      descrizione: descrizione.value,
-      prezzo: prezzo.value
+    let prodottoModificato : IProdotto = {
+      nome: this.formModifica.controls.nome.value!,
+      descrizione: this.formModifica.controls.descrizione.value!,
+      prezzo: this.formModifica.controls.prezzo.value!,
     }
-
-    this.updateProdotti.update({ id: id, ...this.prodotto }).subscribe({
+   
+    this.updateProdotti.update({ id: id, ...prodottoModificato }).subscribe({
       next(resp) {
+        console.log(resp); 
       },
       error(err) {
+        console.log(err);
       }
     });
-
-    this.press[id] = !this.press
+    this.flag = false;
     this.listaProdotti();
   }
 
-  onPressEdit(i: number) {
-    this.press[i] = !this.press[i]
+  rigaSelezionata(id : number){
+    this.id = id;
+    this.flag = !this.flag
   }
-
 }
+
+
 

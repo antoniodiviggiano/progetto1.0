@@ -1,46 +1,51 @@
 <div class="container mt-5">
   <div class="row ">
+    <form [formGroup]="formModifica">
+      <table class="table">
 
-    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Descrizione</th>
+            <th scope="col">Prezzo</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
 
-      <thead>
-        <tr>
-          <th scope="col">id</th>
-          <th scope="col">Nome</th>
-          <th scope="col">Descrizione</th>
-          <th scope="col">Prezzo</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
+          <tr *ngFor="let prodotto of prodotti, let i = index">
+            <td>{{prodotto.id}}</td>
+            <ng-container *ngIf="!flag || prodotto.id !== id">
+              <td>{{prodotto.nome}}</td>
+              <td>{{prodotto.descrizione}}</td>
+              <td>{{prodotto.prezzo}}</td>
+            </ng-container>
 
-        <tr *ngFor="let prodotto of prodotti, let i = index">
-          <td>{{prodotto.id}}</td>
-          <ng-container *ngIf="!press[i+1]">
-            <td>{{prodotto.nome}}</td>
-            <td>{{prodotto.descrizione}}</td>
-            <td>{{prodotto.prezzo}}</td>
+            <ng-container *ngIf="flag && prodotto.id === id">
+
+              <td> <input formControlName="nome" type="text" name="nome" id="nome"></td>
+              <td> <input formControlName="descrizione" type="text" name="desc" id="desc"></td>
+              <td> <input formControlName="prezzo" type="number" name="prezzo" id="prezzo" step="0.01"></td>
+
+            </ng-container>
+            <ng-container *ngIf="login">
+            <td>
+              <button type="button" (click)="rigaSelezionata(prodotto.id)" *ngIf="!flag || prodotto.id !== id"
+                class="btn  w-100 btn-warning block">Edit</button>
+            </td>
+
+            <td>
+              <button [disabled]="formModifica.invalid" *ngIf=" flag && prodotto.id === id" type="button"
+                class="btn w-100 btn-success" class="btn w-100 btn-warning block"
+                (click)="modifica(prodotto.id)">Save</button>
+            </td>
           </ng-container>
 
-          <ng-container *ngIf="press[i+1]">
-            <form (ngSubmit)="onEditProdotti(prodotto.id)"></form>
-            
-            <td> <input type="text" name="nome" id="nome" value="{{prodotto.nome}}"></td>
-            <td><input type="text" name="desc" id="desc" value="{{prodotto.descrizione}}"></td>
-            <td> <input type="number" name="prezzo" id="prezzo" step="0.01" value="{{prodotto.prezzo}}"></td>
-          
-          </ng-container>
+          </tr>
+        </tbody>
 
-          <td *ngIf="isLogged && !press[i+1]"><button type="button" (click)="onPressEdit(prodotto.id)"
-              class="btn  w-100 btn-primary block">Edit</button></td>
-
-          <td *ngIf="isLogged && press[i+1]"><button type="button" (click)="onEditProdotti(prodotto.id)" class="btn w-100 btn-warning block">Save</button></td>
-
-
-        </tr>
-      </tbody>
-
-    </table>
-
+      </table>
+    </form>
   </div>
 </div>
