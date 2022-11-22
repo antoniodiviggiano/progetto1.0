@@ -2,7 +2,7 @@
   <span>My App</span>
   <a *ngIf="!login" class="nav-item nav-link active padding accedi" routerLink="/login" routerLinkActive="active">{{"GENERALE.Accedi"
     |translate}}</a>
-  <a class="nav-item nav-link active padding" routerLink="/registrazione"
+  <a *ngIf="!login" class="nav-item nav-link active padding" routerLink="/registrazione"
     routerLinkActive="active">{{"GENERALE.Registrazione" |translate}}</a>
   <a class="nav-item nav-link active padding" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
 
