@@ -18,16 +18,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from "@angular/common";
 import { InserimentoProdottiComponent } from "./inserimento-prodotti/inserimento-prodotti.component";
 import { TabellaprodottiComponent } from "./tabellaprodotti/tabellaprodotti.component";
+import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import {MatMenuModule} from '@angular/material/menu';
-
-
-
-
-
-
-
+import {CdkAccordionModule} from '@angular/cdk/accordion';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -46,6 +39,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   ],
   imports: [
     MatMenuModule,
+    CdkAccordionModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -56,7 +50,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatToolbarModule,
     MatButtonModule,
     MatSelectModule,
-    MatMenuModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot(
       {
