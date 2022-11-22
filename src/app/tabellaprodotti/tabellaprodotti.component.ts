@@ -20,17 +20,16 @@ export class TabellaprodottiComponent implements OnInit, OnChanges {
   i: number = 1;
   flag : boolean = false;
   id : number = -1;
-  login : boolean = false;
+  login : boolean | undefined;
 
   @Input() cambiamento: boolean | undefined;
-
-  press: boolean[] = [false];
 
   constructor(private fb: FormBuilder,
     private servizioProdotti: ProdottiService,
     private deleteProdotti: DeleteProdottiService,
     private updateProdotti: UpdateProdottiService,
-    private auth: AuthService) { }
+    private auth: AuthService) { 
+    }
 
     formModifica = new FormGroup({
       nome: new FormControl("", [Validators.required, Validators.minLength(3)]),
@@ -38,17 +37,13 @@ export class TabellaprodottiComponent implements OnInit, OnChanges {
       prezzo: new FormControl("", [Validators.required, Validators.min(0.01)]),
     });
 
-
-
   ngOnChanges(changes: SimpleChanges): void {
     changes['cambiamento'];
     this.listaProdotti();
   }
 
   ngOnInit(): void {
-    this.auth.login$.subscribe(
-      resp => this.login = resp
-    );
+    this.login= this.auth.isLoggedIn
   }
 
   listaProdotti() {
@@ -63,7 +58,6 @@ export class TabellaprodottiComponent implements OnInit, OnChanges {
       error: (err) => console.log(err),
     })
   }
-
   onDeleteProdotti(id: number) {
     this.deleteProdotti.onDelete(id)
     this.listaProdotti()
