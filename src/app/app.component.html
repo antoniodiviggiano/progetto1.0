@@ -24,6 +24,7 @@
     class="nav-item nav-link active padding"
     routerLink="/registrazione"
     routerLinkActive="active"
+    *ngIf="!login"
     >{{ "GENERALE.Registrazione" | translate }}</a
   >
   <a
