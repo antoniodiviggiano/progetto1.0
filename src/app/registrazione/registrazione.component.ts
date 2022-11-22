@@ -5,6 +5,7 @@ import { IUser } from '../models/IUser';
 import { PostRegistrzioneService } from '../services/registrzione.service';
 import { TranslateService } from '@ngx-translate/core';
 import { dataValidator } from '../validator/dataValidator';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-registrazione',
@@ -21,14 +22,13 @@ export class RegistrazioneComponent implements OnInit {
   })
 
   respComponent: any;
-
   lastId!: number;
 
   constructor(private postRegistrzioneService: PostRegistrzioneService, private router: Router, public translate: TranslateService) { }
 
   ngOnInit(): void {
+    
   }
-  //esportare sul file
 
 
   registrer() {
