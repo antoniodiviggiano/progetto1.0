@@ -31,10 +31,10 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
   flag: boolean = false;
   id: number = -1;
   login: boolean | undefined;
-  flagMobile : boolean | undefined;
+  flagMobile: boolean | undefined;
 
-  mobileEdit : boolean = false;
-  mobileDelete : boolean = false;
+  mobileEdit: boolean = false;
+  mobileDelete: boolean = false;
 
   @Input() cambiamento: boolean | undefined;
 
@@ -119,17 +119,19 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
 
     this.formModifica.controls.nome.setValue(prodotto.nome);
     this.formModifica.controls.descrizione.setValue(prodotto.descrizione);
-    this.formModifica.controls.prezzo.setValue(prodotto.prezzo);
+    this.formModifica.controls.prezzo.setValue("12.50");
   }
 
-  onclickMobile(str : string){
-    if(str === "edit"){
+  onclickMobile(str: string,prodotto : IProdottoResp) {
+    if (str === "edit") {
       this.mobileEdit = !this.mobileEdit;
       this.mobileDelete = false;
-    }else if(str === "delete"){
+      this.formModifica.controls.nome.setValue(prodotto.nome);
+      this.formModifica.controls.descrizione.setValue(prodotto.descrizione);
+      this.formModifica.controls.prezzo.setValue(prodotto.prezzo);
+    } else if (str === "delete") {
       this.mobileDelete = !this.mobileDelete;
       this.mobileEdit = false;
     }
-
   }
 }

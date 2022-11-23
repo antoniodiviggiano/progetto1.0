@@ -51,6 +51,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatButtonModule,
     MatSelectModule,
     BrowserAnimationsModule,
+    MatButtonModule,
     TranslateModule.forRoot(
       {
         loader: {

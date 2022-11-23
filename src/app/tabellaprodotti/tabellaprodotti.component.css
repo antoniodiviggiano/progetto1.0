@@ -3,6 +3,29 @@
   background-color: #eee;
 }
 
+.container-btn-del-edit {
+  float: inline-start; 
+  flex : 0.25;
+  flex-direction: row;
+  display: flex;
+}
+
+.formModificaMobile{
+  float: inline-start; 
+  flex : 0.5;
+  flex-direction: column;
+  display: flex;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.inputMobile {
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+}
+
+
+
 
 @media only screen and (min-width:426px) {
 
@@ -31,8 +54,6 @@
   }
 
 }
-
-
 
 
 
