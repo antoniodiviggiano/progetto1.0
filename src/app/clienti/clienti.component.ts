@@ -23,7 +23,6 @@ export class ClientiComponent implements OnInit, OnDestroy {
   idProdotti: number[] = [];
   prodotti: IProdottoResp[] = [];
   idClick : number = -1;
-  flag : boolean = true;
 
   ngOnInit(): void {
     let user: IUserResp[] = [];
@@ -49,7 +48,7 @@ export class ClientiComponent implements OnInit, OnDestroy {
 
     this.ProdottiSUB = this.servizioProdotti.prodotti().pipe(
       switchMap(() => {
-        return this.prodottiClienti.prodottiUser(user.id).pipe()
+        return this.prodottiClienti.prodottiUser(user.id)
       })
     ).subscribe({
       next: (val) => {
