@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "e2e": "cypress open",
-    "db" : "json-server db.json -m ./node_modules/json-server-auth --port 8080"
+    "db": "json-server db.json -m ./node_modules/json-server-auth --port 8080"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +27,7 @@
     "@ngx-translate/http-loader": "^7.0.0",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.2",
+    "json-server-relationship": "^0.14.5",
     "moment": "^2.29.4",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

@@ -19,7 +19,7 @@
             <ng-container *ngIf="!flag || prodotto.id !== id">
               <td>{{prodotto.nome}}</td>
               <td>{{prodotto.descrizione}}</td>
-              <td>{{prodotto.prezzo}}</td>
+              <td>{{prodotto.prezzo | currency:'EUR' }}</td>
             </ng-container>
 
             <ng-container class="mt-5" *ngIf="flag && prodotto.id === id">
@@ -29,6 +29,7 @@
               <td> <input formControlName="prezzo" type="number" name="prezzo" id="prezzo" step="0.01"></td>
 
             </ng-container>
+
             <td>
               <ng-container *ngIf="login">
             <td>

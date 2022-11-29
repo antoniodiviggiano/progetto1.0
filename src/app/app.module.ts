@@ -21,6 +21,7 @@ import { TabellaprodottiComponent } from "./tabellaprodotti/tabellaprodotti.comp
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { ClientiComponent } from './clienti/clienti.component';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -35,7 +36,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RegistrazioneComponent,
     DashboardComponent,
     InserimentoProdottiComponent,
-    TabellaprodottiComponent
+    TabellaprodottiComponent,
+    ClientiComponent
   ],
   imports: [
     MatMenuModule,

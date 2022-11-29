@@ -97,7 +97,7 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
       prezzo: this.formModifica.controls.prezzo.value!,
     };
 
-    this.updateProdotti.update({ id: id, ...prodottoModificato }).subscribe({
+    /*this.updateProdotti.update({ id: id, ...prodottoModificato }).subscribe({
       next(resp) {
         console.log(resp);
       },
@@ -110,7 +110,7 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
 
     this.flagMobile = false;
     this.mobileEdit = false;
-    this.formModifica.reset();
+    this.formModifica.reset();*/
   }
 
   rigaSelezionata(prodotto: IProdottoResp) {

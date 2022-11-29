@@ -1,0 +1,31 @@
+<div class="list  mt-5">
+    <cdk-accordion class="example-accordion color">
+        <cdk-accordion-item *ngFor="let item of users; let index = index;" #accordionItem="cdkAccordionItem"
+            class="example-accordion-item" role="button" tabindex="0" [attr.id]="'accordion-header-' + index"
+            [attr.aria-expanded]="accordionItem.expanded" [attr.aria-controls]="'accordion-body-' + index">
+            <div class="example-accordion-item-header" (click)="accordionItem.toggle(); callBody(item)">
+                {{ item.nomeUtente }}
+                <span class="example-accordion-item-description">
+                    <mat-icon> {{ accordionItem.expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+                </span>
+            </div>
+            <div class="example-accordion-item-body" role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                <ng-container>
+                    <div *ngFor="let prod of prodotti; let i=index">
+                        <div class="prodotto">
+                            <div>
+                                <p>Nome : {{prod.nome}}</p>
+                                <p>Descrizione : {{prod.descrizione}}</p>
+                                <p>Prezzo : {{prod.prezzo | currency:'EUR' }}</p>
+                            </div>
+                        </div>
+                        <hr *ngIf="i+1 !== prodotti.length">
+                    </div>
+                </ng-container>
+                <p class="prodotto" *ngIf="prodotti.length === 0">Nessun prodotto</p>
+            </div>
+        </cdk-accordion-item>
+    </cdk-accordion>
+</div>

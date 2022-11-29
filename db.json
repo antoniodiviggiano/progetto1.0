@@ -20,7 +20,65 @@
       "nomeUtente": "Cliente3",
       "dataNascita": "1999-01-01",
       "id": 3
+    },
+    {
+      "email": "q@w",
+      "password": "$2a$10$TiyaahDm/BUjN.Z0Un1JR.Ll6AsVYDIjTfxznr3cbt8WWAIGk5ufu",
+      "nomeUtente": "ste",
+      "dataNascita": "1111-11-11",
+      "id": 4
     }
   ],
-  "prodotti": []
+  "prodotti": [
+    {
+      "nome": "banane",
+      "descrizione": "belle",
+      "prezzo": 1.2,
+      "id": 1
+    },
+    {
+      "nome": "pere",
+      "descrizione": "brutte",
+      "prezzo": 1.2,
+      "id": 2
+    },
+    {
+      "nome": "mele",
+      "descrizione": "verdi",
+      "prezzo": 0.8,
+      "id": 3
+    }
+  ],
+  "relazione": [
+    {
+      "id": 0,
+      "userId": 1,
+      "prodottiId": 1
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "prodottiId": 2
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "prodottiId": 3
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "prodottiId": 1
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "prodottiId": 3
+    },
+    {
+      "id": 3,
+      "userId": 3,
+      "prodottiId": 3
+    }
+  ]
 }
