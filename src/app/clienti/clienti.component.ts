@@ -66,7 +66,6 @@ export class ClientiComponent implements OnInit, OnDestroy {
     })
 
     this.prodotti = prodotti
-    
 
   }
 }
