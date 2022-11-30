@@ -38,9 +38,9 @@ export class InserimentoProdottiComponent implements OnDestroy{
 
 
     this.inserimentoProdotti = this.formBuilder.group({
-      nome: new FormControl("bana", [Validators.required, Validators.minLength(3)]),
-      descrizone: new FormControl("nenene", [Validators.required, Validators.minLength(3), Validators.maxLength(75)]),
-      prezzo: new FormControl("112", [Validators.required, Validators.min(0.01)]),
+      nome: new FormControl("", [Validators.required, Validators.minLength(3)]),
+      descrizone: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(75)]),
+      prezzo: new FormControl("", [Validators.required, Validators.min(0.01)]),
       clienti: new FormArray([], this.minSelectedCheckboxes(1)),
     });
 
