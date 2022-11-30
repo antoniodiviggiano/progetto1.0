@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -21,6 +21,8 @@ import { TabellaprodottiComponent } from "./tabellaprodotti/tabellaprodotti.comp
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -41,11 +43,13 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatMenuModule,
     CdkAccordionModule,
     BrowserModule,
+    MatCheckboxModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,

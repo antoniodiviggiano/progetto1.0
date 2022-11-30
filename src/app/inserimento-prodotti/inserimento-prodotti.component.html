@@ -2,13 +2,14 @@
    
 </div>
  -->
-<div class="container">
-    <form [formGroup]="insermimentoProdotti" (ngSubmit)="inserisciProdotti()">
+<div class="container mt-3">
+
+    <form [formGroup]="inserimentoProdotti" (ngSubmit)="inserisciProdotti()">
         <div class="row">
 
             <div class="mb-3 col-md-3">
-                <input type="text" class="form-control" id="nomeProdotto" aria-describedby="emailHelp" placeholder="nome"
-                    formControlName="nome">
+                <input type="text" class="form-control" id="nomeProdotto" aria-describedby="emailHelp"
+                    placeholder="nome" formControlName="nome">
             </div>
             <div class="mb-3 col-md-5">
                 <input type="text" class="form-control" id="nomeProdotto" aria-describedby="emailHelp"
@@ -20,8 +21,16 @@
             </div>
             <div class="col-md-2">
                 <button type="submit" class="btn  w-100 btn-primary block"
-                    [disabled]="insermimentoProdotti.invalid">Inserisci</button>
+                    [disabled]="inserimentoProdotti.invalid">Inserisci</button>
             </div>
+
+           <section class="section text-white">
+                <label formArrayName="clienti" *ngFor="let order of clientiFormArray.controls; let i = index">
+                    <input type="checkbox" [formControlName]="i">
+                    {{clientiData[i]}} &nbsp;&nbsp;&nbsp;
+                  </label>
+           </section> 
+
         </div>
     </form>
 </div>
