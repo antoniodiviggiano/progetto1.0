@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { debounce, delay, filter, map, mapTo, of, Subscription, switchMap, takeLast, timer } from 'rxjs';
+import { debounce, delay, filter, map, mapTo, of, Subscription, switchMap, takeLast, tap, timer } from 'rxjs';
 import { IProdotto } from '../models/IProdotto';
 import { IRelazione } from '../models/IRelazione';
 import { IUser } from '../models/IUser';
@@ -15,10 +15,10 @@ import { RelazioniService } from '../services/relazioni.service';
 })
 
 export class InserimentoProdottiComponent implements OnDestroy{
+  
   inserimentoProdotti: FormGroup;
   utenti: IUser[] = [];
   clientiData: any = [];
-  utentifun: string[] = [];
 
   prodotti$: Subscription | undefined;
   clienti$: Subscription | undefined;
@@ -85,7 +85,19 @@ export class InserimentoProdottiComponent implements OnDestroy{
     this.service.insermento(prodotto).subscribe({
       next: (resp) => {
         this.inserimentoProdotti.reset();
-        this.inserimento.emit()
+        this.inserimento.emit();
+        
+        arrayClienti.map((e, index) => {
+          this.inserimentoProdotti.reset();
+          if (e === true) {
+            this.prodotti$ = this.prodotti.prodotti().pipe(
+              map((el) => el.length),
+              switchMap((val) => { 
+                return this.relazioneService.relazione({ userId: index + 1, prodottiId: val }) 
+              }),
+            ).subscribe()
+          }
+        });
       },
       error: (err) => console.log(err),
     })
@@ -95,16 +107,6 @@ export class InserimentoProdottiComponent implements OnDestroy{
       .filter((v: null) => v !== null);
 
     let arrayClienti: boolean[] = this.inserimentoProdotti.value.clienti
-
-    arrayClienti.map((e, index) => {
-      this.inserimentoProdotti.reset();
-      if (e === true) {
-        this.prodotti$ = this.prodotti.prodotti().pipe(
-          map((el) => el.length + 1),
-          switchMap((val) => { return this.relazioneService.relazione({ userId: index + 1, prodottiId: val }) })
-        ).subscribe()
-      }
-    })
   }
   
   ngOnDestroy(): void {

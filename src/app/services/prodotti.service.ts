@@ -17,4 +17,12 @@ export class ProdottiService {
     return this.http.get(API_URL) as Observable<IProdottoResp[]>;
     
   }
+
+  prodttiFiltrati(id : number[]): Observable<IProdottoResp[]> {
+    
+    let API_URL = `http://localhost:8080/prodotti?id_like=[${id}]`;
+
+    return this.http.get(API_URL) as Observable<IProdottoResp[]>;
+    
+  }
 }

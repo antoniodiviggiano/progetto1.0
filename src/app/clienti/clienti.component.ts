@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { interval, Subscription, switchMap } from 'rxjs';
+import { interval, map, Subscription,mergeMap, concatMap, take, tap, switchMap, of, SubscriptionLike } from 'rxjs';
 import { IProdotto } from '../models/IProdotto';
 import { IProdottoResp } from '../models/IProdottoResp';
 import { IUserResp } from '../models/IUserResp';
@@ -20,9 +20,9 @@ export class ClientiComponent implements OnInit, OnDestroy {
   ProdottiSUB: Subscription | undefined;
 
   users: IUserResp[] = [];
-  idProdotti: number[] = [];
-  prodotti: IProdottoResp[] = [];
-  idClick : number = -1;
+  prodotti: any[] = [];
+
+  prodottiFiltrati$ : Subscription | undefined;
 
   ngOnInit(): void {
     let user: IUserResp[] = [];
@@ -40,32 +40,22 @@ export class ClientiComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.clientiSUB?.unsubscribe;
     this.ProdottiSUB?.unsubscribe;
+    this.prodottiFiltrati$?.unsubscribe;
   }
 
   callBody(user: IUserResp) {
-    
-    let prodotti: IProdottoResp[] = [];
-
-    this.ProdottiSUB = this.servizioProdotti.prodotti().pipe(
-      switchMap(() => {
-        return this.prodottiClienti.prodottiUser(user.id)
-      })
-    ).subscribe({
-      next: (val) => {
-        this.servizioProdotti.prodotti().subscribe({
-          next(value) {
-            val.relazione.forEach((element: any) => {
-              value.filter(el => el.id === element.prodottiId).map(e => prodotti.push(e))
-            });
-          },
-        })
-      },
-      error(err) {
-        console.log(err);
-      },
-    })
-
-    this.prodotti = prodotti
-
+    this.prodotti = []
+    this.prodottiFiltrati$ = this.prodottiClienti.prodottiUser(user.id).pipe(
+      map((el: any) => el.relazione.map((ele: any) => ele.prodottiId)),
+      switchMap((e : number[]) => { return this.servizioProdotti.prodttiFiltrati(e) })
+    ).subscribe(
+      {
+        next : (value) => {
+          value.forEach(element => {
+            this.prodotti.push(element)
+          });
+        },
+      }
+    )
   }
 }
