@@ -38,15 +38,7 @@ export class RegistrazioneComponent implements OnInit {
       email: this.form.value.email as string,
       dataNascita: this.form.value.dataNascita as string,
     };
-
-    this.postRegistrzioneService.create(body).subscribe({
-      next: (resp) => {
-        alert(this.translate.instant("GENERALE.RegistrazioneCompiuta"));
-        this.router.navigate(['/login']);
-        this.respComponent = resp;
-      },
-      error: (err) => console.log(err),
-    });
+    
   }
   
   validForm: boolean = this.form.valid;

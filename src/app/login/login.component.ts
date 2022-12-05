@@ -32,41 +32,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void { }
 
   login() {
-    this.logInService
-      .logIn({
-        email: this.loginForm.value.email!,
-        password: this.loginForm.value.password!,
-      })
-      .subscribe(
-        (resp: Resp) => {
-          localStorage.setItem("accessToken", resp.accessToken);
-          this.router.navigate(["/dashboard"]);
-
-          const token = localStorage.getItem("accessToken");
-          this.auth.login();
-
-          if (token !== "") {
-            this.auth.isLoggedIn = true;
-          }
-        },
-
-        (error: string) => {
-          let errorTrad: string = "";
-          switch (error) {
-            case 'Cannot find user':
-              errorTrad = this.translate.instant("GENERALE.UtenteNonTrovato");
-              break
-            case 'Incorrect password':
-              errorTrad = this.translate.instant("GENERALE.PasswordErrata");
-              break
-            default:
-              errorTrad = errorTrad = this.translate.instant("GENERALE.ErroreLogin");
-              break
-          }
-          this.modal.open(errorTrad);
-        },
-
-        () => this.router.navigate(["/dashboard"])
-      );
+    
   }
 }
