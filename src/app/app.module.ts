@@ -25,6 +25,7 @@ import { ClientiComponent } from './clienti/clienti.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 
 
@@ -69,7 +70,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         }
       }),
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
