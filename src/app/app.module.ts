@@ -26,9 +26,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-
-
-
+import { reducers } from "./reducers";
+import { EffectsModule } from '@ngrx/effects';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -70,8 +69,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
           deps: [HttpClient]
         }
       }),
-    StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([])
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

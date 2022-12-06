@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
+import { Resp } from '../models/IResp';
 import { IUser } from '../models/IUser';
 
 @Injectable({
@@ -11,9 +12,9 @@ export class PostRegistrzioneService {
 
   constructor(private http : HttpClient){}
 
-  create(data: IUser) {
+  create(data: IUser) : Observable<Resp> {
     let API_URL = `http://localhost:8080/users/register`;
-    return (this.http.post(API_URL, data))
+    return this.http.post<Resp>(API_URL, data)
   }
   
   handleError(error: HttpErrorResponse) {
