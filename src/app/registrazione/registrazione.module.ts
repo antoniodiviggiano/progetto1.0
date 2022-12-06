@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { RegistrazioneRoutingModule } from './registrazione-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { authFeatureKey, registrazioneReducer } from './reducers';
