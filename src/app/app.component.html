@@ -3,49 +3,53 @@
 
   <div id="mostraselect" class="box p-4">
     <div class="">
-      <select *ngIf="!login" #valSel (change)="navigateTo(valSel.value)" class="form-select" aria-label="Default select example">
+      <select *ngIf="!login" #valSel (change)="menuBar(valSel.value)" class="form-select" aria-label="Default select example">
         <option disabled selected>User</option>
-        <option  value="login">{{ "GENERALE.Accedi" | translate }}</option>
-        <option  value="signin">{{ "GENERALE.Registrazione" | translate }}</option>
+        <option  value="login" >{{ "GENERALE.Accedi" | translate }}</option>
+        <option  value="registrazione" >{{ "GENERALE.Registrazione" | translate }}</option>
       </select>
     </div>
   </div>
 
   <a
+    (click)="menuBar('login')"
     id="nascondiLogin"
     *ngIf="!login"
     class="nav-item nav-link active padding accedi"
-    routerLink="/login"
+    routerLink=""
     routerLinkActive="active"
     >{{ "GENERALE.Accedi" | translate }}</a
   >
   <a
+    (click)="menuBar('registrazione')"
     id="nascondiSignin"
     class="nav-item nav-link active padding"
-    routerLink="/registrazione"
+    routerLink=""
     routerLinkActive="active"
     *ngIf="!login"
     >{{ "GENERALE.Registrazione" | translate }}</a
   >
   <a
+    (click)="menuBar('dashboard')"
     class="nav-item nav-link active padding"
-    routerLink="/dashboard"
+    routerLink=""
     routerLinkActive="active"
     >Dashboard</a
   >
   <a
+    (click)="menuBar('clienti')"
     class="nav-item nav-link active padding"
-    routerLink="/clienti"
+    routerLink=""
     routerLinkActive="active"
-    >Clienti</a
+    > Clienti </a
   >
 
   <span class="example-spacer"></span>
 
   <button
+    (click)="menuBar('logout')"
     *ngIf="login"
     mat-icon-button
-    (click)="onlogout()"
     class="example-icon"
     aria-label="Example icon-button with share icon"
   >
@@ -59,10 +63,10 @@
   <select
     class="custom-select bg-dark text-white"
     #langSelect
-    (change)="translate.use(langSelect.value)"
+    (change)="changeSelectLang(langSelect.value)"
   >
     <option selected disabled value="">Seleziona lingua</option>
-    <option value="it-IT">🇮🇹</option>
+    <option value="it-IT" >🇮🇹</option>
     <option value="en-EN">🇬🇧</option>
     <option value="es-ES">🇪🇸</option>
   </select>

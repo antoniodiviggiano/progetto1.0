@@ -28,6 +28,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { reducers } from "./reducers";
 import { EffectsModule } from '@ngrx/effects';
+import { AppEffect } from "./effects/app.effects";
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -71,7 +72,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       }),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([AppEffect])
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -8,7 +8,6 @@ export class RegistrazioneEffect {
 
         actions$.subscribe((action: any) => {
             if (action.type === '[Pagina registrazione] Click su registrazione') {
-                //localStorage.setItem('accessToken', JSON.stringify(action["accessToken"]));
                 this.router.navigateByUrl('/login');
             }
         });
