@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { IUser } from '../models/IUser';
 import { PostRegistrzioneService } from '../services/registrzione.service';
-import { TranslateService } from '@ngx-translate/core';
 import { dataValidator } from '../validator/dataValidator';
-import { AuthService } from '../auth/auth.service';
+import { select, Store } from '@ngrx/store';
+import { registazione } from './actions/registrazione.actions';
+import { AppState } from '../reducers';
+import { noop, tap } from 'rxjs';
+import { Resp } from '../models/IResp';
 
 @Component({
   selector: 'app-registrazione',
@@ -21,15 +23,11 @@ export class RegistrazioneComponent implements OnInit {
     dataNascita: new FormControl('', [Validators.required, dataValidator]),
   })
 
-  respComponent: any;
-  lastId!: number;
-
-  constructor(private postRegistrzioneService: PostRegistrzioneService, private router: Router, public translate: TranslateService) { }
+  constructor(private store : Store<AppState>,private registrazione : PostRegistrzioneService) { }
 
   ngOnInit(): void {
     
   }
-
 
   registrer() {
     const body: IUser = {
@@ -38,10 +36,19 @@ export class RegistrazioneComponent implements OnInit {
       email: this.form.value.email as string,
       dataNascita: this.form.value.dataNascita as string,
     };
-    
-  }
-  
-  validForm: boolean = this.form.valid;
 
+    this.registrazione.create(body)
+      .pipe(
+        tap((resp : Resp) => {
+          this.store.dispatch(registazione(resp));
+        })  
+      )
+      .subscribe(
+        noop,
+        () => alert('Registrazione Fallita')
+      )
+
+  }
+  validForm: boolean = this.form.valid;
 }
 
