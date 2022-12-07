@@ -10,10 +10,10 @@ export class LogInService {
 
   constructor(private http : HttpClient) { }
 
-  logIn(data : {email : string, password : string} ): Observable<Resp> {
+  logIn(email : string, password : string ): Observable<Resp> {
     let API_URL = `http://localhost:8080/login`;
     //catchError(err => console.log(err))
-    return this.http.post(API_URL, data) as Observable<Resp>;
+    return this.http.post(API_URL, {email, password}) as Observable<Resp>;
     
     
   }
