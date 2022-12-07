@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   title = 'esameAngular';
 
   login: boolean = false;
-
+  
   constructor(public translate: TranslateService, private auth: AuthService, private router: Router, private store: Store<AppState>) {
 
     translate.onLangChange.subscribe((event: LangChangeEvent) => {
@@ -68,13 +68,13 @@ export class AppComponent implements OnInit {
   changeSelectLang(lang: string) {
      switch (lang) {
       case "it-IT":
-        this.store.dispatch(it(lang))
+        this.store.dispatch(it({lang}))
         break;
       case "en-EN":
-        this.store.dispatch(gb(lang))
+        this.store.dispatch(gb({lang}))
         break;
       case "es-ES":
-        this.store.dispatch(es(lang))
+        this.store.dispatch(es({lang}))
         break;
     } 
   }

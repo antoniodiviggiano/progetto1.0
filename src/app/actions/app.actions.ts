@@ -17,13 +17,13 @@ export const logout = createAction(
 )
 export const it = createAction(
     '[Select traduzione] Click su IT',
-    props<String>()
+    props<{lang :String}>()
 )
 export const gb = createAction(
     '[Select traduzione] Click su GB',
-    props<String>()
+    props<{lang :String}>()
 )
 export const es = createAction(
     '[Select traduzione] Click su ES',
-    props<String>()
+    props<{lang :String}>()
 )

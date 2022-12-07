@@ -23,8 +23,7 @@ export class AppEffect {
                     this.router.navigateByUrl('/clienti');
                     break;
                 case '[Select traduzione] Click su IT':
-                    console.log(action);
-                    translate.use('it-IT')
+                    translate.use(action.lang)
                     break;
                 case '[Select traduzione] Click su GB':
                     translate.use('en-EN')
