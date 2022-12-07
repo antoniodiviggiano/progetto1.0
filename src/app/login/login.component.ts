@@ -6,6 +6,11 @@ import { AuthService } from "../auth/auth.service";
 import { Resp } from "../models/IResp";
 import { LogInService } from "../services/log-in.service";
 import { ModalCustomService } from "../services/modal-custom.service";
+import { data } from 'cypress/types/jquery';
+import { HttpClient } from '@angular/common/http';
+import { noop, tap } from "rxjs";
+import { Store } from "@ngrx/store";
+import { login } from "../auth/auth.action";
 
 @Component({
   selector: "app-login",
@@ -14,8 +19,8 @@ import { ModalCustomService } from "../services/modal-custom.service";
 })
 export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
-    email: new FormControl("", [Validators.required, Validators.email]),
-    password: new FormControl("", [
+    email: new FormControl("test@test", [Validators.required, Validators.email]),
+    password: new FormControl("123456", [
       Validators.required,
       Validators.minLength(5),
     ]),
@@ -26,12 +31,25 @@ export class LoginComponent implements OnInit {
     private logInService: LogInService,
     public translate: TranslateService,
     private auth: AuthService,
-    private modal : ModalCustomService
+    private modal : ModalCustomService,
+    private http: HttpClient,
+    private store: Store<any>
   ) { }
 
   ngOnInit(): void { }
 
   login() {
-    
+
+    this.logInService.logIn(this.loginForm.value.email!, this.loginForm.value.password!)
+    .pipe(
+      tap(user => {
+        console.log(user)
+        this.store.dispatch(login({user}))
+        this.router.navigateByUrl('/dashboard')
+      })
+    ).subscribe(
+      noop,
+      () => alert('login fallito')
+    ) 
   }
 }
