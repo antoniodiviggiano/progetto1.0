@@ -20,8 +20,7 @@ export class ClientiComponent implements OnInit, OnDestroy {
 
   constructor(private clienti: ClientiService, private servizioProdotti: ProdottiService, private prodottiClienti: ProdottiClientiService, private store: Store<AppState>) { }
 
-  clientiSUB: Subscription | undefined;
-  ProdottiSUB: Subscription | undefined;
+
 
   users: IUserResp[] = [];
 
@@ -30,17 +29,19 @@ export class ClientiComponent implements OnInit, OnDestroy {
   idProdotti$: Observable<number[] | undefined> | undefined;
   prodotti$: Observable<IProdottoResp[] | undefined> | undefined;
 
+  private subscriptions = new Subscription()
+
+
   prodotti: any[] = [];
 
-  prodottiFiltrati$: Subscription | undefined;
 
   ngOnInit(): void {
-
-    this.clientiSUB = this.clienti.users().subscribe({
-      next: (resp) => {
-        this.store.dispatch(clienti({ users: resp }));
-      },
-    })
+    this.subscriptions?.add(
+      this.clienti.users().subscribe({
+        next: (resp) => {
+          this.store.dispatch(clienti({ users: resp }));
+        },
+      }))
 
     this.clienti$ = this.store
       .pipe(
@@ -49,27 +50,29 @@ export class ClientiComponent implements OnInit, OnDestroy {
     this.cliente$ = this.store
       .pipe(
         select(user)
-      )
-    this.idProdotti$ = this.store
-      .pipe(
-        select(prodottiSel)
-      )
+      ),
+      this.idProdotti$ = this.store
+        .pipe(
+          select(prodottiSel)
+        ),
 
-    this.prodotti$ = this.store
-      .pipe(
-        select(prodottiDef)
-      )
+      this.prodotti$ = this.store
+        .pipe(
+          select(prodottiDef)
+        )
 
-    this.idProdotti$.pipe(
-      switchMap((e: any) => { return this.servizioProdotti.prodttiFiltrati(e) })
-    ).subscribe(
-      {
-        next: (val) => {
-          this.store.dispatch(lista({ prodotti: val }))
+    this.subscriptions?.add(
+      this.idProdotti$!.pipe(
+        switchMap((e: any) => { return this.servizioProdotti.prodttiFiltrati(e) })
+      ).subscribe(
+        {
+          next: (val) => {
+            this.store.dispatch(lista({ prodotti: val }))
+          }
         }
-      }
-    )
-      this.prodotti$.subscribe({
+      ))
+    this.subscriptions?.add(
+      this.prodotti$!.subscribe({
         next: (value) => {
           if (value) {
             this.prodotti = []
@@ -78,38 +81,40 @@ export class ClientiComponent implements OnInit, OnDestroy {
             });
           }
         }
-      })
-    
+      }));
 
-    this.clienti$.subscribe({
-      next: (val) => {
-        if (val !== undefined) {
-          this.users = val
+    this.subscriptions?.add(
+      this.clienti$!.subscribe({
+        next: (val) => {
+          if (val !== undefined) {
+            this.users = val
+          }
         }
-      }
-    })
-    this.cliente$.subscribe({
-      next: (val) => {
-        if (val !== undefined) {
-          this.prodottiClienti.prodottiUser(val.id).subscribe({
-            next: (value) => {
-              let idProdotti: number[] = []
-              idProdotti = value.relazione.map((el: any) => el.prodottiId);
-              this.store.dispatch(prodotti({ idProd: idProdotti }))
-            }
-          })
+      }));
+    this.subscriptions?.add(
+      this.cliente$!.subscribe({
+        next: (val) => {
+          if (val !== undefined) {
+            this.prodottiClienti.prodottiUser(val.id).subscribe({
+              next: (value) => {
+                let idProdotti: number[] = []
+                idProdotti = value.relazione.map((el: any) => el.prodottiId);
+                this.store.dispatch(prodotti({ idProd: idProdotti }))
+              }
+            })
+          }
         }
-      }
-    })
+      })
+    )
   }
 
   ngOnDestroy(): void {
-    this.clientiSUB?.unsubscribe;
-    this.ProdottiSUB?.unsubscribe;
-    this.prodottiFiltrati$?.unsubscribe;
+    this.subscriptions.unsubscribe();
   }
 
   callBody(user: IUserResp) {
     this.store.dispatch(cliente(user))
+
+
   }
 }
