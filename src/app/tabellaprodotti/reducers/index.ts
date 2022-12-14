@@ -1,6 +1,5 @@
-import { state } from "@angular/animations";
 import { createReducer, on } from "@ngrx/store";
-import { login } from "src/app/auth/action/auth.action";
+import { inserimentoAction } from "src/app/inserimento-prodotti/actions/inserimento.actions";
 import { elimina, modifica, visualizza } from "src/app/tabellaprodotti/action/tabellaprodotti.action";
 import { IProdottoResp } from '../../models/IProdottoResp';
 
@@ -20,7 +19,12 @@ export const prodottiReducer = createReducer(
 
   initialProdottiState,
   on(visualizza, (state, action) => {
-    console.log(action.prodotti);
+    
+    return {
+      prodotti: action.prodotti
+    }
+  }),
+  on(inserimentoAction, (state, action) => {
     
     return {
       prodotti: action.prodotti
@@ -48,17 +52,3 @@ export const prodottiReducer = createReducer(
 );
 
 
-/* export const inserisciReducer = createReducer(
-  initialProdottiState,
-  on(inserisci, (state, action) => {
-
-
-    console.log(state.prodotti)
-    return {
-       
-       prodotti: [...action.prodotti],
-       
-       
-    }
-  }),
-); */
