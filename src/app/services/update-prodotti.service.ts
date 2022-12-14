@@ -11,8 +11,8 @@ export class UpdateProdottiService {
 
   constructor(private http : HttpClient) { }
 
-  update( data: IProdottoResp): Observable<IProdottoResp[]> {
+  update( data: IProdottoResp): Observable<IProdottoResp> {
     let API_URL = `http://localhost:8080/prodotti/${data.id}`;
-    return (this.http.patch(API_URL, data) as Observable<IProdottoResp[]>)
+    return (this.http.patch(API_URL, data) as Observable<IProdottoResp>)
   }
 }
