@@ -110,7 +110,7 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
         .onDelete(id)
         .subscribe(() =>
         this.store.dispatch(elimina({id})))
-    } 
+    }  
   }
 
   ngOnDestroy(): void {
