@@ -10,7 +10,7 @@ import { data } from 'cypress/types/jquery';
 import { HttpClient } from '@angular/common/http';
 import { noop, tap } from "rxjs";
 import { Store } from "@ngrx/store";
-import { login } from "../auth/auth.action";
+import { login } from "../auth/action/auth.action";
 
 @Component({
   selector: "app-login",
