@@ -21,6 +21,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ClientiComponent } from './clienti/clienti.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
+import { AppEffect } from './effects/app.effects';
 import { HomeComponent } from "./home/home.component";
 import { InserimentoProdottiComponent } from "./inserimento-prodotti/inserimento-prodotti.component";
 import { ErrorCatchingInterceptor } from "./interceptors/error-catching.interceptor";
@@ -28,11 +29,6 @@ import { LoginComponent } from "./login/login.component";
 import { reducers } from './reducers';
 import { RegistrazioneComponent } from "./registrazione/registrazione.component";
 import { TabellaprodottiComponent } from "./tabellaprodotti/tabellaprodotti.component";
-
-
-
-
-
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -76,7 +72,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       }),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([AppEffect])
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
