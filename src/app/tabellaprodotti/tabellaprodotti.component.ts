@@ -80,8 +80,11 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
     if (!this.deleteProdottiSub || this.deleteProdottiSub.closed) {
       this.deleteProdottiSub = this.deleteProdotti
         .onDelete(id)
-        .subscribe(() =>
-          this.listaProdotti());
+        .subscribe((resp) => {
+          console.log(resp);
+          
+          this.listaProdotti()
+        });
     }
   }
 
@@ -122,7 +125,7 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
     this.formModifica.controls.prezzo.setValue("12.50");
   }
 
-  onclickMobile(str: string,prodotto : IProdottoResp) {
+  onclickMobile(str: string, prodotto: IProdottoResp) {
     if (str === "edit") {
       this.mobileEdit = !this.mobileEdit;
       this.mobileDelete = false;
