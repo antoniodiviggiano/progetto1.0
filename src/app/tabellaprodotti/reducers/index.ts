@@ -1,6 +1,7 @@
+import { state } from "@angular/animations";
 import { createReducer, on } from "@ngrx/store";
 import { login } from "src/app/auth/action/auth.action";
-import { elimina, visualizza } from "src/app/tabellaprodotti/action/tabellaprodotti.action";
+import { elimina, modifica, visualizza } from "src/app/tabellaprodotti/action/tabellaprodotti.action";
 import { IProdottoResp } from '../../models/IProdottoResp';
 
 
@@ -34,6 +35,12 @@ export const prodottiReducer = createReducer(
     return {
       ...state, 
       prodotti: aggiornaTabella,
+    }
+  }),
+
+  on(modifica, (state, action) => {
+    return {
+     prodotti: action.prodotto
     }
   })
 

@@ -18,7 +18,7 @@ import { DeleteProdottiService } from "../services/delete-prodotti.service";
 
 import { ProdottiService } from "../services/prodotti.service";
 import { UpdateProdottiService } from "../services/update-prodotti.service";
-import { elimina, visualizza } from "./action/tabellaprodotti.action";
+import { elimina, modifica, visualizza } from "./action/tabellaprodotti.action";
 import { prodottiSelector } from "./selectors/tabellaprodotti.selectors";
 
 @Component({
@@ -128,20 +128,22 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
       prezzo: this.formModifica.controls.prezzo.value!,
     };
 
-    /*this.updateProdotti.update({ id: id, ...prodottoModificato }).subscribe({
-      next(resp) {
-        console.log(resp);
+    /* this.store.dispatch(modifica({prodotto})) */
+
+    this.updateProdotti.update({ id: id, ...prodottoModificato }).subscribe({
+      next: (value) => {
+        this.prodotti = this.prodotti.filter(el => el.id !== id)
+        this.store.dispatch(modifica({prodotto: [...this.prodotti, value] }))
       },
-      error(err) {
-        console.log(err);
-      },
+     
     });
+
     this.flag = false;
     this.listaProdotti();
 
     this.flagMobile = false;
     this.mobileEdit = false;
-    this.formModifica.reset();*/
+    this.formModifica.reset();
   }
 
   rigaSelezionata(prodotto: IProdottoResp) {
