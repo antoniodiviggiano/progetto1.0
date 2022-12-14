@@ -1,11 +1,14 @@
-import { Component, OnDestroy, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { interval, map, Subscription,mergeMap, concatMap, take, tap, switchMap, of, SubscriptionLike } from 'rxjs';
-import { IProdotto } from '../models/IProdotto';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { map, Observable, Subscription, switchMap, tap } from 'rxjs';
 import { IProdottoResp } from '../models/IProdottoResp';
 import { IUserResp } from '../models/IUserResp';
+import { AppState } from '../reducers';
 import { ClientiService } from '../services/clienti.service';
 import { ProdottiClientiService } from '../services/prodotti-clienti.service';
 import { ProdottiService } from '../services/prodotti.service';
+import { cliente, clienti, lista, prodotti } from './actions/clienti.actions';
+import { prodottiDef, prodottiSel, user, users } from './selector/clienti.selectors';
 
 @Component({
   selector: 'app-clienti',
@@ -14,48 +17,99 @@ import { ProdottiService } from '../services/prodotti.service';
 })
 export class ClientiComponent implements OnInit, OnDestroy {
 
-  constructor(private clienti: ClientiService, private servizioProdotti: ProdottiService, private prodottiClienti: ProdottiClientiService) { }
-
-  clientiSUB: Subscription | undefined;
-  ProdottiSUB: Subscription | undefined;
+  constructor(private clienti: ClientiService, private servizioProdotti: ProdottiService, private prodottiClienti: ProdottiClientiService, private store: Store<AppState>) { }
 
   users: IUserResp[] = [];
+
+  clienti$: Observable<IUserResp[] | undefined> | undefined;
+  cliente$!: Observable<IUserResp | undefined>;
+  idProdotti$: Observable<number[] | undefined> | undefined;
+  prodotti$: Observable<IProdottoResp[] | undefined> | undefined;
+
+  private subscriptions = new Subscription()
+  clientiSub: Subscription | undefined;
+
   prodotti: any[] = [];
 
-  prodottiFiltrati$ : Subscription | undefined;
 
   ngOnInit(): void {
-    let user: IUserResp[] = [];
-    this.clientiSUB = this.clienti.users().subscribe({
-      next(resp) {
-        resp.map(el => user.push(el))
-      },
-      error(err) {
-        console.log(err);
-      },
-    })
-    user = this.users;
+
+    this.clienti$ = this.store
+      .pipe(
+        select(users)
+      )
+    this.cliente$ = this.store
+      .pipe(
+        select(user)
+      ),
+      this.idProdotti$ = this.store
+        .pipe(
+          select(prodottiSel)
+        ),
+
+      this.prodotti$ = this.store
+        .pipe(
+          select(prodottiDef)
+        )
+
+    this.subscriptions?.add(
+      this.clienti$!.subscribe({
+        next: (val) => {
+          if (val !== undefined) {
+            this.users = val
+          }
+        }
+      }));
+    this.subscriptions?.add(
+      this.clienti.users().subscribe({
+        next: (resp) => {
+          this.store.dispatch(clienti({ users: resp }));
+        },
+      }))
+
+
+    this.subscriptions?.add(
+      this.idProdotti$!.pipe(
+        switchMap((e: any) => { return this.servizioProdotti.prodttiFiltrati(e) })
+      ).subscribe(
+        {
+          next: (val) => {
+            this.store.dispatch(lista({ prodotti: val }));
+            this.clientiSub?.unsubscribe()
+          }
+        }
+      ))
+
+    this.subscriptions?.add(
+      this.prodotti$!.subscribe({
+        next: (value) => {
+          this.prodotti = []
+          value!.map(element => {
+            this.prodotti.push(element)
+            this.clientiSub?.unsubscribe()
+          })
+        }
+      }));
+
   }
 
   ngOnDestroy(): void {
-    this.clientiSUB?.unsubscribe;
-    this.ProdottiSUB?.unsubscribe;
-    this.prodottiFiltrati$?.unsubscribe;
+    this.subscriptions.unsubscribe();
   }
 
   callBody(user: IUserResp) {
-    this.prodotti = []
-    this.prodottiFiltrati$ = this.prodottiClienti.prodottiUser(user.id).pipe(
-      map((el: any) => el.relazione.map((ele: any) => ele.prodottiId)),
-      switchMap((e : number[]) => { return this.servizioProdotti.prodttiFiltrati(e) })
-    ).subscribe(
-      {
-        next : (value) => {
-          value.forEach(element => {
-            this.prodotti.push(element)
-          });
-        },
+    this.store.dispatch(cliente(user))
+
+    this.clientiSub = this.cliente$!.pipe(
+      switchMap((e: any) => { return this.prodottiClienti.prodottiUser(e.id) })
+    ).subscribe({
+      next: (value) => {
+        let idProdotti: number[] = []
+        idProdotti = value.relazione.map((el: any) => el.prodottiId);
+        this.store.dispatch(prodotti({ idProd: idProdotti }));
+        
       }
-    )
+    })
+
   }
 }

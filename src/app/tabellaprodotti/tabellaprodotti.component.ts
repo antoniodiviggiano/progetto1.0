@@ -111,9 +111,6 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
         .subscribe(() =>
         this.store.dispatch(elimina({id})))
     } 
-
-      
-
   }
 
   ngOnDestroy(): void {
@@ -155,7 +152,7 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
     this.formModifica.controls.prezzo.setValue("12.50");
   }
 
-  onclickMobile(str: string,prodotto : IProdottoResp) {
+  onclickMobile(str: string, prodotto: IProdottoResp) {
     if (str === "edit") {
       this.mobileEdit = !this.mobileEdit;
       this.mobileDelete = false;
