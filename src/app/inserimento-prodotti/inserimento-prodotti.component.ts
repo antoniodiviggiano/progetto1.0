@@ -12,7 +12,7 @@ import { InsermentoProdottoService } from '../services/insermento-prodotto.servi
 import { ProdottiService } from '../services/prodotti.service';
 import { RelazioniService } from '../services/relazioni.service';
 import { prodottiSelector } from '../tabellaprodotti/selectors/tabellaprodotti.selectors';
-import { inserimentoAction } from './actions/inserimento.actions';
+import { inserimentoAction, inserimentoRelazioneAction } from './actions/inserimento.actions';
 @Component({
   selector: 'app-inserimento-prodotti',
   templateUrl: './inserimento-prodotti.component.html',
@@ -24,7 +24,7 @@ export class InserimentoProdottiComponent implements OnDestroy, OnInit {
   inserimentoProdotti: FormGroup;
   utenti: IUser[] = [];
   clientiData: any = [];
-  prodottiState : IProdottoResp[] = []
+  prodottiState: IProdottoResp[] = []
 
   prodotti$: Subscription | undefined;
   clienti$: Subscription | undefined;
@@ -69,10 +69,10 @@ export class InserimentoProdottiComponent implements OnDestroy, OnInit {
     )
 
     this.prodottiState$.subscribe({
-      next : (value) => {
+      next: (value) => {
         this.prodottiState = value
       },
-    }) 
+    })
   }
 
 
@@ -104,15 +104,33 @@ export class InserimentoProdottiComponent implements OnDestroy, OnInit {
 
     this.service.insermento(prodotto).subscribe({
       next: (prodottoInserito) => {
-        console.log(prodottoInserito);
-        this.store.dispatch(inserimentoAction({prodotti : [...this.prodottiState,prodottoInserito]}))
-
+        this.store.dispatch(inserimentoAction({ prodotti: [...this.prodottiState, prodottoInserito] }))
       },
+
     })
+
+    let arrayClienti: boolean[] = this.inserimentoProdotti.value.clienti
+
+    arrayClienti.map((e, index) => {
+      if (e === true) {
+        this.prodotti$ = this.prodotti.prodotti().pipe(
+          map((el) => el.length),
+          switchMap((val) => {
+            return this.relazioneService.relazione({ userId: index + 1, prodottiId: val })
+          }),
+        ).subscribe({
+          next: (value) => {
+            this.store.dispatch(inserimentoRelazioneAction(value))
+          },
+        })
+      }
+    });
 
     this.inserimentoProdotti.value.clienti
       .map((checked: any, i: number) => (checked ? this.clientiData[i] : null))
       .filter((v: null) => v !== null);
+
+
 
   }
 
@@ -121,3 +139,4 @@ export class InserimentoProdottiComponent implements OnDestroy, OnInit {
     this.clienti$?.unsubscribe();
   }
 }
+
