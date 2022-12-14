@@ -18,7 +18,7 @@ import { DeleteProdottiService } from "../services/delete-prodotti.service";
 
 import { ProdottiService } from "../services/prodotti.service";
 import { UpdateProdottiService } from "../services/update-prodotti.service";
-import { visualizza } from "./action/tabellaprodotti.action";
+import { elimina, visualizza } from "./action/tabellaprodotti.action";
 import { prodottiSelector } from "./selectors/tabellaprodotti.selectors";
 
 @Component({
@@ -105,12 +105,16 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onDeleteProdotti(id: number) {
-    if (!this.deleteProdottiSub || this.deleteProdottiSub.closed) {
+   /*  if (!this.deleteProdottiSub || this.deleteProdottiSub.closed) {
       this.deleteProdottiSub = this.deleteProdotti
         .onDelete(id)
         .subscribe(() =>
           this.listaProdotti());
-    }
+    } */
+
+      this.store.dispatch(elimina({id}))
+      
+
   }
 
   ngOnDestroy(): void {
