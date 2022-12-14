@@ -105,14 +105,13 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onDeleteProdotti(id: number) {
-   /*  if (!this.deleteProdottiSub || this.deleteProdottiSub.closed) {
+   if (!this.deleteProdottiSub || this.deleteProdottiSub.closed) {
       this.deleteProdottiSub = this.deleteProdotti
         .onDelete(id)
         .subscribe(() =>
-          this.listaProdotti());
-    } */
+        this.store.dispatch(elimina({id})))
+    } 
 
-      this.store.dispatch(elimina({id}))
       
 
   }
