@@ -29,6 +29,7 @@ import { LoginComponent } from "./login/login.component";
 import { reducers } from './reducers';
 import { RegistrazioneComponent } from "./registrazione/registrazione.component";
 import { TabellaprodottiComponent } from "./tabellaprodotti/tabellaprodotti.component";
+import { ConfirmationPopoverModule } from "angular-confirmation-popover";
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -62,6 +63,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatSelectModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger'
+    }),
     TranslateModule.forRoot(
       {
         loader: {

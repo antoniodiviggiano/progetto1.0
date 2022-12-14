@@ -30,6 +30,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "@popperjs/core": "^2.11.6",
+    "angular-confirmation-popover": "^6.0.0",
     "bootstrap": "^5.2.2",
     "json-server-relationship": "^0.14.5",
     "moment": "^2.29.4",

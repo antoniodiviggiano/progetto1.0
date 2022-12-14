@@ -103,7 +103,12 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
     })
 
   }
-
+/* 
+  public popoverTitle: string = 'Popover title';
+  public popoverMessage: string = 'Popover description';
+  public confirmClicked: boolean = false;
+  public cancelClicked: boolean = false;
+ */
   onDeleteProdotti(id: number) {
    if (!this.deleteProdottiSub || this.deleteProdottiSub.closed) {
       this.deleteProdottiSub = this.deleteProdotti
@@ -125,7 +130,6 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
       prezzo: this.formModifica.controls.prezzo.value!,
     };
 
-    /* this.store.dispatch(modifica({prodotto})) */
 
     this.updateProdotti.update({ id: id, ...prodottoModificato }).subscribe({
       next: (value) => {

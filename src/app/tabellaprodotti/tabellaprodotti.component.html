@@ -31,7 +31,7 @@
             </ng-container>
 
             <td>
-              <ng-container *ngIf="!login">
+              <ng-container *ngIf="login">
             <td>
               <button type="button" (click)="rigaSelezionata(prodotto)" *ngIf="!flag || prodotto.id !== id"
                 class="btn  w-100 btn-warning block">Edit</button>
@@ -43,8 +43,10 @@
                 (click)="modifica(prodotto.id)">Save</button>
             </td>
             <td>
-              <button class="btn btn-danger" (click)="onDeleteProdotti(prodotto.id)">Delete</button>
-
+              <button class="btn btn-danger" 
+              
+              (click)="onDeleteProdotti(prodotto.id)">Delete</button>
+             <!--  mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="" (confirm)="onDeleteProdotti(prodotto.id)" (cancel)="true" -->
             </td>
             </ng-container>
 
