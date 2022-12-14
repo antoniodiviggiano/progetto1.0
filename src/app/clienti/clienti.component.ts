@@ -66,7 +66,7 @@ export class ClientiComponent implements OnInit, OnDestroy {
           this.store.dispatch(clienti({ users: resp }));
         },
       }))
-    
+
 
     this.subscriptions?.add(
       this.idProdotti$!.pipe(
@@ -74,7 +74,8 @@ export class ClientiComponent implements OnInit, OnDestroy {
       ).subscribe(
         {
           next: (val) => {
-            this.store.dispatch(lista({ prodotti: val }))
+            this.store.dispatch(lista({ prodotti: val }));
+            this.clientiSub?.unsubscribe()
           }
         }
       ))
@@ -89,7 +90,7 @@ export class ClientiComponent implements OnInit, OnDestroy {
           })
         }
       }));
-      
+
   }
 
   ngOnDestroy(): void {
@@ -99,20 +100,16 @@ export class ClientiComponent implements OnInit, OnDestroy {
   callBody(user: IUserResp) {
     this.store.dispatch(cliente(user))
 
-    if(this.clienti$ !=  undefined){
-      this.cliente$!.pipe(
-        switchMap((e: any) => { return this.prodottiClienti.prodottiUser(e.id) })
-      ).subscribe({
-        next: (value) => {
-          let idProdotti: number[] = []
-          idProdotti = value.relazione.map((el: any) => el.prodottiId);
-          this.store.dispatch(prodotti({ idProd: idProdotti }));
+    this.clientiSub = this.cliente$!.pipe(
+      switchMap((e: any) => { return this.prodottiClienti.prodottiUser(e.id) })
+    ).subscribe({
+      next: (value) => {
+        let idProdotti: number[] = []
+        idProdotti = value.relazione.map((el: any) => el.prodottiId);
+        this.store.dispatch(prodotti({ idProd: idProdotti }));
+        
+      }
+    })
 
-        }
-      })
-    }
-
-      
-    this.clientiSub?.unsubscribe()
   }
 }

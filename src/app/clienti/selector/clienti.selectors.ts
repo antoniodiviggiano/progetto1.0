@@ -5,7 +5,7 @@ import { IdProdottiState, ProdottiState, UsersState, UserState } from "../reduce
 export const selectClientiState = createFeatureSelector<UsersState>('clienti');
 export const selectClienteState = createFeatureSelector<UserState>('cliente');
 export const selectIdProdottiState = createFeatureSelector<IdProdottiState>('idProdotti');
-export const selectProdottiState = createFeatureSelector<ProdottiState>('prodotti');
+export const selectProdottiState = createFeatureSelector<ProdottiState>('prodottiCliente');
 
 export const users = createSelector(
     selectClientiState,

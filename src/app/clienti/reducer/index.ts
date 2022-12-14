@@ -7,7 +7,7 @@ import { clienti, cliente, prodotti, lista } from '../actions/clienti.actions';
 export const userFeatureKey = 'clienti';
 export const userClickFeatureKey = 'cliente';
 export const idProdottiFeatureKey = 'idProdotti';
-export const prodottiFeatureKey = 'prodotti';
+export const prodottiFeatureKey = 'prodottiCliente';
 
 export interface UsersState {
     users : IUserResp[] | undefined;
