@@ -27,6 +27,7 @@ export class ClientiComponent implements OnInit, OnDestroy {
   prodotti$: Observable<IProdottoResp[] | undefined> | undefined;
 
   private subscriptions = new Subscription()
+  clientiSub: Subscription | undefined;
 
   prodotti: any[] = [];
 
@@ -59,13 +60,13 @@ export class ClientiComponent implements OnInit, OnDestroy {
           }
         }
       }));
-
     this.subscriptions?.add(
       this.clienti.users().subscribe({
         next: (resp) => {
           this.store.dispatch(clienti({ users: resp }));
         },
       }))
+    
 
     this.subscriptions?.add(
       this.idProdotti$!.pipe(
@@ -77,17 +78,18 @@ export class ClientiComponent implements OnInit, OnDestroy {
           }
         }
       ))
+
     this.subscriptions?.add(
       this.prodotti$!.subscribe({
         next: (value) => {
-          if (value) {
-            this.prodotti = []
-            value!.map(element => {
-              this.prodotti.push(element)
-            });
-          }
+          this.prodotti = []
+          value!.map(element => {
+            this.prodotti.push(element)
+            this.clientiSub?.unsubscribe()
+          })
         }
-      })); 
+      }));
+      
   }
 
   ngOnDestroy(): void {
@@ -97,17 +99,20 @@ export class ClientiComponent implements OnInit, OnDestroy {
   callBody(user: IUserResp) {
     this.store.dispatch(cliente(user))
 
-    this.subscriptions?.add(
+    if(this.clienti$ !=  undefined){
       this.cliente$!.pipe(
         switchMap((e: any) => { return this.prodottiClienti.prodottiUser(e.id) })
       ).subscribe({
-         next: (value) => {
+        next: (value) => {
           let idProdotti: number[] = []
           idProdotti = value.relazione.map((el: any) => el.prodottiId);
-          if(idProdotti.length){
-            this.store.dispatch(prodotti({ idProd: idProdotti }));
-          }
+          this.store.dispatch(prodotti({ idProd: idProdotti }));
+
         }
-      }))
+      })
+    }
+
+      
+    this.clientiSub?.unsubscribe()
   }
 }

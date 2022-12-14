@@ -33,7 +33,7 @@ export const initialiIdProdottiState: IdProdottiState = {
     idProdotti : undefined,
 }
 export const initialProdottiState: ProdottiState = {
-    prodotti : undefined,
+    prodotti : [],
 }
 
 export const userReducer = createReducer(
