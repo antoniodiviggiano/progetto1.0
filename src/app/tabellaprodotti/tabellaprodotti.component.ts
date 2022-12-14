@@ -7,14 +7,19 @@ import {
   SimpleChanges,
 } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { select, Store } from "@ngrx/store";
+import { Observable } from "rxjs";
 import { Subscription } from "rxjs/internal/Subscription";
 import { AuthService } from "../auth/auth.service";
 import { IProdotto } from "../models/IProdotto";
 import { IProdottoResp } from "../models/IProdottoResp";
+import { AppState } from "../reducers";
 import { DeleteProdottiService } from "../services/delete-prodotti.service";
 
 import { ProdottiService } from "../services/prodotti.service";
 import { UpdateProdottiService } from "../services/update-prodotti.service";
+import { visualizza } from "./action/tabellaprodotti.action";
+import { prodottiSelector } from "./selectors/tabellaprodotti.selectors";
 
 @Component({
   selector: "app-tabellaprodotti",
@@ -25,6 +30,8 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
   isLogged: boolean = false;
 
   deleteProdottiSub: Subscription | undefined;
+
+  prodotti$: Observable<any> | undefined
 
   prodotti: IProdottoResp[] = [];
   i: number = 1;
@@ -42,7 +49,8 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
     private servizioProdotti: ProdottiService,
     private deleteProdotti: DeleteProdottiService,
     private auth: AuthService,
-    private updateProdotti: UpdateProdottiService
+    private updateProdotti: UpdateProdottiService,
+    private store: Store<AppState>
   ) { }
 
   formModifica = new FormGroup({
@@ -62,10 +70,23 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     this.login = this.auth.isLoggedIn;
+
+    this.prodotti$ = this.store.pipe(
+      select(prodottiSelector)
+    )
+
+    this.prodotti$?.subscribe({
+      next:(value) => {
+          
+        this.prodotti = value
+          
+      },
+    })
+    
   }
 
   listaProdotti() {
-    this.prodotti = [];
+  /*   this.prodotti = [];
     this.servizioProdotti.prodotti().subscribe({
       next: (resp) => {
         resp.map((el) => {
@@ -73,7 +94,14 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
         });
       },
       error: (err) => console.log(err),
-    });
+    }); */
+
+    this.servizioProdotti.prodotti().subscribe({
+      next: (prodotti) => {
+          this.store.dispatch(visualizza({prodotti}))
+      },
+    })
+
   }
 
   onDeleteProdotti(id: number) {

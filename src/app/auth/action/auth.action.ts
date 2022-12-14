@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Resp } from "../models/IResp";
+import { Resp } from "../../models/IResp";
 
 
 export const login = createAction(
