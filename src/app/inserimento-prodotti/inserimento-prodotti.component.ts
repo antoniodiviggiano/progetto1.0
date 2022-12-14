@@ -1,27 +1,35 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { debounce, delay, filter, map, mapTo, of, Subscription, switchMap, takeLast, tap, timer } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { debounce, delay, filter, map, mapTo, Observable, of, Subscription, switchMap, takeLast, tap, timer } from 'rxjs';
 import { IProdotto } from '../models/IProdotto';
+import { IProdottoResp } from '../models/IProdottoResp';
 import { IRelazione } from '../models/IRelazione';
 import { IUser } from '../models/IUser';
+import { AppState } from '../reducers';
 import { ClientiService } from '../services/clienti.service';
 import { InsermentoProdottoService } from '../services/insermento-prodotto.service';
 import { ProdottiService } from '../services/prodotti.service';
 import { RelazioniService } from '../services/relazioni.service';
+import { prodottiSelector } from '../tabellaprodotti/selectors/tabellaprodotti.selectors';
+import { inserimentoAction } from './actions/inserimento.actions';
 @Component({
   selector: 'app-inserimento-prodotti',
   templateUrl: './inserimento-prodotti.component.html',
   styleUrls: ['./inserimento-prodotti.component.css']
 })
 
-export class InserimentoProdottiComponent implements OnDestroy{
-  
+export class InserimentoProdottiComponent implements OnDestroy, OnInit {
+
   inserimentoProdotti: FormGroup;
   utenti: IUser[] = [];
   clientiData: any = [];
+  prodottiState : IProdottoResp[] = []
 
   prodotti$: Subscription | undefined;
   clienti$: Subscription | undefined;
+
+  prodottiState$: Observable<any> | undefined
 
 
   @Output() inserimento = new EventEmitter<boolean>;
@@ -34,7 +42,8 @@ export class InserimentoProdottiComponent implements OnDestroy{
     private clienti: ClientiService,
     private formBuilder: FormBuilder,
     private relazioneService: RelazioniService,
-    private prodotti: ProdottiService) {
+    private prodotti: ProdottiService,
+    private store: Store<AppState>) {
 
 
     this.inserimentoProdotti = this.formBuilder.group({
@@ -53,6 +62,17 @@ export class InserimentoProdottiComponent implements OnDestroy{
       },
       error: (err) => console.log(err),
     }));
+  }
+  ngOnInit(): void {
+    this.prodottiState$ = this.store.pipe(
+      select(prodottiSelector)
+    )
+
+    this.prodottiState$.subscribe({
+      next : (value) => {
+        this.prodottiState = value
+      },
+    }) 
   }
 
 
@@ -83,32 +103,19 @@ export class InserimentoProdottiComponent implements OnDestroy{
     };
 
     this.service.insermento(prodotto).subscribe({
-      next: (resp) => {
-        this.inserimentoProdotti.reset();
-        this.inserimento.emit();
-        
-        arrayClienti.map((e, index) => {
-          this.inserimentoProdotti.reset();
-          if (e === true) {
-            this.prodotti$ = this.prodotti.prodotti().pipe(
-              map((el) => el.length),
-              switchMap((val) => { 
-                return this.relazioneService.relazione({ userId: index + 1, prodottiId: val }) 
-              }),
-            ).subscribe()
-          }
-        });
+      next: (prodottoInserito) => {
+        console.log(prodottoInserito);
+        this.store.dispatch(inserimentoAction({prodotti : [...this.prodottiState,prodottoInserito]}))
+
       },
-      error: (err) => console.log(err),
     })
 
     this.inserimentoProdotti.value.clienti
       .map((checked: any, i: number) => (checked ? this.clientiData[i] : null))
       .filter((v: null) => v !== null);
 
-    let arrayClienti: boolean[] = this.inserimentoProdotti.value.clienti
   }
-  
+
   ngOnDestroy(): void {
     this.prodotti$?.unsubscribe();
     this.clienti$?.unsubscribe();
