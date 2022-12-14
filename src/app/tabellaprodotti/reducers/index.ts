@@ -1,7 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
-import { login } from "src/app/auth/action/auth.action";
 import { inserimentoAction } from "src/app/inserimento-prodotti/actions/inserimento.actions";
-import { visualizza } from "src/app/tabellaprodotti/action/tabellaprodotti.action";
+import { elimina, visualizza } from "src/app/tabellaprodotti/action/tabellaprodotti.action";
 import { IProdottoResp } from '../../models/IProdottoResp';
 
 
@@ -31,6 +30,18 @@ export const prodottiReducer = createReducer(
       prodotti: action.prodotti
     }
   }),
+
+  on(elimina, (state, {id}) => {
+    const aggiornaTabella = state.prodotti?.filter(el => {
+      return el.id !== id;
+    })
+    
+    return {
+      ...state, 
+      prodotti: aggiornaTabella,
+    }
+  })
+
 
 );
 
