@@ -30,6 +30,7 @@ import { LoginComponent } from "./login/login.component";
 import { reducers } from './reducers';
 import { RegistrazioneComponent } from "./registrazione/registrazione.component";
 import { TabellaprodottiComponent } from "./tabellaprodotti/tabellaprodotti.component";
+import { MenubarComponent } from './menubar/menubar.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -44,7 +45,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DashboardComponent,
     InserimentoProdottiComponent,
     TabellaprodottiComponent,
-    ClientiComponent
+    ClientiComponent,
+    MenubarComponent
   ],
   imports: [
   MatMenuModule,
