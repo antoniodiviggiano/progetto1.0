@@ -3,22 +3,23 @@
 
   <div id="mostraselect" class="box p-4">
     <div class="">
-      <select *ngIf="!login" #valSel (change)="menuBar(valSel.value)" class="form-select" aria-label="Default select example">
+      <select #valSel (change)="menuBar(valSel.value)" class="form-select" aria-label="Default select example">
         <option disabled selected>User</option>
         <option  value="login" >{{ "GENERALE.Accedi" | translate }}</option>
         <option  value="registrazione" >{{ "GENERALE.Registrazione" | translate }}</option>
       </select>
     </div>
   </div>
-
+  
   <a
+
     (click)="menuBar('login')"
     id="nascondiLogin"
-    *ngIf="!login"
+    *ngIf="logIN$ | async"
     class="nav-item nav-link active padding accedi"
     routerLink=""
     routerLinkActive="active"
-    >{{ "GENERALE.Accedi" | translate }}</a
+    >{{ "GENERALE.Accedi" | translate }} </a
   >
   <a
     (click)="menuBar('registrazione')"
@@ -26,7 +27,6 @@
     class="nav-item nav-link active padding"
     routerLink=""
     routerLinkActive="active"
-    *ngIf="!login"
     >{{ "GENERALE.Registrazione" | translate }}</a
   >
   <a
@@ -48,7 +48,7 @@
 
   <button
     (click)="menuBar('logout')"
-    *ngIf="login"
+    *ngIf="logOUT$ | async"
     mat-icon-button
     class="example-icon"
     aria-label="Example icon-button with share icon"

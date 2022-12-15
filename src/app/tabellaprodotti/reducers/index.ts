@@ -21,12 +21,14 @@ export const prodottiReducer = createReducer(
   on(visualizza, (state, action) => {
     
     return {
+      ...state,
       prodotti: action.prodotti
     }
   }),
   on(inserimentoAction, (state, action) => {
     
     return {
+      ...state,
       prodotti: action.prodotti
     }
   }),

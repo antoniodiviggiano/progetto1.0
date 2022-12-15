@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { Observable, Subscription } from 'rxjs';
 import { clienti, dashboard, es, gb, it, login, logout, registrazione } from './actions/app.actions';
 import { AuthService } from './auth/auth.service';
+import { isLoggedIn, isLoggedOut } from './auth/selectors/auth.selectors';
 import { AppState } from './reducers';
 
 
@@ -15,8 +17,12 @@ import { AppState } from './reducers';
 export class AppComponent implements OnInit {
   title = 'esameAngular';
 
-  login: boolean = false;
-  
+  logIN$! : Observable<boolean>;
+  logOUT$! : Observable<boolean>;
+
+  prova : any;
+
+
   constructor(public translate: TranslateService, private auth: AuthService, private router: Router, private store: Store<AppState>) {
 
     translate.onLangChange.subscribe((event: LangChangeEvent) => {
@@ -27,14 +33,18 @@ export class AppComponent implements OnInit {
 
     translate.use(browserLang?.match('en-EN' || 'it-IT' || 'es-ES') ? browserLang : 'it-IT');
   }
+  
   ngOnInit(): void {
-    this.auth.login$.subscribe(
-      resp => this.login = resp
-    );
-  }
+    this.logIN$ = this.store.pipe(
+      select(isLoggedOut)
+    )
+    this.logOUT$ = this.store.pipe(
+      select(isLoggedIn)
+    )
+    
 
-  onlogout() {
-    this.auth.logout()
+    
+  
   }
 
   navigateTo(value: string) {

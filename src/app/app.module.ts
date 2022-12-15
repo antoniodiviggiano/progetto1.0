@@ -19,6 +19,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { AuthEffects } from './auth/effects/autth.effects';
 import { ClientiComponent } from './clienti/clienti.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AppEffect } from './effects/app.effects';
@@ -73,7 +74,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
-    EffectsModule.forFeature([AppEffect])
+    EffectsModule.forFeature([AppEffect,AuthEffects])
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   Input,
   OnChanges,
@@ -11,6 +12,7 @@ import { select, Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { Subscription } from "rxjs/internal/Subscription";
 import { AuthService } from "../auth/auth.service";
+import { isLoggedIn } from "../auth/selectors/auth.selectors";
 import { IProdotto } from "../models/IProdotto";
 import { IProdottoResp } from "../models/IProdottoResp";
 import { AppState } from "../reducers";
@@ -26,33 +28,29 @@ import { prodottiSelector } from "./selectors/tabellaprodotti.selectors";
   templateUrl: "./tabellaprodotti.component.html",
   styleUrls: ["./tabellaprodotti.component.css"],
 })
-export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
-  isLogged: boolean = false;
+export class TabellaprodottiComponent implements OnInit,OnDestroy {
 
   deleteProdottiSub: Subscription | undefined;
 
-  prodotti$: Observable<any> | undefined
+  prodotti$!: Observable<any> 
+  logged$!: Observable<any> 
 
   prodotti: IProdottoResp[] = [];
   i: number = 1;
   flag: boolean = false;
   id: number = -1;
-  login: boolean | undefined;
   flagMobile: boolean | undefined;
 
   mobileEdit: boolean = false;
   mobileDelete: boolean = false;
 
-  @Input() cambiamento: boolean | undefined;
-
   constructor(
     private servizioProdotti: ProdottiService,
     private deleteProdotti: DeleteProdottiService,
-    private auth: AuthService,
     private updateProdotti: UpdateProdottiService,
     private store: Store<AppState>
   ) { }
-
+  
   formModifica = new FormGroup({
     nome: new FormControl("", [Validators.required, Validators.minLength(3)]),
     descrizione: new FormControl("", [
@@ -63,45 +61,23 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
     prezzo: new FormControl("", [Validators.required, Validators.min(0.01)]),
   });
 
-  ngOnChanges(changes: SimpleChanges): void {
-    changes["cambiamento"];
-    this.listaProdotti();
-  }
-
   ngOnInit(): void {
-    this.login = this.auth.isLoggedIn;
+    this.servizioProdotti.prodotti().subscribe({
+      next: (prodotti) => {
+          this.prodotti = prodotti
+          this.store.dispatch(visualizza({prodotti}))
+      },
+    })
 
     this.prodotti$ = this.store.pipe(
       select(prodottiSelector)
     )
 
-    this.prodotti$?.subscribe({
-      next:(value) => {
-          
-        this.prodotti = value
-          
-      },
-    })
+    this.logged$ = this.store.pipe(
+      select(isLoggedIn)
+    )
+
     
-  }
-
-  listaProdotti() {
-  /*   this.prodotti = [];
-    this.servizioProdotti.prodotti().subscribe({
-      next: (resp) => {
-        resp.map((el) => {
-          this.prodotti.push(el);
-        });
-      },
-      error: (err) => console.log(err),
-    }); */
-
-    this.servizioProdotti.prodotti().subscribe({
-      next: (prodotti) => {
-          this.store.dispatch(visualizza({prodotti}))
-      },
-    })
-
   }
 
   onDeleteProdotti(id: number) {
@@ -125,18 +101,17 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
       prezzo: this.formModifica.controls.prezzo.value!,
     };
 
-    /* this.store.dispatch(modifica({prodotto})) */
+   
 
     this.updateProdotti.update({ id: id, ...prodottoModificato }).subscribe({
       next: (value) => {
-        this.prodotti = this.prodotti.filter(el => el.id !== id)
+        this.prodotti = this.prodotti!.filter(el => el.id !== id)
         this.store.dispatch(modifica({prodotto: [...this.prodotti, value] }))
       },
      
     });
 
     this.flag = false;
-    this.listaProdotti();
 
     this.flagMobile = false;
     this.mobileEdit = false;
@@ -149,7 +124,7 @@ export class TabellaprodottiComponent implements OnInit, OnChanges, OnDestroy {
 
     this.formModifica.controls.nome.setValue(prodotto.nome);
     this.formModifica.controls.descrizione.setValue(prodotto.descrizione);
-    this.formModifica.controls.prezzo.setValue("12.50");
+    this.formModifica.controls.prezzo.setValue(prodotto.prezzo);
   }
 
   onclickMobile(str: string, prodotto: IProdottoResp) {

@@ -14,7 +14,7 @@
         </thead>
         <tbody>
 
-          <tr *ngFor="let prodotto of prodotti, let i = index">
+          <tr *ngFor="let prodotto of prodotti$ | async, let i = index">
             <td>{{prodotto.id}}</td>
             <ng-container *ngIf="!flag || prodotto.id !== id">
               <td>{{prodotto.nome}}</td>
@@ -31,22 +31,22 @@
             </ng-container>
 
             <td>
-              <ng-container *ngIf="!login">
-            <td>
-              <button type="button" (click)="rigaSelezionata(prodotto)" *ngIf="!flag || prodotto.id !== id"
-                class="btn  w-100 btn-warning block">Edit</button>
-            </td>
+              <ng-container *ngIf="logged$ | async">
+                <td>
+                  <button type="button" (click)="rigaSelezionata(prodotto)" *ngIf="!flag || prodotto.id !== id"
+                    class="btn  w-100 btn-warning block">Edit</button>
+                </td>
 
-            <td>
-              <button [disabled]="formModifica.invalid" *ngIf=" flag && prodotto.id === id" type="button"
-                class="btn w-100 btn-success" class="btn w-100 btn-warning block"
-                (click)="modifica(prodotto.id)">Save</button>
-            </td>
-            <td>
-              <button class="btn btn-danger" (click)="onDeleteProdotti(prodotto.id)">Delete</button>
+                <td>
+                  <button [disabled]="formModifica.invalid" *ngIf=" flag && prodotto.id === id" type="button"
+                    class="btn w-100 btn-success" class="btn w-100 btn-warning block"
+                    (click)="modifica(prodotto.id)">Save</button>
+                </td>
+                <td>
+                  <button class="btn btn-danger" (click)="onDeleteProdotti(prodotto.id)">Delete</button>
 
-            </td>
-            </ng-container>
+                </td>
+              </ng-container>
 
             </td>
 
@@ -74,7 +74,7 @@
             [attr.aria-expanded]="accordionItem.expanded" [attr.aria-controls]="'accordion-body-' + index">
             <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
               {{ item.nome | titlecase }}
-              <div class="container-btn-del-edit" *ngIf="login">
+              <div class="container-btn-del-edit" *ngIf="">
                 <button mat-icon-button (click)="onclickMobile('delete',item)">
                   <mat-icon>delete</mat-icon>
                 </button>
@@ -97,7 +97,7 @@
               Prezzo : {{item.prezzo}}
               <br />
             </div>
-            <ng-container *ngIf="login">
+            <ng-container *ngIf="">
               <div *ngIf="mobileEdit" class="example-accordion-item-body" role="region"
                 [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index"
                 [attr.aria-labelledby]="'accordion-header-' + index">

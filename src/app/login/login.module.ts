@@ -35,8 +35,7 @@ export class LoginModule {
     return {
       ngModule: LoginModule,
       providers: [
-        AuthService,
-        AuthGuard
+        AuthService,AuthGuard
       ]
     }
   }

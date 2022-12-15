@@ -13,6 +13,9 @@ export class AppEffect {
                 case '[Menu bar] Click su accedi':
                     this.router.navigateByUrl('/login');
                     break;
+                case '[Menu bar] Click su logout':
+                    this.router.navigateByUrl('/login');
+                    break;
                 case '[Menu bar] Click su registrazione':
                     this.router.navigateByUrl('/registrazione');
                     break;
@@ -33,7 +36,5 @@ export class AppEffect {
                     break;
             }
         });
-
     }
-
 }
