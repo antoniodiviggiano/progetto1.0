@@ -1,6 +1,7 @@
 
 import { createReducer, on } from '@ngrx/store';
 import { logout } from 'src/app/actions/app.actions';
+import { checkLogin } from 'src/app/menubar/action/menubar.action';
 import { Resp } from '../../models/IResp';
 import { login } from '../action/auth.action';
 
@@ -30,7 +31,13 @@ export const authReducer = createReducer(
       ...state,
       user: undefined
     }
-  })
+  }),
+  on(checkLogin, (state, action) => {
+    return {
+      ...state,
+      user: action?.logged
+    }
+  }),
 
 );
 

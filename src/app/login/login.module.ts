@@ -26,7 +26,6 @@ import { LoginRoutingModule } from './login-routing.module';
       'auth',
       authReducer
     ),
-    EffectsModule.forFeature([AuthEffects])
   ]
 })
 

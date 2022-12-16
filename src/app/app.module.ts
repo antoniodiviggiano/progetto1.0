@@ -31,6 +31,7 @@ import { reducers } from './reducers';
 import { RegistrazioneComponent } from "./registrazione/registrazione.component";
 import { TabellaprodottiComponent } from "./tabellaprodotti/tabellaprodotti.component";
 import { MenubarComponent } from './menubar/menubar.component';
+import { authReducer } from './auth/reducers';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -76,7 +77,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
-    EffectsModule.forFeature([AppEffect,AuthEffects])
+    EffectsModule.forRoot([AppEffect,AuthEffects]),
+    StoreModule.forFeature(
+      'auth',
+      authReducer
+    ),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

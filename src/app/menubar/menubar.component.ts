@@ -3,7 +3,9 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { login, registrazione, clienti, dashboard, logout } from '../actions/app.actions';
 import { isLoggedOut, isLoggedIn } from '../auth/selectors/auth.selectors';
+import { Resp } from '../models/IResp';
 import { AppState } from '../reducers';
+import { checkLogin } from './action/menubar.action';
 
 @Component({
   selector: 'app-menubar',
@@ -15,9 +17,22 @@ export class MenubarComponent implements OnInit {
   logIN$! : Observable<boolean>;
   logOUT$! : Observable<boolean>;
 
+  logged : Resp | null | undefined
+
   constructor(private store : Store<AppState>) { }
 
   ngOnInit(): void {
+
+
+    this.logged = JSON.parse(localStorage.getItem('logged') as string);
+
+    if(this.logged){
+      this.store.dispatch(checkLogin({logged : this.logged}));
+    } else {
+      this.store.dispatch(checkLogin({logged : undefined}));
+      
+    }
+    
 
     this.logIN$ = this.store.pipe(
       select(isLoggedOut)
@@ -25,6 +40,10 @@ export class MenubarComponent implements OnInit {
     this.logOUT$ = this.store.pipe(
       select(isLoggedIn)
     )
+   
+
+
+    //this.store.dispatch(checkLogin())
   }
 
   menuBar(type: string) {

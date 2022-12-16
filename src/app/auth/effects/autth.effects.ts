@@ -9,7 +9,7 @@ export class AuthEffects {
     constructor(private actions$: Actions, private store : Store<AppState>) {
         actions$.subscribe((action: any) => {
             if (action.type == "[Login Page] User Login") {
-                localStorage.setItem('accessToken', JSON.stringify(action.user['accessToken']));
+                localStorage.setItem('logged', JSON.stringify(action.user));
             } else if (action.type == '[Menu bar] Click su logout') {
                 localStorage.removeItem('accessToken') 
                 
