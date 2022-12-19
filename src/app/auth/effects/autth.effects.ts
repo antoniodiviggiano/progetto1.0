@@ -11,7 +11,7 @@ export class AuthEffects {
             if (action.type == "[Login Page] User Login") {
                 localStorage.setItem('logged', JSON.stringify(action.user));
             } else if (action.type == '[Menu bar] Click su logout') {
-                localStorage.removeItem('accessToken') 
+                localStorage.removeItem('logged') 
                 
             }
         })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { login, registrazione, clienti, dashboard, logout } from '../actions/app.actions';
+import { login, registrazione, clienti, dashboard, logout, profilo } from '../actions/app.actions';
 import { isLoggedOut, isLoggedIn } from '../auth/selectors/auth.selectors';
 import { Resp } from '../models/IResp';
 import { AppState } from '../reducers';
@@ -60,8 +60,8 @@ export class MenubarComponent implements OnInit {
       case "dashboard":
         this.store.dispatch(dashboard())
         break;
-      case "logout":
-        this.store.dispatch(logout())
+      case "profilo":
+        this.store.dispatch(profilo())
         break;
     }
   }

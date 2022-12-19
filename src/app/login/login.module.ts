@@ -22,10 +22,7 @@ import { LoginRoutingModule } from './login-routing.module';
     HttpClientModule,
     ReactiveFormsModule,
     LoginRoutingModule,
-    StoreModule.forFeature(
-      'auth',
-      authReducer
-    ),
+    
   ]
 })
 

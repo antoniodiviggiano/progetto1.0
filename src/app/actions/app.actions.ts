@@ -15,6 +15,9 @@ export const dashboard = createAction(
 export const logout = createAction(
     '[Menu bar] Click su logout',
 )
+export const profilo = createAction(
+    '[Menu bar] Click su profilo',
+)
 export const it = createAction(
     '[Select traduzione] Click su IT',
     props<{lang :String}>()

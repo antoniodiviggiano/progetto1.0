@@ -32,6 +32,7 @@ import { RegistrazioneComponent } from "./registrazione/registrazione.component"
 import { TabellaprodottiComponent } from "./tabellaprodotti/tabellaprodotti.component";
 import { MenubarComponent } from './menubar/menubar.component';
 import { authReducer } from './auth/reducers';
+import { ProfiloComponent } from './profilo/profilo.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -47,7 +48,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     InserimentoProdottiComponent,
     TabellaprodottiComponent,
     ClientiComponent,
-    MenubarComponent
+    MenubarComponent,
+    ProfiloComponent
   ],
   imports: [
   MatMenuModule,
@@ -76,7 +78,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       }),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([]),
     EffectsModule.forRoot([AppEffect,AuthEffects]),
     StoreModule.forFeature(
       'auth',

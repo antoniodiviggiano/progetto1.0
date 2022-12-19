@@ -13,8 +13,9 @@
     <a (click)="menuBar('login')" id="nascondiLogin" *ngIf="logIN$ | async"
         class="nav-item nav-link active padding accedi" routerLink="" routerLinkActive="active">{{ "GENERALE.Accedi" |
         translate }} </a>
-    <a (click)="menuBar('registrazione')" id="nascondiSignin" class="nav-item nav-link active padding" routerLink=""
-        routerLinkActive="active">{{ "GENERALE.Registrazione" | translate }}</a>
+    <a (click)="menuBar('registrazione')" id="nascondiSignin" *ngIf="logIN$ | async"
+        class="nav-item nav-link active padding" routerLink="" routerLinkActive="active">{{ "GENERALE.Registrazione" |
+        translate }}</a>
     <a (click)="menuBar('dashboard')" class="nav-item nav-link active padding" routerLink=""
         routerLinkActive="active">Dashboard</a>
     <a (click)="menuBar('clienti')" class="nav-item nav-link active padding" routerLink="" routerLinkActive="active">
@@ -22,8 +23,7 @@
 
     <span class="example-spacer"></span>
 
-    <button (click)="menuBar('logout')" *ngIf="logOUT$ | async" mat-icon-button class="example-icon"
-        aria-label="Example icon-button with share icon">
-        <mat-icon color="warn" fontIcon="exit_to_app"></mat-icon>
+    <button (click)="menuBar('profilo')" *ngIf="logOUT$ | async" mat-icon-button>
+        <mat-icon fontIcon="account_circle"></mat-icon>
     </button>
 </mat-toolbar>
