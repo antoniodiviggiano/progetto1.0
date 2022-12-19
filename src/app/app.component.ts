@@ -7,6 +7,7 @@ import { clienti, dashboard, es, gb, it, login, logout, registrazione } from './
 import { AuthService } from './auth/auth.service';
 import { isLoggedIn, isLoggedOut } from './auth/selectors/auth.selectors';
 import { AppState } from './reducers';
+import { LoaderService } from './services/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,6 @@ export class AppComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    
   }
 
   changeSelectLang(lang: string) {
