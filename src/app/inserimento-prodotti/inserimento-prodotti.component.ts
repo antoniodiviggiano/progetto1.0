@@ -1,10 +1,9 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { debounce, delay, filter, map, mapTo, Observable, of, Subscription, switchMap, takeLast, tap, timer } from 'rxjs';
+import { map, Observable, of, Subscription, switchMap } from 'rxjs';
 import { IProdotto } from '../models/IProdotto';
 import { IProdottoResp } from '../models/IProdottoResp';
-import { IRelazione } from '../models/IRelazione';
 import { IUser } from '../models/IUser';
 import { AppState } from '../reducers';
 import { ClientiService } from '../services/clienti.service';
@@ -16,11 +15,14 @@ import { inserimentoAction, inserimentoRelazioneAction } from './actions/inserim
 @Component({
   selector: 'app-inserimento-prodotti',
   templateUrl: './inserimento-prodotti.component.html',
-  styleUrls: ['./inserimento-prodotti.component.css']
+  styleUrls: ['./inserimento-prodotti.component.css'],
+
 })
 
 export class InserimentoProdottiComponent implements OnDestroy, OnInit {
 
+
+  alertConfermaProdotto : boolean = false;
   inserimentoProdotti: FormGroup;
   utenti: IUser[] = [];
   clientiData: any = [];
@@ -96,6 +98,14 @@ export class InserimentoProdottiComponent implements OnDestroy, OnInit {
   }
 
   inserisciProdotti() {
+
+
+    this.alertConfermaProdotto = true
+    setTimeout(() => { this.alertConfermaProdotto = false; }, 2000);
+
+
+
+
     const prodotto: IProdotto = {
       nome: this.inserimentoProdotti.value.nome as string,
       descrizione: this.inserimentoProdotti.value.descrizone as string,
@@ -129,9 +139,6 @@ export class InserimentoProdottiComponent implements OnDestroy, OnInit {
     this.inserimentoProdotti.value.clienti
       .map((checked: any, i: number) => (checked ? this.clientiData[i] : null))
       .filter((v: null) => v !== null);
-
-
-
   }
 
   ngOnDestroy(): void {
