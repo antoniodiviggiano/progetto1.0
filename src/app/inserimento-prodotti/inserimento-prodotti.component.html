@@ -1,19 +1,12 @@
-<!-- <div class="parent">
-   
-</div>
- -->
+
 <div class="container mt-3">
-
-
 
     <form [formGroup]="inserimentoProdotti" (ngSubmit)="inserisciProdotti()">
         <div class="row">
 
-
             <div *ngIf="alertConfermaProdotto" class="alert alert-success ">
                 Il prodotto è stato inserito con successo!
             </div>
-
 
             <div class="mb-3 col-md-3">
                 <input type="text" class="form-control" id="nomeProdotto" aria-describedby="emailHelp"

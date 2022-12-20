@@ -29,7 +29,11 @@ export class ClientiComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
   clientiSub: Subscription | undefined;
 
+  idProdotti: number[] = []
+
   prodotti: any[] = [];
+
+  caricamento : string = 'caricamento in corso...';
 
 
   ngOnInit(): void {
@@ -98,18 +102,27 @@ export class ClientiComponent implements OnInit, OnDestroy {
   }
 
   callBody(user: IUserResp) {
+    this.prodotti = []
+    
     this.store.dispatch(cliente(user))
 
     this.clientiSub = this.cliente$!.pipe(
       switchMap((e: any) => { return this.prodottiClienti.prodottiUser(e.id) })
     ).subscribe({
       next: (value) => {
-        let idProdotti: number[] = []
-        idProdotti = value.relazione.map((el: any) => el.prodottiId);
-        this.store.dispatch(prodotti({ idProd: idProdotti }));
-        
+        this.idProdotti = value.relazione.map((el: any) => el.prodottiId);
+        this.store.dispatch(prodotti({ idProd: this.idProdotti }));
+        if(this.idProdotti.length === 0){
+          this.caricamento = 'nessun prodotto'
+        }
       }
     })
 
+  }
+
+  closeAccordion(){
+    this.caricamento = 'caricamento in corso...';
+    this.prodotti = []
+    
   }
 }
