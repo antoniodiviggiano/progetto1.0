@@ -2,3 +2,84 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.light-mode{
+  background-color: #F5EBE0 !important;
+  color: #85586F !important;
+  --bs-card-bg: #F5EBE0!important;
+  --bs-body-color: #85586F !important;
+}
+.light-mode-menubar-footer{
+  background-color:#F0DBDB !important;
+  color: #85586F !important;
+}
+
+.light-mode .card {
+  background-color:#F0DBDB ;
+}
+.light-mode .form-control {
+  background-color:#F5EBE0  ;
+  color: #85586F !important;
+
+}
+
+.light-mode .btn  {
+  color: #85586F !important;
+
+
+}
+
+.light-mode .example-accordion-item-header:hover {
+  cursor: pointer;
+  background-color:#F0DBDB   !important;
+}
+
+
+.light-mode .btn-danger {
+  color: #F0DBDB  !important;
+}
+
+
+
+
+/* darkmode */
+.dark-mode{
+  background-color: #04293A !important;
+  color: #F0CAA3 !important;
+  --bs-card-bg: #04293A  !important;
+  --bs-body-color: #F0CAA3 !important;
+}
+
+.dark-mode-menubar-footer{
+  background-color:#064663 !important;
+  color: #F0CAA3 !important;
+
+}
+
+.dark-mode .card {
+  background-color: #064663 ;
+}
+
+.dark-mode .form-control {
+  background-color: #04293A   ;
+  color: #F0CAA3 !important;
+  
+}
+
+.dark-mode .btn  {
+  color: #F0CAA3 !important;
+
+}
+
+.dark-mode .example-accordion-item-header:hover {
+  cursor: pointer;
+  background-color:#064663  !important;
+}
+
+.dark-mode .btn-warning {
+  color: #064663 !important;
+}
+
+
+
+

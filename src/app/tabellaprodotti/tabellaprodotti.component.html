@@ -1,9 +1,10 @@
+<div class="">
 <div class="container mt-5">
   <div class="row " id="web">
     <form [formGroup]="formModifica">
       <table class="table">
 
-        <thead>
+        <thead class="">
           <tr>
             <th scope="col">id</th>
             <th scope="col">Nome</th>
@@ -14,7 +15,7 @@
         </thead>
         <tbody>
 
-          <tr *ngFor="let prodotto of prodotti$ | async, let i = index">
+          <tr class="" *ngFor="let prodotto of prodotti$ | async, let i = index">
             <td>{{prodotto.id}}</td>
             <ng-container *ngIf="!flag || prodotto.id !== id">
               <td>{{prodotto.nome}}</td>
@@ -68,9 +69,9 @@
     </thead>
     <tbody>
       <div class="container">
-        <cdk-accordion class="example-accordion">
+        <cdk-accordion class="example-accordion  ">
           <cdk-accordion-item *ngFor="let item of prodotti; let index = index;" #accordionItem="cdkAccordionItem"
-            class="example-accordion-item" role="button" tabindex="0" [attr.id]="'accordion-header-' + index"
+            class="example-accordion-item " role="button" tabindex="0" [attr.id]="'accordion-header-' + index"
             [attr.aria-expanded]="accordionItem.expanded" [attr.aria-controls]="'accordion-body-' + index">
             <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
               {{ item.nome | titlecase }}
@@ -125,4 +126,6 @@
       </div>
     </tbody>
   </table>
+</div>
+
 </div>

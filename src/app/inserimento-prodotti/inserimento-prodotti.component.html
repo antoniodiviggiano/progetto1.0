@@ -2,7 +2,7 @@
    
 </div>
  -->
-<div class="container mt-3">
+<div class="container mt-3 ">
 
    
 
@@ -28,11 +28,11 @@
                     placeholder="prezzo" formControlName="prezzo">
             </div>
             <div class="col-md-2">
-                <button type="submit" class="btn  w-100 btn-primary block"
+                <button type="submit" class="btn  w-100  block"
                     [disabled]="inserimentoProdotti.invalid">Inserisci</button>
             </div>
 
-           <section class="section text-white">
+           <section class="section ">
                 <label formArrayName="clienti" *ngFor="let order of clientiFormArray.controls; let i = index">
                     <input type="checkbox" [formControlName]="i">
                     {{clientiData[i]}} &nbsp;&nbsp;&nbsp;
