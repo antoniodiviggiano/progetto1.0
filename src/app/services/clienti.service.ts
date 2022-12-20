@@ -16,7 +16,7 @@ export class ClientiService {
     
     let API_URL = `http://localhost:8080/users`;
 
-    return this.http.get(API_URL) as Observable<IUserResp[]>;
+    return (this.http.get(API_URL) as Observable<IUserResp[]>);
     
   }
 
