@@ -1,5 +1,5 @@
 <mat-toolbar id="menuBar" class="menubar-footer" >
-    <span class="titoloApp">My App</span>
+    <span class="titoloApp">{{"GENERALE.Titolo" | translate}}</span>
     <div id="mostraselect" class="box p-4">
         <div class="">
             <select #valSel (change)="menuBar(valSel.value)" class="form-select" aria-label="Default select example">
@@ -17,9 +17,9 @@
         class="nav-item nav-link active padding" routerLink="" routerLinkActive="active">{{ "GENERALE.Registrazione" |
         translate }}</a>
     <a (click)="menuBar('dashboard')" class="nav-item nav-link active padding" routerLink=""
-        routerLinkActive="active">Dashboard</a>
+        routerLinkActive="active">{{"GENERALE.Dashboard" | translate}}</a>
     <a (click)="menuBar('clienti')" class="nav-item nav-link active padding" routerLink="" routerLinkActive="active">
-        Clienti </a>
+        {{"GENERALE.Clienti" | translate}} </a>
 
     <span class="example-spacer"></span>
 

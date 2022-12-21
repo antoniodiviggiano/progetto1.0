@@ -6,10 +6,10 @@
 
         <thead class="">
           <tr>
-            <th scope="col">id</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Descrizione</th>
-            <th scope="col">Prezzo</th>
+            <th scope="col">{{"GENERALE.Id" | translate}}</th>
+            <th scope="col">{{"GENERALE.Nome" | translate}}</th>
+            <th scope="col">{{"GENERALE.Descrizione" | translate}}</th>
+            <th scope="col">{{"GENERALE.Prezzo" | translate}}</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -35,16 +35,16 @@
               <ng-container *ngIf="logged$ | async">
                 <td>
                   <button type="button" (click)="rigaSelezionata(prodotto)" *ngIf="!flag || prodotto.id !== id"
-                    class="btn  w-100 btn-warning block">Edit</button>
+                    class="btn  w-100 btn-warning block">{{"GENERALE.Modifica" | translate}}</button>
                 </td>
 
                 <td>
                   <button [disabled]="formModifica.invalid" *ngIf=" flag && prodotto.id === id" type="button"
                     class="btn w-100 btn-success" class="btn w-100 btn-warning block"
-                    (click)="modifica(prodotto.id)">Save</button>
+                    (click)="modifica(prodotto.id)">{{"GENERALE.Salva" | translate}}</button>
                 </td>
                 <td>
-                  <button class="btn btn-danger" (click)="onDeleteProdotti(prodotto.id)">Delete</button>
+                  <button class="btn btn-danger" (click)="onDeleteProdotti(prodotto.id)">{{"GENERALE.Elimina" | translate}}</button>
 
                 </td>
               </ng-container>

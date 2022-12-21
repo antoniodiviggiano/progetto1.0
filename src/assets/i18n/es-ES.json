@@ -20,7 +20,23 @@
         "PasswordErrata" : "Contraseña incorrecta",
         "ErroreLogin" : "Error, inténtalo de nuevo más tarde",
         "Profilo" : "Perfil de",
-        "Esci" : "Sales"
+        "Esci" : "Sales",
+        "Clienti" : "Clientes",
+        "Dashboard" : "Tablero",
+        "Titolo" : "Mi aplicación",
+        "AlertAggiunto" : "¡El producto ha sido agregado exitosamente!",
+        "Possessori" : "Titulares",
+        "Nome" : "Nombre",
+        "Descrizione" : "Descripción",
+        "Prezzo" : "Precio",
+        "Inserisci" : "Insertar",
+        "Id" : "ID",
+        "Modifica" : "Editar",
+        "Elimina" : "Borrar",
+        "Salva" : "Ahorrar",
+        "Select" : "Seleccione el idioma",
+        "Moneta" : "EUR"
+        
     },
     "ACCESSO": {
         "TestoEmailPassword": "Introduce tu correo electrónico y contraseña",

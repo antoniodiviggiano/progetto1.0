@@ -47,6 +47,42 @@
       "descrizione": "verdi",
       "prezzo": 0.8,
       "id": 3
+    },
+    {
+      "nome": "1e2",
+      "descrizione": "1e2",
+      "prezzo": 12,
+      "id": 4
+    },
+    {
+      "nome": "pere",
+      "descrizione": "pere",
+      "prezzo": 1211,
+      "id": 5
+    },
+    {
+      "nome": "qweqwe",
+      "descrizione": "qweqwe",
+      "prezzo": 12,
+      "id": 6
+    },
+    {
+      "nome": "qweqwe",
+      "descrizione": "qweqwe",
+      "prezzo": 12,
+      "id": 7
+    },
+    {
+      "nome": "qweqwe",
+      "descrizione": "qweqwe",
+      "prezzo": 12,
+      "id": 8
+    },
+    {
+      "nome": "banane",
+      "descrizione": "banane",
+      "prezzo": 1,
+      "id": 9
     }
   ],
   "relazione": [
@@ -79,6 +115,41 @@
       "id": 3,
       "userId": 3,
       "prodottiId": 3
+    },
+    {
+      "userId": 1,
+      "prodottiId": 4,
+      "id": 4
+    },
+    {
+      "userId": 2,
+      "prodottiId": 4,
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "prodottiId": 5,
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "prodottiId": 6,
+      "id": 7
+    },
+    {
+      "userId": 2,
+      "prodottiId": 7,
+      "id": 8
+    },
+    {
+      "userId": 3,
+      "prodottiId": 8,
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "prodottiId": 9,
+      "id": 10
     }
   ]
 }

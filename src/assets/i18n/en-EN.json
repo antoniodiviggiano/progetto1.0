@@ -20,7 +20,22 @@
         "PasswordErrata" : "Password incorrect",
         "ErroreLogin" : "Error, please try again later",
         "Profilo" : "Profile of",
-        "Esci" : "Exit"
+        "Esci" : "Exit",
+        "Clienti" : "Customers",
+        "Dashboard" : "Dashboard",
+        "Titolo" : "My App",
+        "AlertAggiunto" : "The product has been added successfully!",
+        "Possessori" : "Holders",
+        "Nome" : "Name",
+        "Descrizione" : "Description",
+        "Prezzo" : "Price",
+        "Inserisci" : "Insert",
+        "Id" : "ID",
+        "Modifica" : "Edit",
+        "Elimina" : "Delete",
+        "Salva" : "save",
+        "Select" : "Select language",
+        "Moneta" : "USD"
     },
     "ACCESSO": {
         "TestoEmailPassword": "Enter your email and password",

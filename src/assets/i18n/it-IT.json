@@ -20,7 +20,22 @@
         "PasswordErrata" : "Passoword errata",
         "ErroreLogin" : "Errore, riprovare piu tardi",
         "Profilo" : "Profilo di",
-        "Esci" : "Esci"
+        "Esci" : "Esci",
+        "Clienti" : "Clienti",
+        "Dashboard" : "Pannello",
+        "Titolo" : "Mia Applicazione",
+        "AlertAggiunto" : "Il prodotto è stato inserito con successo!",
+        "Possessori" : "Possessori",
+        "Nome" : "Nome",
+        "Descrizione" : "Descrizione",
+        "Prezzo" : "Prezzo",
+        "Inserisci" : "Inserisci",
+        "Id" : "ID",
+        "Modifica" : "Modifica",
+        "Elimina" : "Elimina",
+        "Salva" : "Salva",
+        "Select" : "Seleziona lingua",
+        "Moneta" : "EUR"
     },
     "ACCESSO": {
         "TestoEmailPassword": "Inserisci email e password",

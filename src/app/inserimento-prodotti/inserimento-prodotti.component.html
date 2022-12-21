@@ -5,31 +5,32 @@
         <div class="row">
 
             <div *ngIf="alertConfermaProdotto" class="alert alert-success ">
-                Il prodotto è stato inserito con successo!
+                {{"GENERALE.AlertAggiunto" | translate}}
+                
             </div>
 
             <div class="mb-3 col-md-3">
                 <input type="text" class="form-control" id="nomeProdotto" aria-describedby="emailHelp"
-                    placeholder="nome" formControlName="nome">
+                    placeholder="{{'GENERALE.Nome' | translate}}" formControlName="nome">
             </div>
             <div class="mb-3 col-md-5">
                 <input type="text" class="form-control" id="nomeProdotto" aria-describedby="emailHelp"
-                    placeholder="descrizione" formControlName="descrizone">
+                    placeholder="{{'GENERALE.Descrizione' | translate}}" formControlName="descrizone">
             </div>
             <div class="mb-3 col-md-2">
                 <input type="number" step="0.01" class="form-control" id="nomeProdotto" aria-describedby="emailHelp"
-                    placeholder="prezzo" formControlName="prezzo">
+                    placeholder="{{'GENERALE.Prezzo' | translate}}" formControlName="prezzo">
             </div>
             <div class="col-md-2">
-                <button type="submit" class="btn  w-100 btn-primary block"
-                    [disabled]="inserimentoProdotti.invalid || possessori.length === 0">Inserisci</button>
+                <button type="submit" class="btn w-100 block"
+                    [disabled]="inserimentoProdotti.invalid || possessori.length === 0">{{'GENERALE.Inserisci' | translate}}</button>
             </div>
 
            <div class="cont">
             <div cdkDropListGroup>
 
                 <div class="example-container">
-                    Possessori
+                    {{"GENERALE.Possessori" | translate}}
                     <div cdkDropList [cdkDropListData]="possessori" class="example-list"
                         (cdkDropListDropped)="drop($event)">
                         <div  class="example-box" *ngFor="let item of possessori" cdkDrag
@@ -38,7 +39,7 @@
                 </div>
 
                 <div class="example-container">
-                    Utenti
+                    {{"GENERALE.Clienti" | translate}}
                     <div cdkDropList [cdkDropListData]="nomiUtenti" class="example-list"
                         (cdkDropListDropped)="drop($event)">
                         <div class="example-box" *ngFor="let item of nomiUtenti" cdkDrag>{{item}}</div>
