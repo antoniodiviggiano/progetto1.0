@@ -18,7 +18,9 @@
         "Selezionalingua" : "seleccione idioma",
         "UtenteNonTrovato" : "Usuario no encontrado",
         "PasswordErrata" : "Contraseña incorrecta",
-        "ErroreLogin" : "Error, inténtalo de nuevo más tarde"
+        "ErroreLogin" : "Error, inténtalo de nuevo más tarde",
+        "Profilo" : "Perfil de",
+        "Esci" : "Sales"
     },
     "ACCESSO": {
         "TestoEmailPassword": "Introduce tu correo electrónico y contraseña",

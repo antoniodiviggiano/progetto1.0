@@ -18,7 +18,9 @@
         "Selezionalingua" : "Seleziona Lingua",
         "UtenteNonTrovato" : "Utente non trovato",
         "PasswordErrata" : "Passoword errata",
-        "ErroreLogin" : "Errore, riprovare piu tardi"
+        "ErroreLogin" : "Errore, riprovare piu tardi",
+        "Profilo" : "Profilo di",
+        "Esci" : "Esci"
     },
     "ACCESSO": {
         "TestoEmailPassword": "Inserisci email e password",

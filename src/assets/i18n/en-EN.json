@@ -18,7 +18,9 @@
         "Selezionalingua" : "Select a language",
         "UtenteNonTrovato" : "User Not Found",
         "PasswordErrata" : "Password incorrect",
-        "ErroreLogin" : "Error, please try again later"
+        "ErroreLogin" : "Error, please try again later",
+        "Profilo" : "Profile of",
+        "Esci" : "Exit"
     },
     "ACCESSO": {
         "TestoEmailPassword": "Enter your email and password",
