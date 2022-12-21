@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { isLoggedIn, isLoggedOut } from '../auth/selectors/auth.selectors';
+import { AppState } from '../reducers';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,16 +12,17 @@ import { AuthService } from '../auth/auth.service';
 })
 export class DashboardComponent implements OnInit {
 
-  cambiamento: boolean = false;
-  logged: boolean = false;
+  logged$!: Observable<boolean>;
 
-  inserimento() {
-    this.cambiamento = !this.cambiamento
-  }
 
-  constructor(private auth: AuthService) { }
-  
+
+  constructor(private auth: AuthService,private store : Store<AppState>) { }
+
   ngOnInit(): void {
-    this.logged = this.auth.isLoggedIn
+
+    this.logged$ = this.store.pipe(
+      select(isLoggedIn)
+    )
+
   }
 }

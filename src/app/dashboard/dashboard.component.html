@@ -1,2 +1,2 @@
-<app-inserimento-prodotti (inserimento)="inserimento()" *ngIf="!logged"></app-inserimento-prodotti>
-<app-tabellaprodotti [cambiamento]="cambiamento"></app-tabellaprodotti>
+<app-inserimento-prodotti *ngIf="logged$ | async"></app-inserimento-prodotti>
+<app-tabellaprodotti></app-tabellaprodotti>

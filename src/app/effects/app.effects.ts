@@ -13,6 +13,9 @@ export class AppEffect {
                 case '[Menu bar] Click su accedi':
                     this.router.navigateByUrl('/login');
                     break;
+                case '[Menu bar] Click su logout':
+                    this.router.navigateByUrl('/login');
+                    break;
                 case '[Menu bar] Click su registrazione':
                     this.router.navigateByUrl('/registrazione');
                     break;
@@ -21,6 +24,9 @@ export class AppEffect {
                     break;
                 case '[Menu bar] Click su clienti':
                     this.router.navigateByUrl('/clienti');
+                    break;
+                case     '[Menu bar] Click su profilo':
+                    this.router.navigateByUrl('/profilo');
                     break;
                 case '[Select traduzione] Click su IT':
                     translate.use(action.lang)
@@ -33,7 +39,5 @@ export class AppEffect {
                     break;
             }
         });
-
     }
-
 }

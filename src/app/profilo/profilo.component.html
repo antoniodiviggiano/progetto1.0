@@ -1,0 +1,17 @@
+<div class="cont">
+    <div class="profilo">
+        <h3>Profilo di {{utente?.nomeUtente}}</h3>
+
+        <div class="dati">
+            <h5 class="dato">Nome Utente : {{utente?.nomeUtente}}</h5>
+            <h5 class="dato">Email : {{utente?.email}}</h5>
+            <h5 class="dato">Data di nascita : {{utente?.dataNascita | date}}</h5>
+            <button class="bottone" mat-raised-button color="warn" (click)="logout()">Esci</button>
+
+        </div>
+    </div>
+    <div class="vuoto">
+
+    </div>
+</div>
+

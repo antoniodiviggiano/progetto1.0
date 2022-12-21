@@ -8,5 +8,6 @@ export const login = createAction(
 );
 
 export const logout = createAction(
-    '[Logout] Logout: '
+    '[Logout] Logout'
 )
+
