@@ -38,6 +38,7 @@ import { ProfiloComponent } from './profilo/profilo.component';
 import { reducers } from './reducers';
 import { RegistrazioneComponent } from "./registrazione/registrazione.component";
 import { TabellaprodottiComponent } from "./tabellaprodotti/tabellaprodotti.component";
+import { temaReducer } from './tema/reducer';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -92,6 +93,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       authReducer
     ),
     StoreModule.forFeature(
+      'tema',
+      temaReducer
+    ),StoreModule.forFeature(
       'users',
       usersReducer
     ),

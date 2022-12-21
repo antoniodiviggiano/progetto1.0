@@ -5,7 +5,6 @@ import {
 import { environment } from '../../environments/environment';
 import { IProdottoResp } from '../models/IProdottoResp';
 
-export const authFeatureKey = 'auth';
 
 export interface AppState {
 }

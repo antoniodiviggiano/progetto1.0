@@ -1,10 +1,10 @@
-<div class="container text-black">
+<div class="container">
   <div class="row  justify-content-center pt-5">
     <div class="col-md-6">
       <div class="card ">
-        <div class="text-center text-black">
+        <div class="text-center">
           <h1>{{"GENERALE.Registrazione" | translate}}</h1>
-          <hr class="border border-primary border-3 opacity-75">
+          <hr >
         </div>
         <form [formGroup]="form" (ngSubmit)="registrer()" class="m-3">
           <div class="form-row">
@@ -34,7 +34,7 @@
               class="form-control" formControlName="dataNascita">
             <p class="formNonValido" *ngIf="form.controls['dataNascita']?.hasError('invalidData') && form.controls['dataNascita']?.touched">{{"GENERALE.DataNascitaNonValido" | translate}}</p>
           </div>
-          <button name="submitButton" [disabled]="!form.valid" type="submit" class=" btn w-100 btn-primary">{{"GENERALE.Registrazione" | translate}}</button>
+          <button name="submitButton" [disabled]="!form.valid" type="submit" class=" btn w-100 ">{{"GENERALE.Registrazione" | translate}}</button>
         </form>
       </div>
     </div>

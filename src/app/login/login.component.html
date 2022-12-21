@@ -1,11 +1,11 @@
-<div class="container text-black">
-    <div class="row  justify-content-center pt-5">
+<div class="container ">
+    <div class="row justify-content-center pt-5">
         <div class="col-md-6">
             <div class="card ">
-                <div class="text-center text-black">
+                <div class="text-center">
                     <h1>{{"GENERALE.Accedi" | translate}} </h1>
                     <h6>{{"ACCESSO.TestoEmailPassword" | translate}}</h6>
-                    <hr class="border border-primary border-3 opacity-75">
+                    <hr>
                 </div>
                 <form class="m-3" [formGroup]="loginForm" (ngSubmit)="login()">
                     <div class="mb-3 form-outline">
@@ -20,7 +20,7 @@
                             class="form-control" id="exampleInputPassword1">
                         <p class="formNonValido" *ngIf="!loginForm.controls['password']?.valid && loginForm.controls['password']?.touched">{{"GENERALE.PasswordNonValido" | translate}}</p>
                     </div>
-                    <button type="submit" class="btn  w-100 btn-primary block"
+                    <button type="submit" class="btn  w-100 block"
                         [disabled]="!loginForm.valid">{{"GENERALE.Accedi" | translate}}</button>
                 </form>
                 <div class="container">

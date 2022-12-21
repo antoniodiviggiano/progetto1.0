@@ -1,16 +1,28 @@
-<app-menubar></app-menubar>
-<app-loader></app-loader>
-<router-outlet></router-outlet>
+<div class="{{temastring}}-mode">
+  <app-menubar></app-menubar>
+  <app-loader></app-loader>
+  <router-outlet></router-outlet>
 
-<footer class="bg-dark text-end text-white basso">
-  <select
-    class="custom-select bg-dark text-white"
-    #langSelect
-    (change)="changeSelectLang(langSelect.value)"
-  >
-    <option selected disabled value="">Seleziona lingua</option>
-    <option value="it-IT" >🇮🇹</option>
-    <option value="en-EN">🇬🇧</option>
-    <option value="es-ES">🇪🇸</option>
-  </select>
-</footer>
+  <footer class="menubar-footer basso">
+    
+<div *ngIf="setMode" (click)="changeMode('light')" >
+  <mat-icon>brightness_2</mat-icon>
+</div>
+
+<div *ngIf="!setMode" (click)="changeMode('dark')" >
+<mat-icon >wb_sunny</mat-icon>
+</div>
+
+      <select
+      #langSelect
+      (change)="changeSelectLang(langSelect.value)"
+    >
+      <option selected disabled value="">Seleziona lingua</option>
+      <option value="it-IT" >🇮🇹</option>
+      <option value="en-EN">🇬🇧</option>
+      <option value="es-ES">🇪🇸</option>
+    </select>
+  </footer>
+  
+
+</div>

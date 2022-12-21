@@ -2,21 +2,19 @@
     flex-direction: row;
     display: flex;
     justify-content: center;
-    margin-top: 15%;
+    margin-top: 5%;
     margin-bottom: 5%;
     margin-left: 2%;
     margin-right: 2%;
     height: 75%;
-    color: white;
-
 }
 
 .profilo {
-    flex: 0.75;
+    flex: 0.50;
     padding-left: 10%;
 }
 .vuoto {
-    flex: 0.25;
+    flex: 0.50;
 }
 
 .dati {
@@ -31,4 +29,12 @@
 .bottone {
     width: 50%;
     margin-top: 10%;
+}
+.profilo-style{
+
+    border-radius: 3%;
+    text-align: center;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    
 }

@@ -19,8 +19,8 @@ import { login } from "../auth/action/auth.action";
 })
 export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
-    email: new FormControl("test@test", [Validators.required, Validators.email]),
-    password: new FormControl("123456", [
+    email: new FormControl("", [Validators.required, Validators.email]),
+    password: new FormControl("", [
       Validators.required,
       Validators.minLength(5),
     ]),
