@@ -1,10 +1,5 @@
-<!-- <div class="parent">
-   
-</div>
- -->
-<div class="container mt-3">
 
-   
+<div class="container mt-3">
 
     <form [formGroup]="inserimentoProdotti" (ngSubmit)="inserisciProdotti()">
         <div class="row">
@@ -27,9 +22,11 @@
             </div>
             <div class="col-md-2">
                 <button type="submit" class="btn  w-100 btn-primary block"
-                    [disabled]="inserimentoProdotti.invalid">Inserisci</button>
+                    [disabled]="inserimentoProdotti.invalid || possessori.length === 0">Inserisci</button>
             </div>
 
+           <div class="cont">
+            <div cdkDropListGroup>
 
                 <div class="example-container">
                     Possessori
@@ -48,6 +45,7 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+        </div>
     </form>
 </div>

@@ -95,6 +95,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     StoreModule.forFeature(
       'tema',
       temaReducer
+    ),StoreModule.forFeature(
+      'users',
+      usersReducer
     ),
   ],
   providers: [{
