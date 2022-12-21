@@ -3,7 +3,7 @@
         <cdk-accordion-item *ngFor="let item of users; let index = index;" #accordionItem="cdkAccordionItem"
             class="example-accordion-item" role="button" tabindex="0" [attr.id]="'accordion-header-' + index"
             [attr.aria-expanded]="accordionItem.expanded" [attr.aria-controls]="'accordion-body-' + index">
-            <div *ngIf="accordionItem.expanded" class="example-accordion-item-header" (click)="accordionItem.toggle();">
+            <div *ngIf="accordionItem.expanded" class="example-accordion-item-header" (click)="accordionItem.toggle(); closeAccordion()">
                 {{ item.nomeUtente }}
                 <span class="example-accordion-item-description">
                     <mat-icon >keyboard_arrow_up</mat-icon>
@@ -20,7 +20,7 @@
                 [attr.aria-labelledby]="'accordion-header-' + index">
                 <ng-container>
                     <div *ngFor="let prod of prodotti; let i=index">
-                        <div class="prodotto">
+                        <div *ngIf="idProdotti.length > 0" class="prodotto">
                             <div>
                                 <p>Nome : {{prod.nome}}</p>
                                 <p>Descrizione : {{prod.descrizione}}</p>
@@ -30,7 +30,7 @@
                         <hr *ngIf="i+1 !== prodotti.length">
                     </div>
                 </ng-container>
-                <p class="prodotto" *ngIf="prodotti.length === 0">Nessun prodotto</p>
+                <p class="prodotto" *ngIf="prodotti.length === 0">{{caricamento}}</p>
             </div>
         </cdk-accordion-item>
     </cdk-accordion>

@@ -1,4 +1,5 @@
 import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from "@angular/common";
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
@@ -22,20 +23,21 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AuthEffects } from './auth/effects/autth.effects';
 import { authReducer } from './auth/reducers';
+import { usersReducer } from './clienti-porodotti/reducers';
 import { ClientiComponent } from './clienti/clienti.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AppEffect } from './effects/app.effects';
 import { HomeComponent } from "./home/home.component";
 import { InserimentoProdottiComponent } from "./inserimento-prodotti/inserimento-prodotti.component";
 import { ErrorCatchingInterceptor } from "./interceptors/error-catching.interceptor";
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
+import { LoaderComponent } from './loader/loader.component';
 import { LoginComponent } from "./login/login.component";
 import { MenubarComponent } from './menubar/menubar.component';
 import { ProfiloComponent } from './profilo/profilo.component';
 import { reducers } from './reducers';
 import { RegistrazioneComponent } from "./registrazione/registrazione.component";
 import { TabellaprodottiComponent } from "./tabellaprodotti/tabellaprodotti.component";
-import { LoaderComponent } from './loader/loader.component';
-import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { temaReducer } from './tema/reducer';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -54,10 +56,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ClientiComponent,
     MenubarComponent,
     ProfiloComponent,
-    LoaderComponent
+    LoaderComponent,
   ],
   imports: [
   MatMenuModule,
+  DragDropModule,
     CdkAccordionModule,
     MatProgressSpinnerModule,
     BrowserModule,

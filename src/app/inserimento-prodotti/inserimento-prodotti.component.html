@@ -2,18 +2,16 @@
    
 </div>
  -->
-<div class="container mt-3 ">
+<div class="container mt-3">
 
    
 
     <form [formGroup]="inserimentoProdotti" (ngSubmit)="inserisciProdotti()">
         <div class="row">
 
-
-        <div *ngIf="alertConfermaProdotto" class="alert alert-success ">
-            Il prodotto è stato inserito con successo!
-        </div>
-           
+            <div *ngIf="alertConfermaProdotto" class="alert alert-success ">
+                Il prodotto è stato inserito con successo!
+            </div>
 
             <div class="mb-3 col-md-3">
                 <input type="text" class="form-control" id="nomeProdotto" aria-describedby="emailHelp"
@@ -28,19 +26,28 @@
                     placeholder="prezzo" formControlName="prezzo">
             </div>
             <div class="col-md-2">
-                <button type="submit" class="btn  w-100  block"
+                <button type="submit" class="btn  w-100 btn-primary block"
                     [disabled]="inserimentoProdotti.invalid">Inserisci</button>
             </div>
 
-           <section class="section ">
-                <label formArrayName="clienti" *ngFor="let order of clientiFormArray.controls; let i = index">
-                    <input type="checkbox" [formControlName]="i">
-                    {{clientiData[i]}} &nbsp;&nbsp;&nbsp;
-                  </label>
-           </section> 
 
-           
+                <div class="example-container">
+                    Possessori
+                    <div cdkDropList [cdkDropListData]="possessori" class="example-list"
+                        (cdkDropListDropped)="drop($event)">
+                        <div  class="example-box" *ngFor="let item of possessori" cdkDrag
+                            >{{item}}</div>
+                    </div>
+                </div>
 
-        </div>
+                <div class="example-container">
+                    Utenti
+                    <div cdkDropList [cdkDropListData]="nomiUtenti" class="example-list"
+                        (cdkDropListDropped)="drop($event)">
+                        <div class="example-box" *ngFor="let item of nomiUtenti" cdkDrag>{{item}}</div>
+                    </div>
+                </div>
+            </div>
+
     </form>
 </div>
