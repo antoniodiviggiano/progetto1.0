@@ -35,15 +35,6 @@ export class ProfiloComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.utente);
   }
 
 }
-
-
-/**
- * <button (click)="menuBar('logout')" *ngIf="logOUT$ | async" mat-icon-button class="example-icon"
-        aria-label="Example icon-button with share icon">
-        <mat-icon color="warn" fontIcon="exit_to_app"></mat-icon>
-    </button>
- */
