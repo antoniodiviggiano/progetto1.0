@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
@@ -8,6 +8,8 @@ import { AuthService } from './auth/auth.service';
 import { isLoggedIn, isLoggedOut } from './auth/selectors/auth.selectors';
 import { AppState } from './reducers';
 import { LoaderService } from './services/loader.service';
+import { tema } from './tema/actions/tema.actions';
+import { temaselector } from './tema/selectors/tema.selectors';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,15 @@ import { LoaderService } from './services/loader.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
+  tema$ : Subscription | undefined;
+
   title = 'esameAngular';
+  setMode = false;
+  mode = '';
+
+  temastring : string | undefined
+
 
   constructor(public translate: TranslateService, private auth: AuthService, private router: Router, private store: Store<AppState>) {
 
@@ -29,6 +39,13 @@ export class AppComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    this.tema$ = this.store.pipe(
+      select(temaselector)
+    ).subscribe({
+      next : (value) => {
+        this.temastring = value
+      },
+    })
   }
 
   changeSelectLang(lang: string) {
@@ -44,6 +61,16 @@ export class AppComponent implements OnInit {
         break;
     } 
   }
+
+  changeMode(mode: string) {
+    this.setMode = !this.setMode
+    this.store.dispatch(tema({tema :  mode}))
+    }
+
+
+
+    
+
 
 
 }
