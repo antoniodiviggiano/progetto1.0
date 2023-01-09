@@ -1,53 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
-;
-z-index: -1;
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  ;
+  z-index: -1;
 
 }
 
 
 
-.light-mode{
+.light-mode {
   background-color: #F5EBE0 !important;
-background-image: url("src/app/img/light-img.png");
-height: 100vh;
-min-height: 500px;
-background-position: center center;
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-size: cover;
-background-color: #1d3557;
-  
+  background-image: url("src/app/img/light-img.png");
+  height: 100vh;
+  min-height: 500px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #1d3557;
+
   color: #85586F !important;
-  --bs-card-bg: #F5EBE0!important;
+  --bs-card-bg: #F5EBE0 !important;
   --bs-body-color: #85586F !important;
 }
-.light-mode .menubar-footer{
-  background-color:#F0DBDB !important;
+
+.light-mode .menubar-footer {
+  background-color: #F0DBDB !important;
   color: #85586F !important;
+}
+
+.light-mode .bottone :enabled {
+  background-color: #F0DBDB;
 }
 
 .light-mode .card {
-  background-color:#F0DBDB ;
+  background-color: #F0DBDB;
 }
+
 .light-mode .form-control {
-  background-color:#F5EBE0  ;
+  background-color: #F5EBE0;
   color: #85586F !important;
 }
 
-.light-mode .btn  {
+.light-mode .btn {
   color: #85586F !important;
 }
 
 .light-mode .example-accordion-item-header:hover {
   cursor: pointer;
-  background-color:#F0DBDB   !important;
+  background-color: #F0DBDB !important;
 }
 
 .light-mode .btn-danger {
-  color: #F0DBDB  !important;
+  color: #F0DBDB !important;
 }
 
 .light-mode .tabella-style {
@@ -59,50 +71,76 @@ background-color: #1d3557;
 }
 
 .light-mode .profilo-style {
-  background-color:  #f5ebe0d6 !important;
+  background-color: #f5ebe0d6 !important;
 
 
 }
 
 /* darkmode */
-.dark-mode{
-background-image: url("src/app/img/dark-img.png");
-height: 100vh;
-min-height: 500px;
-background-position: center center;
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-size: cover;
-background-color: #1d3557;
+.dark-mode {
+  background-image: url("src/app/img/dark-img.png");
+  height: 100vh;
+  min-height: 500px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #1d3557;
 
   background-color: #04293A !important;
   color: #F0CAA3 !important;
-  --bs-card-bg: #04293A  !important;
+  --bs-card-bg: #04293A !important;
   --bs-body-color: #F0CAA3 !important;
 }
 
-.dark-mode .menubar-footer{
-  background-color:#064663 !important;
+.dark-mode .menubar-footer {
+  background-color: #064663 !important;
   color: #F0CAA3 !important;
 
 }
 
+.dark-mode .example-box {
+  color: #F0CAA3 !important;
+}
+
+.dark-mode .cont {
+  color: #F0CAA3
+}
+
+.dark-mode .example-box {
+  background-color: #064663 !important;
+}
+
+.dark-mode .example-list {
+  background-color: #064663 !important;
+}
+
+.dark-mode .cdk-drag-preview {
+  background-color: #064663;
+  color: #F0CAA3;
+}
+
+
 .dark-mode .card {
-  background-color: #064663 ;
+  background-color: #064663;
+}
+
+.dark-mode .bottone :enabled {
+  background-color: #04293A;
 }
 
 .dark-mode .form-control {
-  background-color: #04293A   ;
+  background-color: #04293A;
   color: #F0CAA3 !important;
 }
 
-.dark-mode .btn  {
+.dark-mode .btn {
   color: #F0CAA3 !important;
 }
 
 .dark-mode .example-accordion-item-header:hover {
   cursor: pointer;
-  background-color:#064663  !important;
+  background-color: #064663 !important;
 }
 
 .dark-mode .btn-warning {
@@ -118,10 +156,7 @@ background-color: #1d3557;
 }
 
 .dark-mode .profilo-style {
-  background-color:   #064663de !important;
+  background-color: #064663de !important;
 
 
 }
-
-
-

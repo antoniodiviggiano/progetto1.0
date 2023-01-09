@@ -1,7 +1,7 @@
 <div class="container mt-3">
 
     <form [formGroup]="inserimentoProdotti" (ngSubmit)="inserisciProdotti()">
-        <div class="row">
+        <div class="row form">
 
             <div *ngIf="alertConfermaProdotto" class="alert alert-success ">
                 {{"GENERALE.AlertAggiunto" | translate}}
@@ -9,13 +9,13 @@
             </div>
 
             <div class="campi-input">
-                <input type="text" class="form-control" id="nomeProdotto" aria-describedby="emailHelp"
+                <input type="text" class="form-control nome" id="nomeProdotto" aria-describedby="emailHelp"
                     placeholder="{{'GENERALE.Nome' | translate}}" formControlName="nome">
             
-                <input type="text" class="form-control" id="nomeProdotto" aria-describedby="emailHelp"
+                <input type="text" class="form-control desc" id="descProdotto" aria-describedby="emailHelp"
                     placeholder="{{'GENERALE.Descrizione' | translate}}" formControlName="descrizone">
            
-                <input type="number" step="0.01" class="form-control" id="nomeProdotto" aria-describedby="emailHelp"
+                <input type="number" step="0.01" class="form-control prezzo" id="prezzoProdotto" aria-describedby="emailHelp"
                     placeholder="{{'GENERALE.Prezzo' | translate}}" formControlName="prezzo">
             </div>
 
@@ -25,7 +25,7 @@
                         {{"GENERALE.Clienti" | translate}}
                         <div cdkDropList [cdkDropListData]="nomiUtenti" class="example-list"
                             (cdkDropListDropped)="drop($event)">
-                            <div class="example-box" *ngFor="let item of nomiUtenti" cdkDrag>{{item}}</div>
+                            <div class="example-box" *ngFor="let item of nomiUtenti" cdkDrag><div class="aaaa">{{item}}</div></div>
                         </div>
                     </div>
 
