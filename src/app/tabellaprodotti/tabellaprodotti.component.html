@@ -10,7 +10,7 @@
             <th scope="col">{{"GENERALE.Nome" | translate}}</th>
             <th scope="col">{{"GENERALE.Descrizione" | translate}}</th>
             <th scope="col">{{"GENERALE.Prezzo" | translate}}</th>
-            <th scope="col"></th>
+            <th scope="col" class="bottoni-th"></th>
           </tr>
         </thead>
         <tbody>
@@ -32,7 +32,7 @@
             </ng-container>
 
             <td>
-              <ng-container *ngIf="logged$ | async">
+              <div class="bottoni-th" *ngIf="logged$ | async">
                 <td>
                   <button type="button" (click)="rigaSelezionata(prodotto)" *ngIf="!flag || prodotto.id !== id"
                     class="btn  w-100 btn-warning block">{{"GENERALE.Modifica" | translate}}</button>
@@ -47,7 +47,7 @@
                   <button class="btn btn-danger" (click)="onDeleteProdotti(prodotto.id)">{{"GENERALE.Elimina" | translate}}</button>
 
                 </td>
-              </ng-container>
+              </div>
 
             </td>
 
@@ -73,9 +73,9 @@
           <cdk-accordion-item *ngFor="let item of prodotti; let index = index;" #accordionItem="cdkAccordionItem"
             class="example-accordion-item " role="button" tabindex="0" [attr.id]="'accordion-header-' + index"
             [attr.aria-expanded]="accordionItem.expanded" [attr.aria-controls]="'accordion-body-' + index">
-            <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+            <div class="example-accordion-item-header" (click)="accordionItem.toggle();">
               {{ item.nome | titlecase }}
-              <div class="container-btn-del-edit" *ngIf="">
+              <div class="container-btn-mobile" *ngIf="logged$ | async">
                 <button mat-icon-button (click)="onclickMobile('delete',item)">
                   <mat-icon>delete</mat-icon>
                 </button>
@@ -98,7 +98,7 @@
               Prezzo : {{item.prezzo}}
               <br />
             </div>
-            <ng-container *ngIf="">
+            <ng-container >
               <div *ngIf="mobileEdit" class="example-accordion-item-body" role="region"
                 [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index"
                 [attr.aria-labelledby]="'accordion-header-' + index">

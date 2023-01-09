@@ -135,7 +135,7 @@ export class TabellaprodottiComponent implements OnInit,OnDestroy {
       this.formModifica.controls.descrizione.setValue(prodotto.descrizione);
       this.formModifica.controls.prezzo.setValue(prodotto.prezzo);
     } else if (str === "delete") {
-      this.mobileDelete = !this.mobileDelete;
+      this.mobileDelete = true;
       this.mobileEdit = false;
     }
   }
