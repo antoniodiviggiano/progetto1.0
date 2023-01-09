@@ -28,12 +28,12 @@ import { prodottiSelector } from "./selectors/tabellaprodotti.selectors";
   templateUrl: "./tabellaprodotti.component.html",
   styleUrls: ["./tabellaprodotti.component.css"],
 })
-export class TabellaprodottiComponent implements OnInit,OnDestroy {
+export class TabellaprodottiComponent implements OnInit, OnDestroy {
 
   deleteProdottiSub: Subscription | undefined;
 
-  prodotti$!: Observable<any> 
-  logged$!: Observable<any> 
+  prodotti$!: Observable<any>
+  logged$!: Observable<any>
 
   prodotti: IProdottoResp[] = [];
   i: number = 1;
@@ -50,7 +50,7 @@ export class TabellaprodottiComponent implements OnInit,OnDestroy {
     private updateProdotti: UpdateProdottiService,
     private store: Store<AppState>
   ) { }
-  
+
   formModifica = new FormGroup({
     nome: new FormControl("", [Validators.required, Validators.minLength(3)]),
     descrizione: new FormControl("", [
@@ -64,8 +64,8 @@ export class TabellaprodottiComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.servizioProdotti.prodotti().subscribe({
       next: (prodotti) => {
-          this.prodotti = prodotti
-          this.store.dispatch(visualizza({prodotti}))
+        this.prodotti = prodotti
+        this.store.dispatch(visualizza({ prodotti }))
       },
     })
 
@@ -77,16 +77,16 @@ export class TabellaprodottiComponent implements OnInit,OnDestroy {
       select(isLoggedIn)
     )
 
-    
+
   }
 
   onDeleteProdotti(id: number) {
-   if (!this.deleteProdottiSub || this.deleteProdottiSub.closed) {
+    if (!this.deleteProdottiSub || this.deleteProdottiSub.closed) {
       this.deleteProdottiSub = this.deleteProdotti
         .onDelete(id)
         .subscribe(() =>
-        this.store.dispatch(elimina({id})))
-    }  
+          this.store.dispatch(elimina({ id })))
+    }
   }
 
   ngOnDestroy(): void {
@@ -101,14 +101,14 @@ export class TabellaprodottiComponent implements OnInit,OnDestroy {
       prezzo: this.formModifica.controls.prezzo.value!,
     };
 
-   
+
 
     this.updateProdotti.update({ id: id, ...prodottoModificato }).subscribe({
       next: (value) => {
         this.prodotti = this.prodotti!.filter(el => el.id !== id)
-        this.store.dispatch(modifica({prodotto: [...this.prodotti, value] }))
+        this.store.dispatch(modifica({ prodotto: [...this.prodotti, value] }))
       },
-     
+
     });
 
     this.flag = false;
@@ -137,6 +137,10 @@ export class TabellaprodottiComponent implements OnInit,OnDestroy {
     } else if (str === "delete") {
       this.mobileDelete = true;
       this.mobileEdit = false;
+    } else if(str === 'open') {
+      console.log(str);
+  
     }
   }
+
 }

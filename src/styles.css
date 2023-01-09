@@ -13,8 +13,6 @@ body {
 
 }
 
-
-
 .light-mode {
   background-color: #F5EBE0 !important;
   background-image: url("src/app/img/light-img.png");
@@ -63,7 +61,14 @@ body {
 }
 
 .light-mode .tabella-style {
-  background-color: #F5EBE0d6 !important;
+  background-color: #f5e0e0d6;
+  margin-left: 5%;
+  margin-right: 5%;
+  flex-direction: column;
+  min-width: 90%;
+  align-items: center;
+  text-align: center;
+
 }
 
 .light-mode .clienti-style {
@@ -149,6 +154,13 @@ body {
 
 .dark-mode .tabella-style {
   background-color: #064663de !important;
+    margin-left: 5%;
+    margin-right: 5%;
+    flex-direction: column;
+    min-width: 90%;
+    align-items: center;
+    text-align: center;
+  
 }
 
 .dark-mode .clienti-style {

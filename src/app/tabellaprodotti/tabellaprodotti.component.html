@@ -1,131 +1,120 @@
-<div class="">
-<div class="container mt-5 tabella-style">
-  <div class="row " id="web">
-    <form [formGroup]="formModifica">
-      <table class="table">
 
-        <thead class="">
-          <tr>
-            <th scope="col">{{"GENERALE.Id" | translate}}</th>
-            <th scope="col">{{"GENERALE.Nome" | translate}}</th>
-            <th scope="col">{{"GENERALE.Descrizione" | translate}}</th>
-            <th scope="col">{{"GENERALE.Prezzo" | translate}}</th>
-            <th scope="col" class="bottoni-th"></th>
-          </tr>
-        </thead>
-        <tbody>
+  <div class="container mt-5 tabella-style">
+    <div class="row " id="web">
+      <form [formGroup]="formModifica">
+        <table class="table">
+          <thead class="">
+            <tr class="tr">
+              <th scope="col">{{"GENERALE.Id" | translate}}</th>
+              <th scope="col">{{"GENERALE.Nome" | translate}}</th>
+              <th scope="col">{{"GENERALE.Descrizione" | translate}}</th>
+              <th scope="col">{{"GENERALE.Prezzo" | translate}}</th>
+              <th scope="col" class="bottoni-th"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="tr" *ngFor="let prodotto of prodotti$ | async, let i = index">
+              <td class="col-i">{{prodotto.id}}</td>
+              <ng-container *ngIf="!flag || prodotto.id !== id">
+                <td class="col-n">{{prodotto.nome}}</td>
+                <td class="col-d">{{prodotto.descrizione}}</td>
+                <td class="col-p">{{prodotto.prezzo | currency:'EUR' }}</td>
+              </ng-container>
 
-          <tr class="" *ngFor="let prodotto of prodotti$ | async, let i = index">
-            <td>{{prodotto.id}}</td>
-            <ng-container *ngIf="!flag || prodotto.id !== id">
-              <td>{{prodotto.nome}}</td>
-              <td>{{prodotto.descrizione}}</td>
-              <td>{{prodotto.prezzo | currency:'EUR' }}</td>
-            </ng-container>
+              <ng-container class="mt-5 " *ngIf="flag && prodotto.id === id">
+                <td> <input value="prodotto.nome" formControlName="nome" type="text" name="nome" id="nome"></td>
+                <td> <input formControlName="descrizione" type="text" name="desc" id="desc"></td>
+                <td> <input formControlName="prezzo" type="number" name="prezzo" id="prezzo" step="0.01"></td>
+              </ng-container>
 
-            <ng-container class="mt-5" *ngIf="flag && prodotto.id === id">
+              <td>
+                <div class="bottoni-th" *ngIf="logged$ | async"> </div>
+              <td>
+                <button type="button" (click)="rigaSelezionata(prodotto)" *ngIf="!flag || prodotto.id !== id"
+                  class="btn  w-100 btn-warning block">{{"GENERALE.Modifica" | translate}}</button>
+              </td>
 
-              <td> <input value="prodotto.nome" formControlName="nome" type="text" name="nome" id="nome"></td>
-              <td> <input formControlName="descrizione" type="text" name="desc" id="desc"></td>
-              <td> <input formControlName="prezzo" type="number" name="prezzo" id="prezzo" step="0.01"></td>
+              <td>
+                <button [disabled]="formModifica.invalid" *ngIf=" flag && prodotto.id === id" type="button"
+                  class="btn w-100 btn-success" class="btn w-100 btn-warning block"
+                  (click)="modifica(prodotto.id)">{{"GENERALE.Salva" | translate}}</button>
+              </td>
+              <td>
+                <button class="btn btn-danger" (click)="onDeleteProdotti(prodotto.id)">{{"GENERALE.Elimina" |
+                  translate}}</button>
 
-            </ng-container>
-
-            <td>
-              <div class="bottoni-th" *ngIf="logged$ | async">
-                <td>
-                  <button type="button" (click)="rigaSelezionata(prodotto)" *ngIf="!flag || prodotto.id !== id"
-                    class="btn  w-100 btn-warning block">{{"GENERALE.Modifica" | translate}}</button>
-                </td>
-
-                <td>
-                  <button [disabled]="formModifica.invalid" *ngIf=" flag && prodotto.id === id" type="button"
-                    class="btn w-100 btn-success" class="btn w-100 btn-warning block"
-                    (click)="modifica(prodotto.id)">{{"GENERALE.Salva" | translate}}</button>
-                </td>
-                <td>
-                  <button class="btn btn-danger" (click)="onDeleteProdotti(prodotto.id)">{{"GENERALE.Elimina" | translate}}</button>
-
-                </td>
-              </div>
-
-            </td>
-
-
-          </tr>
-        </tbody>
-
-      </table>
-    </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
   </div>
-</div>
 
-<div id="mobile">
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">Nome</th>
-      </tr>
-    </thead>
-    <tbody>
-      <div class="container">
-        <cdk-accordion class="example-accordion  ">
-          <cdk-accordion-item *ngFor="let item of prodotti; let index = index;" #accordionItem="cdkAccordionItem"
-            class="example-accordion-item " role="button" tabindex="0" [attr.id]="'accordion-header-' + index"
-            [attr.aria-expanded]="accordionItem.expanded" [attr.aria-controls]="'accordion-body-' + index">
-            <div class="example-accordion-item-header" (click)="accordionItem.toggle();">
-              {{ item.nome | titlecase }}
-              <div class="container-btn-mobile" *ngIf="logged$ | async">
-                <button mat-icon-button (click)="onclickMobile('delete',item)">
-                  <mat-icon>delete</mat-icon>
-                </button>
+  <div id="mobile">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Nome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <div class="container">
+          <cdk-accordion class="example-accordion  ">
+            <cdk-accordion-item *ngFor="let item of prodotti; let index = index;" #accordionItem="cdkAccordionItem"
+              class="example-accordion-item " role="button" tabindex="0" [attr.id]="'accordion-header-' + index"
+              [attr.aria-expanded]="accordionItem.expanded" [attr.aria-controls]="'accordion-body-' + index">
+              <div class="example-accordion-item-header" (click)="accordionItem.toggle(); onclickMobile('open',item)">
+                {{ item.nome | titlecase }}
+                <div class="container-btn-mobile" *ngIf="logged$ | async">
+                  <button mat-icon-button (click)="onclickMobile('delete',item)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                  <br />
+                  <button mat-icon-button (click)="onclickMobile('edit',item)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </div>
+
+                <span class="example-accordion-item-description">
+                  <mat-icon> {{ accordionItem.expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+                </span>
+              </div>
+
+              <div class="example-accordion-item-body" role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                Descrizione : {{item.descrizione}}
                 <br />
-                <button mat-icon-button (click)="onclickMobile('edit',item)">
-                  <mat-icon>edit</mat-icon>
-                </button>
+                Prezzo : {{item.prezzo}}
+                <br />
               </div>
+              <ng-container>
+                <div *ngIf="mobileEdit" class="example-accordion-item-body" role="region"
+                  [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index"
+                  [attr.aria-labelledby]="'accordion-header-' + index">
+                  <form [formGroup]="formModifica" class="formModificaMobile">
+                    <input class="inputMobile" placeholder="nome" formControlName="nome" type="text" name="nome"
+                      id="nome">
+                    <input class="inputMobile" placeholder="descrizione" formControlName="descrizione" type="text"
+                      name="desc" id="desc">
+                    <input class="inputMobile" placeholder="prezzo" formControlName="prezzo" type="number" name="prezzo"
+                      id="prezzo" step="0.01">
+                    <button class="inputMobile" [disabled]="formModifica.invalid" type="button"
+                      class="btn w-100 btn-success" class="btn w-100 btn-warning block"
+                      (click)="modifica(item.id)">Save</button>
+                  </form>
+                </div>
 
-              <span class="example-accordion-item-description">
-                <mat-icon> {{ accordionItem.expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
-              </span>
-            </div>
-
-            <div class="example-accordion-item-body" role="region"
-              [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index"
-              [attr.aria-labelledby]="'accordion-header-' + index">
-              Descrizione : {{item.descrizione}}
-              <br />
-              Prezzo : {{item.prezzo}}
-              <br />
-            </div>
-            <ng-container >
-              <div *ngIf="mobileEdit" class="example-accordion-item-body" role="region"
-                [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index"
-                [attr.aria-labelledby]="'accordion-header-' + index">
-                <form [formGroup]="formModifica" class="formModificaMobile">
-                  <input class="inputMobile" placeholder="nome" formControlName="nome" type="text" name="nome"
-                    id="nome">
-                  <input class="inputMobile" placeholder="descrizione" formControlName="descrizione" type="text"
-                    name="desc" id="desc">
-                  <input class="inputMobile" placeholder="prezzo" formControlName="prezzo" type="number" name="prezzo"
-                    id="prezzo" step="0.01">
-                  <button class="inputMobile" [disabled]="formModifica.invalid" type="button"
-                    class="btn w-100 btn-success" class="btn w-100 btn-warning block"
-                    (click)="modifica(item.id)">Save</button>
-                </form>
-              </div>
-
-              <div *ngIf="mobileDelete" class="example-accordion-item-body" role="region"
-                [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index"
-                [attr.aria-labelledby]="'accordion-header-' + index">
-                <button class="btn btn-danger" (click)="onDeleteProdotti(item.id)">Delete</button>
-              </div>
-            </ng-container>
-          </cdk-accordion-item>
-        </cdk-accordion>
-      </div>
-    </tbody>
-  </table>
-</div>
-
-</div>
+                <div *ngIf="mobileDelete" class="example-accordion-item-body" role="region"
+                  [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index"
+                  [attr.aria-labelledby]="'accordion-header-' + index">
+                  <button class="btn btn-danger" (click)="onDeleteProdotti(item.id)">Delete</button>
+                </div>
+              </ng-container>
+            </cdk-accordion-item>
+          </cdk-accordion>
+        </div>
+      </tbody>
+    </table>
+  </div>
