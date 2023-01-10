@@ -6,11 +6,14 @@
             <h5 class="dato">{{"REGISTRAZIONE.NomeUtente" | translate}} : {{utente?.nomeUtente}}</h5>
             <h5 class="dato">{{"REGISTRAZIONE.Email" | translate}} : {{utente?.email}}</h5>
             <h5 class="dato">{{"REGISTRAZIONE.DataNascita" | translate}} : {{utente?.dataNascita | date: 'dd-MM-yyyy' }}</h5>
-            <button class="bottone" mat-raised-button color="warn" (click)="logout()">{{"GENERALE.Esci" | translate}}</button>
+           
         </div>
     </div>
-    <div class="vuoto">
+    <div class="calendario">
         <scheduler-component></scheduler-component>
     </div>
+        
+
+    <button class="bottone" mat-raised-button color="warn" (click)="logout()">{{"GENERALE.Esci" | translate}}</button>
 </div>
 

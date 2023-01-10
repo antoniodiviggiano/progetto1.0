@@ -1,26 +1,21 @@
 .cont {
-    flex-direction: row;
+    flex-direction: column;
     display: flex;
     justify-content: center;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    margin-left: 2%;
-    margin-right: 2%;
-    height: 75%;
+    padding: 3%;
 }
 
 .profilo {
-    flex: 0.50;
-    padding-left: 10%;
+    margin-left: 10%;
+    margin-bottom: 3%;
 }
-.vuoto {
-    flex: 0.50;
+.calendario {
+    width: 75%;
 }
 
 .dati {
     flex-direction: column;
     display: flex;
-    padding-block: 10%;
 }
 .dato {
     padding-top: 2%;
