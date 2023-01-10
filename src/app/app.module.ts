@@ -37,6 +37,7 @@ import { MenubarComponent } from './menubar/menubar.component';
 import { ProfiloComponent } from './profilo/profilo.component';
 import { reducers } from './reducers';
 import { RegistrazioneComponent } from "./registrazione/registrazione.component";
+import { SchedulerModule } from './scheduler/scheduler.module';
 import { TabellaprodottiComponent } from "./tabellaprodotti/tabellaprodotti.component";
 import { temaReducer } from './tema/reducer';
 
@@ -73,6 +74,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FormsModule,
     MatIconModule,
     MatToolbarModule,
+    SchedulerModule,
     MatButtonModule,
     MatSelectModule,
     BrowserAnimationsModule,
