@@ -52,14 +52,10 @@
   </div>
 
   <div id="mobile">
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">Prodotti</th>
-        </tr>
-      </thead>
-      <tbody>
-        <div class="container">
+    
+        Prodotti
+       
+        <div class="">
           <cdk-accordion class="example-accordion clienti-style ">
             <cdk-accordion-item *ngFor="let item of prodotti; let index = index;" #accordionItem="cdkAccordionItem"
               class="example-accordion-item " role="button" tabindex="0" [attr.id]="'accordion-header-' + index"
@@ -115,6 +111,4 @@
             </cdk-accordion-item>
           </cdk-accordion>
         </div>
-      </tbody>
-    </table>
   </div>

@@ -25,10 +25,29 @@
 }
 
 .example-accordion {
-  display: block;
-  width: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   
 }
+
+@media screen and (min-width:390px) {
+  .example-accordion {
+    width: 50%;
+    justify-content: center;
+    
+  }
+  .prodotto{
+      justify-content: space-between;
+      display: flex;
+      flex : 1;
+      
+    
+  }
+
+}
+
+
 
 
 

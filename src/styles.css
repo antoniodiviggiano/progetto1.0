@@ -1,14 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
-html {
-
-}
-
 @media screen and (max-width:390px) {
   body {
     display: flex;
     flex: 1;
+    width: 100%;
   }
+}
+
+.provaBody{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
 .light-mode {

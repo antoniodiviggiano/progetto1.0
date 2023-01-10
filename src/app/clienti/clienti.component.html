@@ -21,11 +21,9 @@
                 <ng-container>
                     <div *ngFor="let prod of prodotti; let i=index">
                         <div *ngIf="idProdotti.length > 0" class="prodotto">
-                            <div>
                                 <p>{{"GENERALE.Nome" | translate}} : {{prod.nome}}</p>
                                 <p>{{"GENERALE.Descrizione" | translate}} : {{prod.descrizione}}</p>
                                 <p>{{"GENERALE.Prezzo" | translate}} : {{prod.prezzo | currency:'EUR' }}</p>
-                            </div>
                         </div>
                         <hr *ngIf="i+1 !== prodotti.length">
                     </div>

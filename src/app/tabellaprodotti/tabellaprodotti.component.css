@@ -49,9 +49,18 @@
 }
 
 .example-accordion {
-  display: block;
+  display: flex;
   margin-bottom: 10%;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
   
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .example-accordion-item {
