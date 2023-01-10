@@ -56,6 +56,9 @@
   flex: 1;
   
 }
+.tabella-style{
+  margin: 5%;
+}
 
 .container {
   display: flex;
