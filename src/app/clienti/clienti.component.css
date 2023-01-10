@@ -13,13 +13,21 @@
 
 
 .list {
-  margin-top: 5%;
-  padding-left: 30%;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  margin-top: 3%;
+  padding-bottom: 5%;
+  height: max-content;
+
+
 }
 
 .example-accordion {
   display: block;
-  max-width: 500px;
+  width: 500px;
+  
 }
 
 .example-accordion-item {
