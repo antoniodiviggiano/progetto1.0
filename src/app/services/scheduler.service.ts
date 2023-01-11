@@ -36,4 +36,10 @@ export class SchedulerService {
     return this.http.patch(`http://localhost:8080/items/${id}`, {start: start, end: end}) as Observable<any[]>
   }
 
+  
+  movedEvents(id :  string, start : any, end : any, resource: number) : Observable<any[]> {
+    return this.http.patch(`http://localhost:8080/items/${id}`, {start: start, end: end, resource: resource}) as Observable<any[]>
+  }
+
+
 }

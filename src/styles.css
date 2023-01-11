@@ -7,6 +7,11 @@
     width: 100%;
   }
 }
+@media screen and (max-height : 844px) {
+  .light-mode {
+    min-height: 844px !important;
+  }
+}
 
 .provaBody{
   display: flex;
@@ -17,13 +22,12 @@
 .light-mode {
   background-color: #F5EBE0 !important;
   background-image: url("src/app/img/light-img.png");
-  height: 100vh;
-  min-height: 500px;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-color: #1d3557;
+  min-height: 1200px;
 
   color: #85586F !important;
   --bs-card-bg: #F5EBE0 !important;
@@ -85,8 +89,7 @@
 /* darkmode */
 .dark-mode {
   background-image: url("src/app/img/dark-img.png");
-  height: 100vh;
-  min-height: 500px;
+  min-height: 1200px;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;

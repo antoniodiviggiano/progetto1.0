@@ -50,6 +50,13 @@ export class SchedulerComponent implements OnInit {
     eventMoveHandling: "Update",
     onEventMoved: (args) => {
       args['control'].message("Event moved: " + args['e'].text());
+      this.schedulerService.movedEvents(args['e'].data.id, args['newStart'],  args['newEnd'], args['resource'],).subscribe({
+        next(value) {
+            console.log(value);
+            
+        },
+      })
+      
     },
     eventResizeHandling: "Update",
     onEventResized: (args) => {
